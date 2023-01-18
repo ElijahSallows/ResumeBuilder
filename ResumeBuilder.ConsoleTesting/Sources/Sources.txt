@@ -1,0 +1,2 @@
+﻿All images obtained from:
+https://github.com/edent/SuperTinyIcons
