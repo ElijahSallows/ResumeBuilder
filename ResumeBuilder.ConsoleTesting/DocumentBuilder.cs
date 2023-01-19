@@ -1,20 +1,28 @@
 ﻿
 using QuestPDF.Fluent;
+using QuestPDF.Previewer;
+using ResumeBuilder.ConsoleTesting.Models;
 
 namespace ResumeBuilder.ConsoleTesting
 {
     internal class DocumentBuilder
     {
-        private Document doc;
+        private ResumeDocument _doc;
 
-        public DocumentBuilder()
+        public DocumentBuilder(ResumeInfo info)
         {
-
+            _doc = new ResumeDocument(info);
         }
 
         public void Build()
         {
 
+            var document = Document.Create(container =>
+            {
+                _doc.Compose(container);
+            });
+            //document.GeneratePdf("deleteme.pdf");
+            document.ShowInPreviewer();
         }
     }
 }
