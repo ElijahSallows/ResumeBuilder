@@ -2,16 +2,19 @@
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using SkiaSharp;
 
 namespace ResumeBuilder.ConsoleTesting.Models
 {
     internal class ResumeDocument : IDocument
     {
         public ResumeInfo Info { get; }
+        public DocumentTheme Theme { get; }
 
-        public ResumeDocument(ResumeInfo info)
+        public ResumeDocument(ResumeInfo info, DocumentTheme theme)
         {
             Info = info;
+            Theme = theme;
         }
 
         public DocumentMetadata GetMetadata() => DocumentMetadata.Default;
@@ -20,7 +23,10 @@ namespace ResumeBuilder.ConsoleTesting.Models
         {
             container.Page(page =>
             {
-                page.Margin(50);
+                page.MarginVertical(45);
+                page.MarginHorizontal(30);
+                page.Background().BorderVertical(5).BorderColor(Theme.Colors.Main)
+                .BorderHorizontal(10).BorderColor(Theme.Colors.Main);
 
                 page.Header().Element(ComposeHeader);
 
@@ -39,17 +45,44 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 table.ColumnsDefinition(columns =>
                 {
                     columns.RelativeColumn();
-                    columns.RelativeColumn();
                     columns.ConstantColumn(50);
+                    columns.RelativeColumn();
                 });
+                //table
+                table.Cell().ColumnSpan(3);
+                //.Canvas((canvas, size) =>
+                //{
+                //    using var paint = new SKPaint
+                //    {
+                //        Color = SKColor.Parse(Theme.Colors.Main)
+                //    };
+
+                //    canvas.DrawRoundRect(0, 0, size.Width, size.Height, 20, 20, paint);
+                //});
+                //.LineHorizontal(Theme.TopLineSize)
+                //.LineColor(Theme.Colors.Main);
+
 
                 table.Cell()
-                .AlignLeft()
-                .Column(column =>
+                .Column(1)
+                .Text(Info.User.Name)
+                .FontSize(Theme.NameSize)
+                .FontColor(Theme.Colors.Main);
+
+                table.Cell().Column(3).AlignRight().Text(Info.User.Address.City);
+                table.Cell().Column(3)
+                .Text(text =>
                 {
-                    column.Item().Text(Info.User.Name);
-                    column.Item().Text(Info.User.Title);
+                    text.AlignRight();
+                    text.Span(Info.User.Address.State);
+                    text.Span(" ");
+                    text.Span(Info.User.Address.Zip);
                 });
+                //.Column(column =>
+                //{
+                //    column.Item().Text(Info.User.Name);
+                //    column.Item().Text(Info.User.Title);
+                //});
                 
             });
         }

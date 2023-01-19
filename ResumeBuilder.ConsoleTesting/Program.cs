@@ -108,5 +108,11 @@ var info = new ResumeInfo()
     }
 };
 
-var builder = new DocumentBuilder(info);
+var colors = new ColorModel()
+{
+    Main = "#032f67"
+};
+var theme = new DocumentTheme(colors);
+
+var builder = new DocumentBuilder(info, theme);
 builder.Build();

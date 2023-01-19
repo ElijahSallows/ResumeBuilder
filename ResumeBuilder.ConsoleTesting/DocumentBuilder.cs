@@ -8,10 +8,12 @@ namespace ResumeBuilder.ConsoleTesting
     internal class DocumentBuilder
     {
         private ResumeDocument _doc;
+        private DocumentTheme _theme;
 
-        public DocumentBuilder(ResumeInfo info)
+        public DocumentBuilder(ResumeInfo info, DocumentTheme theme)
         {
-            _doc = new ResumeDocument(info);
+            _doc = new ResumeDocument(info, theme);
+            _theme = theme;
         }
 
         public void Build()
