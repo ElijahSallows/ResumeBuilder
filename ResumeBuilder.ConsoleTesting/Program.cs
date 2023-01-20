@@ -1,8 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// I'm doing a relatively quick learning of QuestPDF
+// and a mockup design of the resume format I may use.
+// I'm aware that there should be more comments.
+// I'll address that as I go along. :)
 using ResumeBuilder.ConsoleTesting;
 using ResumeBuilder.ConsoleTesting.Models;
 
 Console.WriteLine("Hello, World!");
+
+
 var info = new ResumeInfo()
 {
     User = new UserInfo()
@@ -15,14 +20,14 @@ var info = new ResumeInfo()
         {
             new SocialLink()
             {
-                Url = "Link.Url",
-                ImageUri = "image.uri",
+                Url = "https://www.linkedin.com/",
+                ImageUri = "/Sources/linkedin.png",
                 Name = "LinkedIn"
             },
             new SocialLink()
             {
                 Url = "Link.Url-2",
-                ImageUri = "image.uri-2",
+                ImageUri = "/Sources/github.png",
                 Name = "GitHub"
             }
 

@@ -2,7 +2,9 @@
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using ResumeBuilder.ConsoleTesting.Components;
 using SkiaSharp;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ResumeBuilder.ConsoleTesting.Models
 {
@@ -48,8 +50,48 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     columns.ConstantColumn(50);
                     columns.RelativeColumn();
                 });
+
+                // Left side. User's name.
+                var socials = new SocialsComponent(Info.User.Links, Theme);
+
+                table.Cell()
+                .Column(1)
+                .RowSpan(2)
+                .Text(Info.User.Name)
+                .FontSize(Theme.NameSize)
+                .FontColor(Theme.Colors.Main);
+
+                table.Cell()
+                .Column(1)
+                .Component(socials);
+
+
+
+                // Right side. Contains rough idea of where User lives as well as contact info.
+                var addressEmail = new AddressEmailComponent(Info.User.Address, Info.User.Email, Theme);
+
+
+                table.Cell().Column(3).Component(addressEmail);
+
+
+
+                // Code Graveyard
+
+                //table.Cell()
+                //.Column(3)
+                //.AlignRight()
+                //.Text(Info.User.Address.City)
+                //.FontSize(12);
+
+                //table.Cell().Column(3).Row(2)
+                //.Text($"{Info.User.Address.State}  {Info.User.Address.Zip}");
+                //.Column(column =>
+                //{
+                //    column.Item().Text(Info.User.Name);
+                //    column.Item().Text(Info.User.Title);
+                //});
+
                 //table
-                table.Cell().ColumnSpan(3);
                 //.Canvas((canvas, size) =>
                 //{
                 //    using var paint = new SKPaint
@@ -61,29 +103,6 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 //});
                 //.LineHorizontal(Theme.TopLineSize)
                 //.LineColor(Theme.Colors.Main);
-
-
-                table.Cell()
-                .Column(1)
-                .Text(Info.User.Name)
-                .FontSize(Theme.NameSize)
-                .FontColor(Theme.Colors.Main);
-
-                table.Cell().Column(3).AlignRight().Text(Info.User.Address.City);
-                table.Cell().Column(3)
-                .Text(text =>
-                {
-                    text.AlignRight();
-                    text.Span(Info.User.Address.State);
-                    text.Span(" ");
-                    text.Span(Info.User.Address.Zip);
-                });
-                //.Column(column =>
-                //{
-                //    column.Item().Text(Info.User.Name);
-                //    column.Item().Text(Info.User.Title);
-                //});
-                
             });
         }
     }
