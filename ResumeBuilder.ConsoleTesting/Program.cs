@@ -14,6 +14,7 @@ var info = new ResumeInfo()
     {
         About = "about.\n it's all about me",
         Email = "test@email.com",
+        Phone = "(309)-xxx-xxxx",
         Name = "Elijah Sallows",
         Title = "Junior .NET Developer",
         Links = new List<SocialLink>
@@ -115,7 +116,12 @@ var info = new ResumeInfo()
 
 var colors = new ColorModel()
 {
-    Main = "#032f67"
+    Main = "#032f67",
+    Secondary = "#E0FBFC",
+    Tertiary = "#E0FBFC",
+    Quaternary = "#9DB4C0",
+    Background = "#FFFFFF",
+    BottomContrast = "#2C6E49"
 };
 var theme = new DocumentTheme(colors);
 

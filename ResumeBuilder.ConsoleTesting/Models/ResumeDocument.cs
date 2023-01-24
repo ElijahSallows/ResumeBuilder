@@ -3,8 +3,6 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Components;
-using SkiaSharp;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ResumeBuilder.ConsoleTesting.Models
 {
@@ -30,11 +28,11 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 page.Background().BorderVertical(5).BorderColor(Theme.Colors.Main)
                 .BorderHorizontal(10).BorderColor(Theme.Colors.Main);
 
-                page.Header().Element(ComposeHeader);
+                page.Header().Background(Theme.Colors.Background).Element(ComposeHeader);
 
-                page.Content().Background(Colors.Grey.Lighten3);
+                page.Content().Background(Theme.Colors.Background).Element(ComposeContent);
 
-                page.Footer().Height(50).Background(Colors.Grey.Lighten1);
+                page.Footer().Background(Theme.Colors.BottomContrast).Element(ComposeFooter);
             });
 
 
@@ -56,27 +54,34 @@ namespace ResumeBuilder.ConsoleTesting.Models
 
                 table.Cell()
                 .Column(1)
+                .Row(1)
                 .RowSpan(2)
+                .PaddingBottom(20)
+                .Background(Colors.DeepOrange.Lighten3)
                 .Text(Info.User.Name)
                 .FontSize(Theme.NameSize)
                 .FontColor(Theme.Colors.Main);
 
                 table.Cell()
                 .Column(1)
+                .Row(2)
+                .RowSpan(2)
+                .Background(Colors.DeepOrange.Lighten4)
                 .Component(socials);
 
 
 
                 // Right side. Contains rough idea of where User lives as well as contact info.
-                var addressEmail = new AddressEmailComponent(Info.User.Address, Info.User.Email, Theme);
+                var addressEmail = new ContactComponent(Info.User.Address, Info.User.Email, Info.User.Phone, Theme);
 
 
-                table.Cell().Column(3).Component(addressEmail);
+                table.Cell().Column(3).RowSpan(3).Component(addressEmail);
 
 
 
                 // Code Graveyard
 
+                /*
                 //table.Cell()
                 //.Column(3)
                 //.AlignRight()
@@ -103,7 +108,52 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 //});
                 //.LineHorizontal(Theme.TopLineSize)
                 //.LineColor(Theme.Colors.Main);
+                */
             });
+        }
+
+        public void ComposeFooter(IContainer container)
+        {
+            container.Table(table =>
+            {
+                table.ColumnsDefinition(columns =>
+                {
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();
+                });
+
+
+                // I'll need to find a way to streamline this.
+                // I think I can set it as .Element() or something.
+                table.Cell().Row(1).Column(2).ColumnSpan(2).AlignMiddle().AlignCenter()//.PaddingRight(30)
+                    .Text("Please consider interviewing me.")
+                    .FontColor(Colors.White)
+                    .FontSize(Theme.ContactComponentTextSize);
+
+                table.Cell().Row(2).Column(2).ColumnSpan(2).AlignMiddle().AlignCenter()//.PaddingRight(10)
+                    .Text($"{Info.User.Phone} - {Info.User.Email}")
+                    .FontColor(Colors.White)
+                    .FontSize(Theme.ContactComponentTextSize);
+
+                /*
+                table.Cell().Row(2).Column(2).AlignMiddle().AlignRight().PaddingRight(10)
+                    .Text(Info.User.Phone)
+                    .FontColor(Colors.White)
+                    .FontSize(Theme.ContactComponentTextSize);
+
+                table.Cell().Row(2).Column(3).AlignMiddle().AlignLeft().PaddingRight(10)
+                    .Text(Info.User.Email)
+                    .FontColor(Colors.White)
+                    .FontSize(Theme.ContactComponentTextSize);
+                */
+            });
+        }
+
+        public void ComposeContent(IContainer container)
+        {
+
         }
     }
 }

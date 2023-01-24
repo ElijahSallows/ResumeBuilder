@@ -1,11 +1,7 @@
 ﻿using QuestPDF.Fluent;
+using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
@@ -22,9 +18,10 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.AlignLeft().Column(column =>
+            container.Background(Colors.DeepOrange.Lighten5).AlignLeft().AlignTop().Column(column =>
             {
                 //column.Item().Grid
+                // I want a nice background
                 column.Item().Inlined(inlined =>
                 {
                     inlined.Spacing(5);

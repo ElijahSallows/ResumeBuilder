@@ -1,5 +1,4 @@
-﻿
-namespace ResumeBuilder.ConsoleTesting.Models
+﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
     internal class ResumeInfo
     {

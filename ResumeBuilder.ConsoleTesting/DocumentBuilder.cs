@@ -1,5 +1,4 @@
-﻿
-using QuestPDF.Fluent;
+﻿using QuestPDF.Fluent;
 using QuestPDF.Previewer;
 using ResumeBuilder.ConsoleTesting.Models;
 
