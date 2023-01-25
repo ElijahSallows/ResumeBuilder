@@ -23,19 +23,18 @@ namespace ResumeBuilder.ConsoleTesting.Models
         {
             container.Page(page =>
             {
-                page.MarginVertical(45);
+                page.MarginVertical(20);
                 page.MarginHorizontal(30);
+                page.PageColor(Theme.Colors.Secondary);
                 page.Background().BorderVertical(5).BorderColor(Theme.Colors.Main)
                 .BorderHorizontal(10).BorderColor(Theme.Colors.Main);
 
-                page.Header().Background(Theme.Colors.Background).Element(ComposeHeader);
+                page.Header().AlignTop().Background(Theme.Colors.Background).Element(ComposeHeader);
 
                 page.Content().Background(Theme.Colors.Background).Element(ComposeContent);
 
-                page.Footer().Background(Theme.Colors.BottomContrast).Element(ComposeFooter);
+                page.Footer().AlignBottom().Background(Theme.Colors.BottomContrast).Element(ComposeFooter);
             });
-
-
         }
 
         public void ComposeHeader(IContainer container)
@@ -56,17 +55,20 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 .Column(1)
                 .Row(1)
                 .RowSpan(2)
-                .PaddingBottom(20)
                 .Background(Colors.DeepOrange.Lighten3)
+                .MinHeight(20)
+                .PaddingBottom(40)
                 .Text(Info.User.Name)
                 .FontSize(Theme.NameSize)
                 .FontColor(Theme.Colors.Main);
 
                 table.Cell()
                 .Column(1)
+                .ColumnSpan(3)
                 .Row(2)
-                .RowSpan(2)
+                .AlignBottom()
                 .Background(Colors.DeepOrange.Lighten4)
+                .PaddingTop(0)
                 .Component(socials);
 
 
@@ -75,40 +77,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 var addressEmail = new ContactComponent(Info.User.Address, Info.User.Email, Info.User.Phone, Theme);
 
 
-                table.Cell().Column(3).RowSpan(3).Component(addressEmail);
-
-
-
-                // Code Graveyard
-
-                /*
-                //table.Cell()
-                //.Column(3)
-                //.AlignRight()
-                //.Text(Info.User.Address.City)
-                //.FontSize(12);
-
-                //table.Cell().Column(3).Row(2)
-                //.Text($"{Info.User.Address.State}  {Info.User.Address.Zip}");
-                //.Column(column =>
-                //{
-                //    column.Item().Text(Info.User.Name);
-                //    column.Item().Text(Info.User.Title);
-                //});
-
-                //table
-                //.Canvas((canvas, size) =>
-                //{
-                //    using var paint = new SKPaint
-                //    {
-                //        Color = SKColor.Parse(Theme.Colors.Main)
-                //    };
-
-                //    canvas.DrawRoundRect(0, 0, size.Width, size.Height, 20, 20, paint);
-                //});
-                //.LineHorizontal(Theme.TopLineSize)
-                //.LineColor(Theme.Colors.Main);
-                */
+                table.Cell().Column(3).RowSpan(2).Component(addressEmail);
             });
         }
 
@@ -127,12 +96,22 @@ namespace ResumeBuilder.ConsoleTesting.Models
 
                 // I'll need to find a way to streamline this.
                 // I think I can set it as .Element() or something.
-                table.Cell().Row(1).Column(2).ColumnSpan(2).AlignMiddle().AlignCenter()//.PaddingRight(30)
-                    .Text("Please consider interviewing me.")
+                table.Cell()
+                    .Row(1)
+                    .Column(2)
+                    .ColumnSpan(2)
+                    .AlignMiddle()
+                    .AlignCenter()//.PaddingRight(30)
+                    .Text(Theme.ContactMeTextVisible ? "Please consider interviewing me." : "")
                     .FontColor(Colors.White)
                     .FontSize(Theme.ContactComponentTextSize);
 
-                table.Cell().Row(2).Column(2).ColumnSpan(2).AlignMiddle().AlignCenter()//.PaddingRight(10)
+                table.Cell()
+                    .Row(2)
+                    .Column(2)
+                    .ColumnSpan(2)
+                    .AlignMiddle()
+                    .AlignCenter()//.PaddingRight(10)
                     .Text($"{Info.User.Phone} - {Info.User.Email}")
                     .FontColor(Colors.White)
                     .FontSize(Theme.ContactComponentTextSize);

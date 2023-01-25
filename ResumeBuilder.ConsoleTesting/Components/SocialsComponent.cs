@@ -18,23 +18,50 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.Background(Colors.DeepOrange.Lighten5).AlignLeft().AlignTop().Column(column =>
-            {
-                //column.Item().Grid
-                // I want a nice background
-                column.Item().Inlined(inlined =>
+            container.Background(Colors.DeepOrange.Lighten5).AlignLeft().AlignTop()
+                .Table(table =>
                 {
-                    inlined.Spacing(5);
-                    foreach (SocialLink link in Links)
+                    // Max of four columns (and therefore links)
+                    // Will likely either change or limit amount that can be put in.
+                    int amtColumn = Links.Count > 4 ? 3 : Links.Count;
+                    table.ColumnsDefinition(columns =>
                     {
-                        inlined.Item().Element(element =>
+                        // Generate a column for each link (max of four)
+                        for (int i = 0; i < amtColumn; i++)
                         {
-                            //element.Hyperlink(link.Url).Image(link.ImageUri);
-                            element.Hyperlink(link.Url).Text(link.Name);
-                        });
+                            columns.RelativeColumn();
+                        }
+                    });
+
+                    // QuestPDF uses a 1-based index system, unlike C#. Account for that here.
+                    for (int i = 1; i < amtColumn + 1; i++)
+                    {
+                        // comp has to account for the difference in indexing
+                        var comp = new SingleSocialComponent(Links[i - 1], Theme);
+                        // QuestPDF also requires .Column() to take in a uint as opposed to int. Casting, I suppose.
+                        table.Cell().Column((uint)i).Background(Colors.Cyan.Medium).Component(comp);
                     }
                 });
-            });
+
+
+
+            //    .Column(column =>
+            //{
+            //    //column.Item().Grid
+            //    // I want a nice background
+            //    column.Item().Inlined(inlined =>
+            //    {
+            //        inlined.Spacing(5);
+            //        foreach (SocialLink link in Links)
+            //        {
+            //            inlined.Item().Element(element =>
+            //            {
+            //                //element.Hyperlink(link.Url).Image(link.ImageUri);
+            //                element.Hyperlink(link.Url).Text(link.Name);
+            //            });
+            //        }
+            //    });
+            //});
         }
     }
 }
