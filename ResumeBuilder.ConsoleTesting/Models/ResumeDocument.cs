@@ -71,6 +71,12 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 .PaddingTop(0)
                 .Component(socials);
 
+                var dir = AppDomain.CurrentDomain.BaseDirectory;
+            table.Cell()
+            .Width(16)
+            .Height(16)
+            .Image(dir + "/Sources/linkedin.png");
+
 
 
                 // Right side. Contains rough idea of where User lives as well as contact info.

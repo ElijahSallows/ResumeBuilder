@@ -22,13 +22,13 @@ var info = new ResumeInfo()
             new SocialLink()
             {
                 Url = "https://www.linkedin.com/",
-                ImageUri = "/Sources/linkedin.png",
+                ImageUri = "Sources/linkedin.png",
                 Name = "LinkedIn"
             },
             new SocialLink()
             {
                 Url = "Link.Url-2",
-                ImageUri = "/Sources/github.png",
+                ImageUri = "Sources/github.png",
                 Name = "GitHub"
             }
 
