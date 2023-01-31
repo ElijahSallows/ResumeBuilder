@@ -4,6 +4,7 @@
 // I'll address that as I go along. :)
 using ResumeBuilder.ConsoleTesting;
 using ResumeBuilder.ConsoleTesting.Models;
+using ResumeBuilder.ConsoleTesting.Properties;
 
 Console.WriteLine("Hello, World!");
 
@@ -22,14 +23,20 @@ var info = new ResumeInfo()
             new SocialLink()
             {
                 Url = "https://www.linkedin.com/",
-                ImageUri = "Sources/linkedin.png",
+                Image = Resources.linkedin,
                 Name = "LinkedIn"
             },
             new SocialLink()
             {
                 Url = "Link.Url-2",
-                ImageUri = "Sources/github.png",
+                Image = Resources.github,
                 Name = "GitHub"
+            },
+            new SocialLink()
+            {
+                Url = "Link.Url-2",
+                Image = Resources.gmail,
+                Name = "email :)"
             }
 
         },
@@ -75,7 +82,7 @@ var info = new ResumeInfo()
     Experience = new ExperienceInfo()
     {
         Experiences = new List<Experience>()
-        { 
+        {
             new Experience()
             {
                 StartDate = DateTime.Now,
@@ -108,9 +115,18 @@ var info = new ResumeInfo()
     {
 
     },
-    Skills = new SkillsInfo()
+    Skills = new SectionInfo<Skill>()
     {
-
+        Bullets = new List<Skill>()
+        {
+            new Skill("C#"),
+            new Skill("HTML / CSS"),
+            new Skill("a"),
+            new Skill("b"),
+            new Skill("c"),
+            new Skill("d"),
+            new Skill("e")
+        }
     }
 };
 

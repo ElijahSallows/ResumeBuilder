@@ -3,6 +3,7 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Components;
+using System.Runtime.CompilerServices;
 
 namespace ResumeBuilder.ConsoleTesting.Models
 {
@@ -71,16 +72,11 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 .PaddingTop(0)
                 .Component(socials);
 
-                var dir = AppDomain.CurrentDomain.BaseDirectory;
-            table.Cell()
-            .Width(16)
-            .Height(16)
-            .Image(dir + "/Sources/linkedin.png");
-
-
-
                 // Right side. Contains rough idea of where User lives as well as contact info.
-                var addressEmail = new ContactComponent(Info.User.Address, Info.User.Email, Info.User.Phone, Theme);
+                var addressEmail = new ContactComponent(Info.User.Address, 
+                    Info.User.Email, 
+                    Info.User.Phone, 
+                    Theme);
 
 
                 table.Cell().Column(3).RowSpan(2).Component(addressEmail);
@@ -138,7 +134,67 @@ namespace ResumeBuilder.ConsoleTesting.Models
 
         public void ComposeContent(IContainer container)
         {
+            container.PaddingTop(10f)
+                .Table(table =>
+            {
+                table.ColumnsDefinition(columns =>
+                {
+                    columns.RelativeColumn();
+                    columns.RelativeColumn();// columns.RelativeColumn();
+                });
 
+
+                // Section headers
+                table.Cell()
+                .Row(1)
+                .Column(1)
+                .Element(SectionHeader)
+                .Text("Skills");
+                table.Cell()
+                .Row(3)
+                .Column(1)
+                .Element(SectionHeader)
+                .Text("Featured Projects");
+                table.Cell()
+                .Row(1)
+                .Column(2)
+                .Element(SectionHeader)
+                .Text("Experience");
+                table.Cell()
+                .Row(3)
+                .Column(2)
+                .Element(SectionHeader)
+                .Text("Education");
+
+                // Component declarations
+                var skillsComponent = new SkillsComponent(Info.Skills.Bullets, Theme);
+                //var projectsComponent = new ProjectsComponent();
+                //var experienceComponent = new ExperienceComponent();
+                //var educationComponent = new EducationComponent();
+
+                // Main components
+                table.Cell()
+                .Row(2)
+                .Column(1)
+                .Component(skillsComponent);
+            });
+        }
+
+        public IContainer SectionHeader(IContainer container)
+        {
+            var textStyle = new TextStyle();
+
+            textStyle = textStyle
+                .FontColor(Colors.White)
+                .FontSize(Theme.ContactComponentTextSize);
+
+            return container.DefaultTextStyle(textStyle)
+                .ExtendHorizontal()
+                .Background(Theme.Colors.Main)
+                .BorderColor(Theme.Colors.Background)
+                .Border(3)
+                .AlignCenter()
+                .AlignMiddle();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace ResumeBuilder.ConsoleTesting.Components
             //        {
             //            inlined.Item().Element(element =>
             //            {
-            //                //element.Hyperlink(link.Url).Image(link.ImageUri);
+            //                //element.Hyperlink(link.Url).Image(link.Image);
             //                element.Hyperlink(link.Url).Text(link.Name);
             //            });
             //        }

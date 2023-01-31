@@ -17,16 +17,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.AlignCenter().AlignMiddle().Row(row =>
+            container.AlignCenter()
+                .AlignMiddle()
+                .Row(row =>
             {
-                //row.RelativeItem()
-                //    .AlignRight()
-                //    .MinimalBox()
-                //    .PaddingRight(2)
-                //    .Image(Link.ImageUri);
-                    //.Width(32)
-                    //.Height(32)
-                    //.Placeholder();//.Image(Link.ImageUri);
+                row.RelativeItem()
+                    .AlignRight()
+                    .MinimalBox()
+                    .PaddingRight(2)
+                    .Width(Theme.ImageSize)
+                    .Height(Theme.ImageSize)
+                    .Image(Link.Image);
                 row.RelativeItem()
                     .AlignLeft()
                     .AlignMiddle()
