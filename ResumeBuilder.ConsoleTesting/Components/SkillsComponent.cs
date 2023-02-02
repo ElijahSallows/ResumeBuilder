@@ -1,4 +1,5 @@
 ﻿using QuestPDF.Fluent;
+using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Models;
 
@@ -6,6 +7,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
 {
     internal class SkillsComponent : IComponent
     {
+        private int _numberOfDisplayedSkills;
+
         public List<Skill> Skills { get; set; }
         public DocumentTheme Theme { get; set; }
 
@@ -16,31 +19,56 @@ namespace ResumeBuilder.ConsoleTesting.Components
         }
         public void Compose(IContainer container)
         {
-            container.Column(column =>
+            _numberOfDisplayedSkills = Skills.Count <= Theme.MaxSkillCount ? Skills.Count : Theme.MaxSkillCount;
+            container.Table(table =>
             {
-                column.Spacing(0f);
-                foreach (Skill skill in Skills)
+                table.ColumnsDefinition(columns =>
                 {
-                    column.Item().Row(row =>
+                    for (int i = 0; i < Theme.SkillsColumnCount; i++)
                     {
+                        columns.RelativeColumn();
+                    }
+                });
+
+                for (int i = 0; i < _numberOfDisplayedSkills; i++) // (Skill skill in Skills)
+                {
+                    table.Cell()
+                    .Column(GetColumnPosition(i))
+                    .Row(GetRowPosition(i))
+                    .Row(row =>
+                    { 
                         row.RelativeItem()
                             .AlignRight()
-                            .Text("*")
-                            .FontSize(20f);
+                            .Text(Theme.Bullet)
+                            .FontSize(Theme.SkillTextSize);
 
-                        row.ConstantItem(20f);
+                        row.ConstantItem(10f);
 
                         row.RelativeItem(2f)
-                            .Text(skill.Name)
-                            .FontSize(16f);
+                            .Text(Skills[i].Name)
+                            .FontSize(Theme.SkillTextSize);
+
                     });
                 }
             });
         }
 
-        public IContainer ComposeBulletPoint(IContainer container)
+        private uint GetColumnPosition(int i)
         {
-            return container;
+            //decimal a = Math.Floor(Convert.ToDecimal(i) / Convert.ToDecimal(Theme.SkillsColumnCount));
+            int a = Convert.ToInt32(i) % Theme.SkillsColumnCount;
+            uint columnPosition = Convert.ToUInt32(a + 1); // Add 1 because QuestPDF uses 1-based indexing.
+            return columnPosition;
+        }
+
+        private uint GetRowPosition(int i)
+        {
+            //decimal numOfRows = Math.Ceiling(Convert.ToDecimal(Theme.MaxSkillCount) / Convert.ToDecimal(Theme.SkillsColumnCount));
+            //int a = Convert.ToInt32(i % Theme.SkillsColumnCount);
+            //decimal b = Convert.ToDecimal(a) / numOfRows;
+            decimal a = Math.Floor(Convert.ToDecimal(i) / Convert.ToDecimal(Theme.SkillsColumnCount));
+            uint rowPosition = Convert.ToUInt32(a + 1); // Add 1 because QuestPDF uses 1-based indexing.
+            return rowPosition;
         }
     }
 }

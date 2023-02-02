@@ -73,9 +73,9 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 .Component(socials);
 
                 // Right side. Contains rough idea of where User lives as well as contact info.
-                var addressEmail = new ContactComponent(Info.User.Address, 
-                    Info.User.Email, 
-                    Info.User.Phone, 
+                var addressEmail = new ContactComponent(Info.User.Address,
+                    Info.User.Email,
+                    Info.User.Phone,
                     Theme);
 
 
@@ -168,8 +168,8 @@ namespace ResumeBuilder.ConsoleTesting.Models
 
                 // Component declarations
                 var skillsComponent = new SkillsComponent(Info.Skills.Bullets, Theme);
-                //var projectsComponent = new ProjectsComponent();
-                //var experienceComponent = new ExperienceComponent();
+                var projectsComponent = new ProjectsComponent();// Info.Projects);
+                var experiencesComponent = new ExperiencesComponent(Info.Experience.Experiences, Theme);
                 //var educationComponent = new EducationComponent();
 
                 // Main components
@@ -177,9 +177,16 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 .Row(2)
                 .Column(1)
                 .Component(skillsComponent);
+
+
+                table.Cell()
+                .Row(2)
+                .Column(2)
+                .Component(experiencesComponent);
             });
         }
 
+        // Styling methods (used in .Element() calls)
         public IContainer SectionHeader(IContainer container)
         {
             var textStyle = new TextStyle();

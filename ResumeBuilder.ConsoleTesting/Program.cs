@@ -108,6 +108,30 @@ var info = new ResumeInfo()
                     "worked here",
                     "don't anymore"
                 }
+            },
+            new Experience()
+            {
+                StartDate = DateTime.Now,
+                CompanyName = "idk 1",
+                Title = "debug :)",
+                Current = true,
+                Points = new List<string>()
+                {
+                    "work here now",
+                    "happy face :)"
+                }
+            },
+            new Experience()
+            {
+                StartDate = DateTime.Now,
+                CompanyName = "idk 2",
+                Title = "debug to test limit. Shouldn't be visible.",
+                Current = true,
+                Points = new List<string>()
+                {
+                    "work here now",
+                    "happy face :)"
+                }
             }
         }
     },
@@ -119,13 +143,13 @@ var info = new ResumeInfo()
     {
         Bullets = new List<Skill>()
         {
-            new Skill("C#"),
-            new Skill("HTML / CSS"),
-            new Skill("a"),
-            new Skill("b"),
-            new Skill("c"),
-            new Skill("d"),
-            new Skill("e")
+            //new Skill("C#"),
+            //new Skill("HTML / CSS"),
+            //new Skill("a"),
+            //new Skill("b"),
+            //new Skill("c"),
+            //new Skill("d"),
+            //new Skill("e")
         }
     }
 };
@@ -141,5 +165,9 @@ var colors = new ColorModel()
 };
 var theme = new DocumentTheme(colors);
 
+for (int i = 0; i < theme.MaxSkillCount + 2; i++)
+{
+    info.Skills.Bullets.Add(new Skill("Skill " + i.ToString()));
+}
 var builder = new DocumentBuilder(info, theme);
 builder.Build();

@@ -21,11 +21,15 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.AlignRight().AlignTop().ShowEntire().Column(column =>
+            container.AlignRight()
+                .AlignTop()
+                .ShowEntire()
+                .PaddingRight(10f)
+                .Column(column =>
             {
                 //column.Spacing(Theme.Spacing);
 
-                column.Item().AlignRight().Text($"{Address.City} {Address.State}")
+                column.Item().AlignRight().Text($"{Address.City}, {Address.State}")
                 .FontSize(Theme.ContactComponentTextSize);
 
                 column.Item().AlignRight().Text(Email)
