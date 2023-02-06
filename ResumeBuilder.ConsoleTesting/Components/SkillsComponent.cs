@@ -33,22 +33,25 @@ namespace ResumeBuilder.ConsoleTesting.Components
                 for (int i = 0; i < _numberOfDisplayedSkills; i++) // (Skill skill in Skills)
                 {
                     table.Cell()
-                    .Column(GetColumnPosition(i))
-                    .Row(GetRowPosition(i))
-                    .Row(row =>
-                    { 
-                        row.RelativeItem()
-                            .AlignRight()
-                            .Text(Theme.Bullet)
-                            .FontSize(Theme.SkillTextSize);
+                        .Column(GetColumnPosition(i))
+                        .Row(GetRowPosition(i))
+                        .Text($"{Theme.Bullet}   {Skills[i].Name}")
+                        .FontSize(Theme.SkillTextSize);
+                    //.Row(row =>
+                    //{ 
 
-                        row.ConstantItem(10f);
+                    //    row.RelativeItem()
+                    //        .AlignRight()
+                    //        .Text(Theme.Bullet)
+                    //        .FontSize(Theme.SkillTextSize);
 
-                        row.RelativeItem(2f)
-                            .Text(Skills[i].Name)
-                            .FontSize(Theme.SkillTextSize);
+                    //    row.ConstantItem(10f);
 
-                    });
+                    //    row.RelativeItem(2f)
+                    //        .Text(Skills[i].Name)
+                    //        .FontSize(Theme.SkillTextSize);
+
+                    //});
                 }
             });
         }

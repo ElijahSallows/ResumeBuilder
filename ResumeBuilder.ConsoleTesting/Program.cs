@@ -2,6 +2,7 @@
 // and a mockup design of the resume format I may use.
 // I'm aware that there should be more comments.
 // I'll address that as I go along. :)
+using QuestPDF.Helpers;
 using ResumeBuilder.ConsoleTesting;
 using ResumeBuilder.ConsoleTesting.Models;
 using ResumeBuilder.ConsoleTesting.Properties;
@@ -117,8 +118,8 @@ var info = new ResumeInfo()
                 Current = true,
                 Points = new List<string>()
                 {
-                    "work here now",
-                    "happy face :)"
+                    "what is it?",
+                    "bullet 2 I suppose"
                 }
             },
             new Experience()
@@ -158,13 +159,22 @@ var colors = new ColorModel()
 {
     Main = "#032f67",
     Secondary = "#E0FBFC",
-    Tertiary = "#E0FBFC",
+    Tertiary = "#C2DFE3",
     Quaternary = "#9DB4C0",
     Background = "#FFFFFF",
-    BottomContrast = "#2C6E49"
+    LightContrast = "#DDDDDD",
+    BottomContrast = "#2C6E49",
+    Subfocus = "#424242"
 };
-var theme = new DocumentTheme(colors);
+var fonts = new FontModel()
+{
+    Main = Fonts.Tahoma,
+    Header = Fonts.Tahoma,
+    Social = Fonts.Tahoma
+};
+var theme = new DocumentTheme(colors, fonts);
 
+// DEBUG
 for (int i = 0; i < theme.MaxSkillCount + 2; i++)
 {
     info.Skills.Bullets.Add(new Skill("Skill " + i.ToString()));

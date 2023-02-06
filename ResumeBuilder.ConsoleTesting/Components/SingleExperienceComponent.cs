@@ -54,7 +54,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
                     .FontSize(Theme.ExperienceTimeTextSize);
                 });
 
-                table.Cell();
+                for (int i = 0; i < Experience.Points.Count; i++)
+                {
+                    var point = Experience.Points[i];
+                    table.Cell()
+                        .Row((uint)i + 2)
+                        .ColumnSpan(3)
+                        .PaddingRight(2f)
+                        .Text(">  " + point)
+                        .FontSize(Theme.ExperienceTextSize)
+                        .FontFamily(Theme.Fonts.Main);
+                }
             });
         }
     }

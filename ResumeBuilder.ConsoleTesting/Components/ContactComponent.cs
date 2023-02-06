@@ -24,19 +24,30 @@ namespace ResumeBuilder.ConsoleTesting.Components
             container.AlignRight()
                 .AlignTop()
                 .ShowEntire()
-                .PaddingRight(10f)
+                //.Background(Theme.Colors.Subfocus)
+                .PaddingVertical(8f)
+                .PaddingHorizontal(10f)
                 .Column(column =>
             {
-                //column.Spacing(Theme.Spacing);
+                column.Spacing(Theme.Spacing);
 
-                column.Item().AlignRight().Text($"{Address.City}, {Address.State}")
-                .FontSize(Theme.ContactComponentTextSize);
+                column.Item()
+                    .AlignRight()
+                    .Text($"{Address.City}, {Address.State}")
+                    .FontSize(Theme.ContactComponentTextSize)
+                    .FontFamily(Theme.Fonts.Main);
 
-                column.Item().AlignRight().Text(Email)
-                .FontSize(Theme.ContactComponentTextSize);
+                column.Item()
+                    .AlignRight()
+                    .Text(Email)
+                    .FontSize(Theme.ContactComponentTextSize)
+                    .FontFamily(Theme.Fonts.Main);
 
-                column.Item().AlignRight().Text(Phone)
-                .FontSize(Theme.ContactComponentTextSize);
+                column.Item()
+                    .AlignRight()
+                    .Text(Phone)
+                    .FontSize(Theme.ContactComponentTextSize)
+                    .FontFamily(Theme.Fonts.Main);
             });
         }
     }

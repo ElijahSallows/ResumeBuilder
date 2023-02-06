@@ -11,7 +11,8 @@ namespace ResumeBuilder.ConsoleTesting
         public static DocumentTheme Theme { get; } = new DocumentTheme(new ColorModel()
         {
             Main = "#032f67"
-        })
+        },
+            new FontModel())
         {
 
         };

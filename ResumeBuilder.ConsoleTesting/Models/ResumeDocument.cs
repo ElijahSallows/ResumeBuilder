@@ -26,15 +26,26 @@ namespace ResumeBuilder.ConsoleTesting.Models
             {
                 page.MarginVertical(20);
                 page.MarginHorizontal(30);
-                page.PageColor(Theme.Colors.Secondary);
-                page.Background().BorderVertical(5).BorderColor(Theme.Colors.Main)
-                .BorderHorizontal(10).BorderColor(Theme.Colors.Main);
+                //page.PageColor(Theme.Colors.Secondary);
+                page.Background()
+                    .BorderVertical(5)
+                    .BorderColor(Theme.Colors.Main)
+                    .BorderHorizontal(10)
+                    .BorderColor(Theme.Colors.Main);
 
-                page.Header().AlignTop().Background(Theme.Colors.Background).Element(ComposeHeader);
+                page.Header()
+                    .AlignTop()
+                    .Background(Theme.Colors.Background)
+                    .Element(ComposeHeader);
 
-                page.Content().Background(Theme.Colors.Background).Element(ComposeContent);
+                page.Content()
+                    .Background(Theme.Colors.Background)
+                    .Element(ComposeContent);
 
-                page.Footer().AlignBottom().Background(Theme.Colors.BottomContrast).Element(ComposeFooter);
+                page.Footer()
+                    .AlignBottom()
+                    .Background(Theme.Colors.BottomContrast)
+                    .Element(ComposeFooter);
             });
         }
 
@@ -53,33 +64,61 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 var socials = new SocialsComponent(Info.User.Links, Theme);
 
                 table.Cell()
-                .Column(1)
-                .Row(1)
-                .RowSpan(2)
-                .Background(Colors.DeepOrange.Lighten3)
-                .MinHeight(20)
-                .PaddingBottom(40)
-                .Text(Info.User.Name)
-                .FontSize(Theme.NameSize)
-                .FontColor(Theme.Colors.Main);
+                    .Column(1)
+                    .Row(1)
+                    .RowSpan(2)
+                    .MinHeight(20)
+                    //.PaddingBottom(40f)
+                    .PaddingTop(6f)
+                    //.PaddingLeft(10f)
+                    .AlignCenter()
+                    .Text(Info.User.Name)
+                    .FontSize(Theme.NameSize)
+                    .FontColor(Theme.Colors.Main);
 
                 table.Cell()
-                .Column(1)
-                .ColumnSpan(3)
-                .Row(2)
-                .AlignBottom()
-                .Background(Colors.DeepOrange.Lighten4)
-                .PaddingTop(0)
-                .Component(socials);
+                    .Column(1)
+                    .Row(3)
+                    .PaddingBottom(10f)
+                    //.PaddingHorizontal(20f)
+                    .AlignCenter()
+                    .Text(Info.User.Title)
+                    .FontSize(Theme.ContactComponentTextSize)
+                    .FontColor(Theme.Colors.Subfocus);
+                table.Cell()
+                    .Column(1)
+                    .ColumnSpan(3)
+                    .Row(4)
+                    .PaddingBottom(10f)
+                    .AlignTop()
+                    .AlignCenter()
+                    .Text(Info.User.About)
+                    .FontFamily(Theme.Fonts.Main)
+                    .FontSize(Theme.AboutTextSize);
+
+                table.Cell()
+                    .Column(1)
+                    .ColumnSpan(3)
+                    .Row(5)
+                    .AlignBottom()
+                    .Background(Theme.Colors.LightContrast)
+                    .BorderVertical(Theme.BorderVerticalThickness)
+                    .BorderHorizontal(Theme.BorderHorizontalThickness)
+                    .PaddingVertical(2f)
+                    .Component(socials);
 
                 // Right side. Contains rough idea of where User lives as well as contact info.
-                var addressEmail = new ContactComponent(Info.User.Address,
+                var addressEmail =
+                    new ContactComponent(Info.User.Address,
                     Info.User.Email,
                     Info.User.Phone,
                     Theme);
 
 
-                table.Cell().Column(3).RowSpan(2).Component(addressEmail);
+                table.Cell()
+                    .Column(3)
+                    .RowSpan(4)
+                    .Component(addressEmail);
             });
         }
 
@@ -114,7 +153,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     .ColumnSpan(2)
                     .AlignMiddle()
                     .AlignCenter()//.PaddingRight(10)
-                    .Text($"{Info.User.Phone} - {Info.User.Email}")
+                    .Text("")//$"{Info.User.Phone} - {Info.User.Email}")
                     .FontColor(Colors.White)
                     .FontSize(Theme.ContactComponentTextSize);
 
@@ -143,27 +182,26 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     columns.RelativeColumn();// columns.RelativeColumn();
                 });
 
-
                 // Section headers
                 table.Cell()
-                .Row(1)
+                .Row(2)
                 .Column(1)
-                .Element(SectionHeader)
+                .Element(StyleSectionHeader)
                 .Text("Skills");
                 table.Cell()
-                .Row(3)
+                .Row(4)
                 .Column(1)
-                .Element(SectionHeader)
+                .Element(StyleSectionHeader)
                 .Text("Featured Projects");
                 table.Cell()
-                .Row(1)
+                .Row(2)
                 .Column(2)
-                .Element(SectionHeader)
+                .Element(StyleSectionHeader)
                 .Text("Experience");
                 table.Cell()
-                .Row(3)
+                .Row(4)
                 .Column(2)
-                .Element(SectionHeader)
+                .Element(StyleSectionHeader)
                 .Text("Education");
 
                 // Component declarations
@@ -174,20 +212,21 @@ namespace ResumeBuilder.ConsoleTesting.Models
 
                 // Main components
                 table.Cell()
-                .Row(2)
+                .Row(3)
                 .Column(1)
+                .PaddingHorizontal(5f)
                 .Component(skillsComponent);
 
 
                 table.Cell()
-                .Row(2)
+                .Row(3)
                 .Column(2)
                 .Component(experiencesComponent);
             });
         }
 
         // Styling methods (used in .Element() calls)
-        public IContainer SectionHeader(IContainer container)
+        public IContainer StyleSectionHeader(IContainer container)
         {
             var textStyle = new TextStyle();
 

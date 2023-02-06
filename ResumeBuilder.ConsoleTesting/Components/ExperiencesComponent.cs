@@ -36,7 +36,9 @@ namespace ResumeBuilder.ConsoleTesting.Components
                 for (int i = 0; i < _numberOfDisplayedExperiences; i++)
                 {
                     var component = new SingleExperienceComponent(Experiences[i], Theme);
-                    column.Item().Background(colors[i]).Component(component);
+                    column.Item()
+                        .Background(colors[i])
+                        .Component(component);
                 }
             });
         }

@@ -18,7 +18,9 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.Background(Colors.DeepOrange.Lighten5).AlignLeft().AlignTop()
+            container
+                .AlignLeft()
+                .AlignTop()
                 .Table(table =>
                 {
                     // Max of four columns (and therefore links)
@@ -39,7 +41,10 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         // comp has to account for the difference in indexing
                         var comp = new SingleSocialComponent(Links[i - 1], Theme);
                         // QuestPDF also requires .Column() to take in a uint as opposed to int. Casting, I suppose.
-                        table.Cell().Column((uint)i).Background(Colors.Cyan.Medium).Component(comp);
+                        table.Cell()
+                            .Column((uint)i)
+                            //.Background(Colors.Cyan.Medium)
+                            .Component(comp);
                     }
                 });
 
