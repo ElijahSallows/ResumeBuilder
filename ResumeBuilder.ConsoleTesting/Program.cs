@@ -136,9 +136,37 @@ var info = new ResumeInfo()
             }
         }
     },
-    Projects = new ProjectsInfo()
+    Projects = new List<Project>()
     {
-
+        new Project()
+        {
+            Name = "Project 1",
+            Date = "Feb 2023",
+            Points = new List<string>()
+            {
+                "this thing"
+            }
+        },
+        new Project()
+        {
+            Name = "Project 2",
+            Date = "date",
+            Points = new List<string>()
+            {
+                "a couple",
+                "of points"
+            }
+        },
+        new Project()
+        {
+            Name = "Project 3",
+            Date = "yesterday",
+            Points = new List<string>()
+            {
+                ":) :)",
+                ":("
+            }
+        }
     },
     Skills = new SectionInfo<Skill>()
     {
@@ -162,7 +190,9 @@ var colors = new ColorModel()
     Tertiary = "#C2DFE3",
     Quaternary = "#9DB4C0",
     Background = "#FFFFFF",
-    LightContrast = "#DDDDDD",
+    LightContrast = "#EEEEEE",
+    MediumContrast = "#CCCCCC",
+    DarkContrast = "#777777",
     BottomContrast = "#2C6E49",
     Subfocus = "#424242"
 };

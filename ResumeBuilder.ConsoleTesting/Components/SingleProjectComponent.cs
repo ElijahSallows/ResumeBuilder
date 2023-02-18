@@ -1,31 +1,22 @@
 ﻿using QuestPDF.Fluent;
-using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
-    internal class SingleExperienceComponent : IComponent
+    internal class SingleProjectComponent : IComponent
     {
-        public Experience Experience { get; set; }
+        public Project Project { get; set; }
         public DocumentTheme Theme { get; set; }
 
-        public SingleExperienceComponent(Experience experience, DocumentTheme theme)
+        public SingleProjectComponent(Project project, DocumentTheme theme)
         {
-            Experience = experience;
+            Project = project;
             Theme = theme;
         }
 
         public void Compose(IContainer container)
         {
-            // Need to format before displaying.
-            // I don't know whether this belongs somewhere separate yet.
-            string _startDate = Experience.StartDate.ToString("MMM yyy");
-            string _endDate =
-                !Experience.Current && Experience.EndDate.HasValue
-                ? Experience.EndDate.Value.ToString("MMM yyy")
-                : "Current";
-
             container.Table(table =>
             {
                 table.ColumnsDefinition(columns =>
@@ -45,17 +36,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .ColumnSpan(2)
                         .AlignLeft()
                         .AlignMiddle()
-                        .PaddingLeft(Theme.ExperienceSpacing)
-                        .Text(Experience.CompanyName)
-                        .FontSize(Theme.ExperienceCompanyNameTextSize);
+                        .PaddingLeft(Theme.ProjectSpacing)
+                        .Text(Project.Name)
+                        .FontSize(Theme.ProjectNameTextSize);
 
                     header.Cell()
                         .Column(3)
                         .AlignRight()
                         .AlignMiddle()
-                        .PaddingRight(Theme.ExperienceSpacing)
-                        .Text($"{_startDate} - {_endDate}")
-                        .FontSize(Theme.ExperienceTimeTextSize);
+                        .PaddingRight(Theme.ProjectSpacing)
+                        .Text(Project.Date)
+                        .FontSize(Theme.ProjectTimeTextSize);
                     header.Cell()
                         .ColumnSpan(3)
                         .PaddingHorizontal(10f)
@@ -63,17 +54,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .BorderBottom(1f);
                 });
 
-                for (int i = 0; i < Experience.Points.Count; i++)
+                for (int i = 0; i < Project.Points.Count; i++)
                 {
-                    var point = Experience.Points[i];
+                    var point = Project.Points[i];
                     table.Cell()
                         .Row((uint)i + 2)
                         .ColumnSpan(3)
                         .PaddingLeft(5f)
                         .PaddingRight(2f)
-                        .PaddingBottom(Theme.ExperienceSpacing)
+                        .PaddingBottom(Theme.ProjectSpacing)
                         .Text(">  " + point)
-                        .FontSize(Theme.ExperienceTextSize)
+                        .FontSize(Theme.ProjectTextSize)
                         .FontFamily(Theme.Fonts.Main);
                 }
             });

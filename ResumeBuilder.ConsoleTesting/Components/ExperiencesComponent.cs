@@ -21,15 +21,6 @@ namespace ResumeBuilder.ConsoleTesting.Components
         public void Compose(IContainer container)
         {
             _numberOfDisplayedExperiences = Experiences.Count <= Theme.MaxExperienceCount ? Experiences.Count : Theme.MaxExperienceCount;
-            //debug. might look into debug methods in questpdf.
-            var colors = new List<string>()
-            {
-                Colors.Pink.Medium,
-                Colors.Amber.Medium,
-                Colors.Green.Lighten1,
-                Colors.Cyan.Medium,
-                Colors.Yellow.Medium
-            };
 
             container.Column(column =>
             {
@@ -37,7 +28,6 @@ namespace ResumeBuilder.ConsoleTesting.Components
                 {
                     var component = new SingleExperienceComponent(Experiences[i], Theme);
                     column.Item()
-                        .Background(colors[i])
                         .Component(component);
                 }
             });

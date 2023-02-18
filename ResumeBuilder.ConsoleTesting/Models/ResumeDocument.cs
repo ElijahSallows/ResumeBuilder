@@ -85,6 +85,14 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     .Text(Info.User.Title)
                     .FontSize(Theme.ContactComponentTextSize)
                     .FontColor(Theme.Colors.Subfocus);
+
+                table.Cell()
+                    .Column(1)
+                    .Row(4)
+                    .ColumnSpan(3)
+                    .BorderColor(Theme.Colors.DarkContrast)
+                    .BorderTop(Theme.BorderHorizontalThickness);
+
                 table.Cell()
                     .Column(1)
                     .ColumnSpan(3)
@@ -102,6 +110,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     .Row(5)
                     .AlignBottom()
                     .Background(Theme.Colors.LightContrast)
+                    .BorderColor(Theme.Colors.DarkContrast)
                     .BorderVertical(Theme.BorderVerticalThickness)
                     .BorderHorizontal(Theme.BorderHorizontalThickness)
                     .PaddingVertical(2f)
@@ -184,49 +193,65 @@ namespace ResumeBuilder.ConsoleTesting.Models
 
                 // Section headers
                 table.Cell()
-                .Row(2)
-                .Column(1)
-                .Element(StyleSectionHeader)
-                .Text("Skills");
+                    .Row(2)
+                    .Column(1)
+                    .Element(StyleSectionHeader)
+                    .Text("Skills");
                 table.Cell()
-                .Row(4)
-                .Column(1)
-                .Element(StyleSectionHeader)
-                .Text("Featured Projects");
+                    .Row(4)
+                    .Column(1)
+                    .Element(StyleSectionHeader)
+                    .Text("Featured Projects");
                 table.Cell()
-                .Row(2)
-                .Column(2)
-                .Element(StyleSectionHeader)
-                .Text("Experience");
+                    .Row(2)
+                    .Column(2)
+                    .Element(StyleSectionHeader)
+                    .Text("Experience");
                 table.Cell()
-                .Row(4)
-                .Column(2)
-                .Element(StyleSectionHeader)
-                .Text("Education");
+                    .Row(4)
+                    .Column(2)
+                    .Element(StyleSectionHeader)
+                    .Text("Education");
 
                 // Component declarations
                 var skillsComponent = new SkillsComponent(Info.Skills.Bullets, Theme);
-                var projectsComponent = new ProjectsComponent();// Info.Projects);
+                var projectsComponent = new ProjectsComponent(Info.Projects, Theme);
                 var experiencesComponent = new ExperiencesComponent(Info.Experience.Experiences, Theme);
                 //var educationComponent = new EducationComponent();
 
                 // Main components
                 table.Cell()
-                .Row(3)
-                .Column(1)
-                .PaddingHorizontal(5f)
-                .Component(skillsComponent);
+                    .Row(3)
+                    .Column(1)
+                    .PaddingHorizontal(5f)
+                    .Element(StyleSectionBody)
+                    .PaddingHorizontal(7f)
+                    .Component(skillsComponent);
+                table.Cell()
+                    .Row(5)
+                    .Column(1)
+                    .Element(StyleSectionBody)
+                    //.PaddingHorizontal(7f)
+                    .Component(projectsComponent);
 
 
                 table.Cell()
-                .Row(3)
-                .Column(2)
-                .Component(experiencesComponent);
+                    .Row(3)
+                    .Column(2)
+                    .Element(StyleSectionBody)
+                    .Component(experiencesComponent);
             });
         }
 
+        private IContainer StyleSectionBody(IContainer container)
+        {
+            return
+                container.Background(Theme.Colors.LightContrast);
+                    //.BorderVertical(Theme.BorderVerticalThickness);
+        }
+
         // Styling methods (used in .Element() calls)
-        public IContainer StyleSectionHeader(IContainer container)
+        private IContainer StyleSectionHeader(IContainer container)
         {
             var textStyle = new TextStyle();
 
@@ -235,10 +260,10 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 .FontSize(Theme.ContactComponentTextSize);
 
             return container.DefaultTextStyle(textStyle)
-                .ExtendHorizontal()
+                //.ExtendHorizontal()
                 .Background(Theme.Colors.Main)
                 .BorderColor(Theme.Colors.Background)
-                .Border(3)
+                //.Border(3)
                 .AlignCenter()
                 .AlignMiddle();
         }

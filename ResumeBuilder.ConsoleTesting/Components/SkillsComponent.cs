@@ -35,6 +35,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
                     table.Cell()
                         .Column(GetColumnPosition(i))
                         .Row(GetRowPosition(i))
+                        .PaddingBottom(Theme.SkillSpacing)
+                        .AlignCenter()
                         .Text($"{Theme.Bullet}   {Skills[i].Name}")
                         .FontSize(Theme.SkillTextSize);
                     //.Row(row =>
