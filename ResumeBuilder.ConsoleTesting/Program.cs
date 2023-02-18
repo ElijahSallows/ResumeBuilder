@@ -48,35 +48,31 @@ var info = new ResumeInfo()
             Zip = "85233"
         }
     },
-    Education = new EducationInfo()
+    Education = new List<Education>()
     {
-        Education = new List<Education>()
+        new Education()
         {
-            new Education()
+            StartDate = DateTime.Now,
+            SchoolName = "Current Work",
+            //ClassName = "Software Developer",
+            Current = true,
+            Points = new List<string>()
             {
-                StartDate = DateTime.Now,
-                SchoolName = "Current Work",
-                ClassName = "Software Developer",
-                Current = true,
-                Points = new List<string>()
-                {
-                    "work here now",
-                    "happy face :)"
-                }
-            },
-
-            new Education()
+                "work here now",
+                "happy face :)"
+            }
+        },
+        new Education()
+        {
+            EndDate = DateTime.Now,
+            StartDate = DateTime.Now,
+            SchoolName = "Previous Work",
+            //ClassName = "Not a Software Developer",
+            Current = false,
+            Points = new List<string>()
             {
-                EndDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                SchoolName = "Previous Work",
-                ClassName = "Not a Software Developer",
-                Current = false,
-                Points = new List<string>()
-                {
-                    "worked here",
-                    "don't anymore"
-                }
+                "worked here",
+                "don't anymore"
             }
         }
     },

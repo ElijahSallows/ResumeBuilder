@@ -188,7 +188,8 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 table.ColumnsDefinition(columns =>
                 {
                     columns.RelativeColumn();
-                    columns.RelativeColumn();// columns.RelativeColumn();
+                    columns.ConstantColumn(10f);
+                    columns.RelativeColumn();
                 });
 
                 // Section headers
@@ -201,15 +202,15 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     .Row(4)
                     .Column(1)
                     .Element(StyleSectionHeader)
-                    .Text("Featured Projects");
-                table.Cell()
-                    .Row(2)
-                    .Column(2)
-                    .Element(StyleSectionHeader)
                     .Text("Experience");
                 table.Cell()
+                    .Row(2)
+                    .Column(3)
+                    .Element(StyleSectionHeader)
+                    .Text("Featured Projects");
+                table.Cell()
                     .Row(4)
-                    .Column(2)
+                    .Column(3)
                     .Element(StyleSectionHeader)
                     .Text("Education");
 
@@ -217,29 +218,37 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 var skillsComponent = new SkillsComponent(Info.Skills.Bullets, Theme);
                 var projectsComponent = new ProjectsComponent(Info.Projects, Theme);
                 var experiencesComponent = new ExperiencesComponent(Info.Experience.Experiences, Theme);
-                //var educationComponent = new EducationComponent();
+                var educationComponent = new EducationsComponent(Info.Education, Theme);
 
                 // Main components
+
+                // Skills
                 table.Cell()
                     .Row(3)
                     .Column(1)
-                    .PaddingHorizontal(5f)
                     .Element(StyleSectionBody)
-                    .PaddingHorizontal(7f)
                     .Component(skillsComponent);
+                // Projects
                 table.Cell()
                     .Row(5)
                     .Column(1)
-                    .Element(StyleSectionBody)
-                    //.PaddingHorizontal(7f)
-                    .Component(projectsComponent);
-
-
-                table.Cell()
-                    .Row(3)
-                    .Column(2)
+                    .ExtendVertical()
                     .Element(StyleSectionBody)
                     .Component(experiencesComponent);
+
+                // Experience
+                table.Cell()
+                    .Row(3)
+                    .Column(3)
+                    .Element(StyleSectionBody)
+                    .Component(projectsComponent);
+                // Education
+                table.Cell()
+                    .Row(5)
+                    .Column(3)
+                    .ExtendVertical()
+                    .Element(StyleSectionBody)
+                    .Component(educationComponent);
             });
         }
 

@@ -6,6 +6,6 @@
         public ExperienceInfo? Experience { get; set; }
         public SectionInfo<Skill>? Skills { get; set; }
         public List<Project>? Projects { get; set; }
-        public EducationInfo? Education { get; set; }
+        public List<Education>? Education { get; set; }
     }
 }

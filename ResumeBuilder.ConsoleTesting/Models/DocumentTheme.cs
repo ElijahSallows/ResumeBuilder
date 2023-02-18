@@ -13,6 +13,7 @@
         public float SkillSpacing { get; set; }
         public float ExperienceSpacing { get; set; }
         public float ProjectSpacing { get; set; }
+        public float EducationSpacing { get; set; }
 
         public float AboutTextSize { get; set; }
         public float ContactComponentTextSize { get; set; }
@@ -23,6 +24,9 @@
         public float ProjectNameTextSize { get; set; }
         public float ProjectTextSize { get; set; }
         public float ProjectTimeTextSize { get; set; }
+        public float EducationSchoolNameTextSize { get; set; }
+        public float EducationTextSize { get; set; }
+        public float EducationTimeTextSize { get; set; }
 
         public bool ContactMeTextVisible { get; set; }
         public float ImageSize { get; set; }
@@ -31,6 +35,7 @@
         public int MaxSkillCount { get; set; }
         public int MaxExperienceCount { get; set; }
         public int MaxProjectCount { get; set; }
+        public int MaxEducationCount { get; set; }
 
         public float BorderVerticalThickness { get; set; }
         public float BorderHorizontalThickness { get; set; }
@@ -54,14 +59,18 @@
             float projectNameTextSize = 14f,
             float projectTextSize = 12f,
             float projectTimeTextSize = 8f,
+            float educationSchoolNameTextSize = 14f,
+            float educationTextSize = 12f,
+            float educationTimeTextSize = 8f,
 
             bool contactMeTextVisible = false,
             float imageSize = 24f,
 
             int skillsColumnCount = 2,
             int maxSkillCount = 24,
-            int maxExperienceCount = 3,
-            int maxProjectCount = 3,
+            int maxExperienceCount = 4,
+            int maxProjectCount = 4,
+            int maxEducationCount = 4,
 
             float borderVerticalThickness = 1f,
             float borderHorizontalThickness = 1f)
@@ -83,12 +92,16 @@
             ProjectNameTextSize = projectNameTextSize;
             ProjectTextSize = projectTextSize;
             ProjectTimeTextSize = projectTimeTextSize;
+            EducationSchoolNameTextSize = educationSchoolNameTextSize;
+            EducationTextSize = educationTextSize;
+            EducationTimeTextSize = educationTimeTextSize;
             ContactMeTextVisible = contactMeTextVisible;
             ImageSize = imageSize;
             SkillsColumnCount = skillsColumnCount;
             MaxSkillCount = maxSkillCount;
             MaxExperienceCount = maxExperienceCount;
             MaxProjectCount = maxProjectCount;
+            MaxEducationCount = maxEducationCount;
             BorderVerticalThickness = borderVerticalThickness;
             BorderHorizontalThickness = borderHorizontalThickness;
         }

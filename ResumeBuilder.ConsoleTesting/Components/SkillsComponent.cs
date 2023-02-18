@@ -17,9 +17,11 @@ namespace ResumeBuilder.ConsoleTesting.Components
             Skills = skills;
             Theme = theme;
         }
+
         public void Compose(IContainer container)
         {
             _numberOfDisplayedSkills = Skills.Count <= Theme.MaxSkillCount ? Skills.Count : Theme.MaxSkillCount;
+
             container.Table(table =>
             {
                 table.ColumnsDefinition(columns =>
@@ -60,19 +62,15 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         private uint GetColumnPosition(int i)
         {
-            //decimal a = Math.Floor(Convert.ToDecimal(i) / Convert.ToDecimal(Theme.SkillsColumnCount));
-            int a = Convert.ToInt32(i) % Theme.SkillsColumnCount;
-            uint columnPosition = Convert.ToUInt32(a + 1); // Add 1 because QuestPDF uses 1-based indexing.
+            int posZero = Convert.ToInt32(i) % Theme.SkillsColumnCount;
+            uint columnPosition = Convert.ToUInt32(posZero + 1); // Add 1 because QuestPDF uses 1-based indexing.
             return columnPosition;
         }
 
         private uint GetRowPosition(int i)
         {
-            //decimal numOfRows = Math.Ceiling(Convert.ToDecimal(Theme.MaxSkillCount) / Convert.ToDecimal(Theme.SkillsColumnCount));
-            //int a = Convert.ToInt32(i % Theme.SkillsColumnCount);
-            //decimal b = Convert.ToDecimal(a) / numOfRows;
-            decimal a = Math.Floor(Convert.ToDecimal(i) / Convert.ToDecimal(Theme.SkillsColumnCount));
-            uint rowPosition = Convert.ToUInt32(a + 1); // Add 1 because QuestPDF uses 1-based indexing.
+            decimal posZero = Math.Floor(Convert.ToDecimal(i) / Convert.ToDecimal(Theme.SkillsColumnCount));
+            uint rowPosition = Convert.ToUInt32(posZero + 1); // Add 1 because QuestPDF uses 1-based indexing.
             return rowPosition;
         }
     }
