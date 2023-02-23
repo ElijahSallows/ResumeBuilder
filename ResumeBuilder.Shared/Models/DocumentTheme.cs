@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class DocumentTheme
+    public class DocumentTheme
     {
         public ColorModel Colors { get; set; }
         public FontModel Fonts { get; set; }

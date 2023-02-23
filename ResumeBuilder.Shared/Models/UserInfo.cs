@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class UserInfo
+    public class UserInfo
     {
         public string? Name { get; set; }
         public string? Title { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class Skill
+    public class Skill
     {
         public string Name { get; set; }
 

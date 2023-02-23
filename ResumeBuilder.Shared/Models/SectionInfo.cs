@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class SectionInfo<T>
+    public class SectionInfo<T>
     {
         public string? Name { get; set; }
         public List<T> Bullets { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class Address
+    public class Address
     {
         public string? City { get; set; }
         public string? State { get; set; }

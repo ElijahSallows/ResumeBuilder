@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class ResumeDocument : IDocument
+    public class ResumeDocument : IDocument
     {
         public ResumeInfo Info { get; }
         public DocumentTheme Theme { get; }

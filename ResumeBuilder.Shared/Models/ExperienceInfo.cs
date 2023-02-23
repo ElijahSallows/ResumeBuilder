@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class ExperienceInfo
+    public class ExperienceInfo
     {
         public List<Experience>? Experiences { get; set; }
     }

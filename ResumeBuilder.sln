@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeBuilder.UI", "ResumeBuilder.UI\ResumeBuilder.UI.csproj", "{CDCE99D5-7619-43C7-93A8-56048460BC8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeBuilder.UI", "ResumeBuilder.UI\ResumeBuilder.UI.csproj", "{CDCE99D5-7619-43C7-93A8-56048460BC8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeBuilder.ConsoleTesting", "ResumeBuilder.ConsoleTesting\ResumeBuilder.ConsoleTesting.csproj", "{E3E97589-6CA1-4082-BF81-A429711B373B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeBuilder.ConsoleTesting", "ResumeBuilder.ConsoleTesting\ResumeBuilder.ConsoleTesting.csproj", "{E3E97589-6CA1-4082-BF81-A429711B373B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeBuilder.Shared", "ResumeBuilder.Shared\ResumeBuilder.Shared.csproj", "{D61247E5-DDC9-4D91-A932-E5B7050701A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E3E97589-6CA1-4082-BF81-A429711B373B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3E97589-6CA1-4082-BF81-A429711B373B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3E97589-6CA1-4082-BF81-A429711B373B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61247E5-DDC9-4D91-A932-E5B7050701A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61247E5-DDC9-4D91-A932-E5B7050701A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61247E5-DDC9-4D91-A932-E5B7050701A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61247E5-DDC9-4D91-A932-E5B7050701A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class ColorModel
+    public class ColorModel
     {
         public string? Main { get; set; }
         public string? Secondary { get; set; }

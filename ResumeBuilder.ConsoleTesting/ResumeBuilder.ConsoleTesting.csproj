@@ -36,6 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ResumeBuilder.Shared\ResumeBuilder.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Sources\github.png" />
     <Resource Include="Sources\linkedin.png" />
   </ItemGroup>

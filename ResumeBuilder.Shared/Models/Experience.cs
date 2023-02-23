@@ -1,12 +1,12 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class Education
+    public class Experience
     {
-        public string? SchoolName { get; set; }
-        //public string? ClassName { get; set; }
+        public string CompanyName { get; set; }
+        public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public List<string>? Points { get; set; }
+        public List<string> Points { get; set; }
         public bool Current { get; set; }
     }
 }

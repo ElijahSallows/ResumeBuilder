@@ -1,6 +1,6 @@
 ﻿namespace ResumeBuilder.ConsoleTesting.Models
 {
-    internal class SocialLink
+    public class SocialLink
     {
         public string? Url { get; set; }
         public byte[]? Image { get; set; }
