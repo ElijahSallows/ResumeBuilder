@@ -1,6 +1,8 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class Address
+    public class Address : IAddress
     {
         public string? City { get; set; }
         public string? State { get; set; }

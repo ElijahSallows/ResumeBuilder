@@ -1,16 +1,17 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.ConsoleTesting.Models;
+using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
     internal class SocialsComponent : IComponent
     {
-        public List<SocialLink> Links { get; }
-        public DocumentTheme Theme { get; }
+        public List<ISocialLink> Links { get; }
+        public IDocumentTheme Theme { get; }
 
-        public SocialsComponent(List<SocialLink> links, DocumentTheme theme)
+        public SocialsComponent(List<ISocialLink> links, IDocumentTheme theme)
         {
             Links = links;
             Theme = theme;

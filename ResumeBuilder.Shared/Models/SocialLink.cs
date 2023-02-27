@@ -1,6 +1,8 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class SocialLink
+    public class SocialLink : ISocialLink
     {
         public string? Url { get; set; }
         public byte[]? Image { get; set; }

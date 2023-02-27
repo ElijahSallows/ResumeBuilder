@@ -1,13 +1,15 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class UserInfo
+    public class UserInfoModel : IUserInfoModel
     {
         public string? Name { get; set; }
         public string? Title { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
-        public Address? Address { get; set; }
-        public List<SocialLink>? Links { get; set; }
+        public IAddress? Address { get; set; }
+        public List<ISocialLink>? Links { get; set; }
         public string? About { get; set; }
     }
 }

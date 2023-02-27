@@ -1,6 +1,6 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Previewer;
-using ResumeBuilder.ConsoleTesting.Models;
+using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting
 {
@@ -9,7 +9,7 @@ namespace ResumeBuilder.ConsoleTesting
         private ResumeDocument _doc;
         private DocumentTheme _theme;
 
-        public DocumentBuilder(ResumeInfo info, DocumentTheme theme)
+        public DocumentBuilder(ResumeInfoModel info, DocumentTheme theme)
         {
             _doc = new ResumeDocument(info, theme);
             _theme = theme;

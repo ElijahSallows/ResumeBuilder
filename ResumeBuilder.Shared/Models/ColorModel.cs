@@ -1,6 +1,8 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class ColorModel
+    public class ColorModel : IColorModel
     {
         public string? Main { get; set; }
         public string? Secondary { get; set; }

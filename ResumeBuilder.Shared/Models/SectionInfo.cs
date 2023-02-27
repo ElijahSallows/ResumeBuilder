@@ -1,13 +1,10 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class SectionInfo<T>
+    public class SectionInfo<T> : ISectionInfo<T>
     {
         public string? Name { get; set; }
-        public List<T> Bullets { get; set; }
-        public SectionInfo()//string? name, List<T> bullets)
-        {
-            //Name = name;
-            //Bullets = bullets;
-        }
+        public List<T>? Bullets { get; set; }
     }
 }

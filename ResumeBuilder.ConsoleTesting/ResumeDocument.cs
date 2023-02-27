@@ -3,16 +3,18 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Components;
+using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
 using System.Runtime.CompilerServices;
 
-namespace ResumeBuilder.ConsoleTesting.Models
+namespace ResumeBuilder.ConsoleTesting
 {
     public class ResumeDocument : IDocument
     {
-        public ResumeInfo Info { get; }
-        public DocumentTheme Theme { get; }
+        public IResumeInfoModel Info { get; }
+        public IDocumentTheme Theme { get; }
 
-        public ResumeDocument(ResumeInfo info, DocumentTheme theme)
+        public ResumeDocument(IResumeInfoModel info, IDocumentTheme theme)
         {
             Info = info;
             Theme = theme;
@@ -202,7 +204,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     .Row(4)
                     .Column(1)
                     .Element(StyleSectionHeader)
-                    .Text("Experience");
+                    .Text("Experiences");
                 table.Cell()
                     .Row(2)
                     .Column(3)
@@ -217,7 +219,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
                 // Component declarations
                 var skillsComponent = new SkillsComponent(Info.Skills.Bullets, Theme);
                 var projectsComponent = new ProjectsComponent(Info.Projects, Theme);
-                var experiencesComponent = new ExperiencesComponent(Info.Experience.Experiences, Theme);
+                var experiencesComponent = new ExperiencesComponent(Info.Experiences, Theme);
                 var educationComponent = new EducationsComponent(Info.Education, Theme);
 
                 // Main components
@@ -236,7 +238,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
                     .Element(StyleSectionBody)
                     .Component(experiencesComponent);
 
-                // Experience
+                // Experiences
                 table.Cell()
                     .Row(3)
                     .Column(3)
@@ -256,7 +258,7 @@ namespace ResumeBuilder.ConsoleTesting.Models
         {
             return
                 container.Background(Theme.Colors.LightContrast);
-                    //.BorderVertical(Theme.BorderVerticalThickness);
+            //.BorderVertical(Theme.BorderVerticalThickness);
         }
 
         // Styling methods (used in .Element() calls)

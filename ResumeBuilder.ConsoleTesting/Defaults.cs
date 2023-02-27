@@ -1,4 +1,4 @@
-﻿using ResumeBuilder.ConsoleTesting.Models;
+﻿using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting
 {

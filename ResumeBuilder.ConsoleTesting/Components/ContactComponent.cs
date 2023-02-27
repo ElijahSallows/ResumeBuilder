@@ -1,17 +1,18 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.ConsoleTesting.Models;
+using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
     internal class ContactComponent : IComponent
     {
-        public Address Address { get; }
+        public IAddress Address { get; }
         public string Email { get; }
         public string Phone { get; }
-        public DocumentTheme Theme { get; }
+        public IDocumentTheme Theme { get; }
 
-        public ContactComponent(Address address, string email, string phone, DocumentTheme theme)
+        public ContactComponent(IAddress address, string email, string phone, IDocumentTheme theme)
         {
             Address = address;
             Email = email;

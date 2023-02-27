@@ -1,8 +1,10 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class Skill
+    public class Skill : ISkill
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public Skill(string name)
         {

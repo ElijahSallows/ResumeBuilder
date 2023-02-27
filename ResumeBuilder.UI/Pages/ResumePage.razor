@@ -1,13 +1,38 @@
-﻿<h3>ResumePage</h3>
+﻿@page "/resume"
+@using ResumeBuilder.UI.Services.Interfaces;
+@using ResumeBuilder.Shared.Models;
+
+<h3>ResumePage</h3>
 
 <main class="main-wrapper">
     <div class="resume-wrapper">
-        <EditForm class="resume-body">
-            
+        <EditForm class="resume-body" Model="@Model">
+            <section class="user-details">
+                <h2>
+                    <span>User Details</span>
+                </h2>
+
+                <label for="user-name">
+                    <span>Name</span>
+                </label>
+                <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
+
+            </section>
         </EditForm>
     </div>
 </main>
 
 @code {
+    [Inject]
+    public IResumeModelService ModelService { get; set; }
+
+    [Parameter]
+    public ResumeInfoModel Model { get; set; }
+
+    public ResumePage()
+    {
+        Model = ModelService.GetModel();
+    }
+
 
 }

@@ -1,6 +1,8 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.Shared.Models
 {
-    public class Experience
+    public class Experience : IExperience
     {
         public string CompanyName { get; set; }
         public string Title { get; set; }

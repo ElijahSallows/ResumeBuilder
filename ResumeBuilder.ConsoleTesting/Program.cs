@@ -4,22 +4,23 @@
 // I'll address that as I go along. :)
 using QuestPDF.Helpers;
 using ResumeBuilder.ConsoleTesting;
-using ResumeBuilder.ConsoleTesting.Models;
 using ResumeBuilder.ConsoleTesting.Properties;
+using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
 
 Console.WriteLine("Hello, World!");
 
 
-var info = new ResumeInfo()
+var info = new ResumeInfoModel()
 {
-    User = new UserInfo()
+    User = new UserInfoModel()
     {
         About = "about.\n it's all about me",
         Email = "test@email.com",
         Phone = "(309)-xxx-xxxx",
         Name = "Elijah Sallows",
         Title = "Junior .NET Developer",
-        Links = new List<SocialLink>
+        Links = new List<ISocialLink>
         {
             new SocialLink()
             {
@@ -48,7 +49,7 @@ var info = new ResumeInfo()
             Zip = "85233"
         }
     },
-    Education = new List<Education>()
+    Education = new List<IEducation>()
     {
         new Education()
         {
@@ -76,9 +77,7 @@ var info = new ResumeInfo()
             }
         }
     },
-    Experience = new ExperienceInfo()
-    {
-        Experiences = new List<Experience>()
+    Experiences = new List<IExperience>()
         {
             new Experience()
             {
@@ -130,9 +129,9 @@ var info = new ResumeInfo()
                     "happy face :)"
                 }
             }
-        }
+
     },
-    Projects = new List<Project>()
+    Projects = new List<IProject>()
     {
         new Project()
         {
@@ -164,9 +163,9 @@ var info = new ResumeInfo()
             }
         }
     },
-    Skills = new SectionInfo<Skill>()
+    Skills = new SectionInfo<ISkill>()
     {
-        Bullets = new List<Skill>()
+        Bullets = new List<ISkill>()
         {
             //new Skill("C#"),
             //new Skill("HTML / CSS"),
