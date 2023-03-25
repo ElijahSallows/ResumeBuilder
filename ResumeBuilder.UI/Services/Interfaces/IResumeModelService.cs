@@ -1,11 +1,12 @@
-﻿using ResumeBuilder.Shared.Models;
+﻿using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.UI.Services.Interfaces
 {
     public interface IResumeModelService
     {
-        ResumeInfoModel GetModel();
-        ResumeInfoModel GetModel(int id);
+        IResumeInfoModel GetModel();
+        IResumeInfoModel GetModel(int id);
         Task<bool> VerifyAsync();
     }
 }

@@ -1,6 +1,8 @@
 ﻿@page "/resume"
+@using ResumeBuilder.Shared.Interfaces;
 @using ResumeBuilder.UI.Services.Interfaces;
 @using ResumeBuilder.Shared.Models;
+@inject IResumeModelService ModelService;
 
 <h3>ResumePage</h3>
 
@@ -23,16 +25,13 @@
 </main>
 
 @code {
-    [Inject]
-    public IResumeModelService ModelService { get; set; }
-
     [Parameter]
-    public ResumeInfoModel Model { get; set; }
+    public IResumeInfoModel Model { get; set; }
 
     public ResumePage()
     {
         Model = ModelService.GetModel();
-    }
 
+    }
 
 }

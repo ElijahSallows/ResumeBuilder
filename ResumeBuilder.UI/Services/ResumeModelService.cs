@@ -1,23 +1,35 @@
-﻿using ResumeBuilder.Shared.Models;
+﻿using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
+using ResumeBuilder.UI.Repositories.Interfaces;
 using ResumeBuilder.UI.Services.Interfaces;
 
 namespace ResumeBuilder.UI.Services
 {
     public class ResumeModelService : IResumeModelService
     {
-        public ResumeInfoModel GetModel()
+        private IResumeInfoRepository _infoRepository;
+        private IStateInfoRepository _stateRepository;
+
+        public IResumeInfoModel GetModel()
         {
-            throw new Exception();
+            int id = _stateRepository.LastUsedModelId;
+            return GetModel(id);
         }
 
-        public ResumeInfoModel GetModel(int id)
+        public IResumeInfoModel GetModel(int id)
         {
-            throw new NotImplementedException();
+            return _infoRepository.GetResumeInfoModel(id);
         }
 
         public Task<bool> VerifyAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public ResumeModelService(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
+        {
+            _infoRepository = infoRepository;
+            _stateRepository = stateRepository;
         }
     }
 }

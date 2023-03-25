@@ -1,7 +1,10 @@
-﻿namespace ResumeBuilder.UI.Repositories.Interfaces
+﻿using ResumeBuilder.Shared.Interfaces;
+
+namespace ResumeBuilder.UI.Repositories.Interfaces
 {
     public interface IResumeInfoRepository
     {
-        //IList<IResumeInfo>
+        IList<IResumeInfoModel> GetResumeInfoModels();
+        IResumeInfoModel GetResumeInfoModel(int id);
     }
 }
