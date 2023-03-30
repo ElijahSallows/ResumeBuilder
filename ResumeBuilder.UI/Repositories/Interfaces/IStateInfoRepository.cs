@@ -1,8 +1,11 @@
-﻿namespace ResumeBuilder.UI.Repositories.Interfaces
+﻿using Blazored.LocalStorage;
+
+namespace ResumeBuilder.UI.Repositories.Interfaces
 {
     public interface IStateInfoRepository
     {
-        public int LastUsedModelId { get; set; }
+        int LastUsedModelId { get; set; }
+        void AddLocalStorageService(ISyncLocalStorageService localStorageService);
 
     }
 }

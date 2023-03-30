@@ -2,6 +2,8 @@
 @using ResumeBuilder.Shared.Interfaces;
 @using ResumeBuilder.UI.Services.Interfaces;
 @using ResumeBuilder.Shared.Models;
+@using Blazored.LocalStorage;
+@inject ISyncLocalStorageService LocalStorageService;
 @inject IResumeModelService ModelService;
 
 <h3>ResumePage</h3>
@@ -9,6 +11,7 @@
 <main class="main-wrapper">
     <div class="resume-wrapper">
         <EditForm class="resume-body" Model="@Model">
+            <DataAnnotationsValidator />
             <section class="user-details">
                 <h2>
                     <span>User Details</span>
@@ -20,6 +23,8 @@
                 <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
 
             </section>
+            <button type="submit">Submit</button>
+            <ValidationSummary />
         </EditForm>
     </div>
 </main>
@@ -30,8 +35,14 @@
 
     public ResumePage()
     {
-        Model = ModelService.GetModel();
-
     }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        ModelService.AddLocalStorageService(LocalStorageService);
+        Model = ModelService.GetModel();
+        await base.SetParametersAsync(parameters);
+    }
+
 
 }

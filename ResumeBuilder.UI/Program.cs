@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using ResumeBuilder.UI;
@@ -12,6 +13,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+builder.Services.AddBlazoredLocalStorage();
+
 builder.Services.AddSingleton(BuildResumeModelService());
 
 await builder.Build().RunAsync();
@@ -24,9 +27,15 @@ IResumeInfoRepository GetResumeInfoRepository()
     return new ResumeInfoRepository();
 }
 
+IStateInfoRepository GetStateInfoRepository()
+{
+    return new StateInfoRepository();
+}
+
 IResumeModelService BuildResumeModelService()
 {
-    IResumeInfoRepository repo = GetResumeInfoRepository();
-    return new ResumeModelService(repo);
+    IResumeInfoRepository resumeInfoRepo = GetResumeInfoRepository();
+    IStateInfoRepository stateInfoRepo = GetStateInfoRepository();
+    return new ResumeModelService(resumeInfoRepo, stateInfoRepo);
 }
 #endregion

@@ -1,4 +1,5 @@
-﻿using ResumeBuilder.Shared.Interfaces;
+﻿using Blazored.LocalStorage;
+using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 using ResumeBuilder.UI.Services.Interfaces;
@@ -9,10 +10,18 @@ namespace ResumeBuilder.UI.Services
     {
         private IResumeInfoRepository _infoRepository;
         private IStateInfoRepository _stateRepository;
+        private ISyncLocalStorageService _localStorageService;
+
+        public void AddLocalStorageService(ISyncLocalStorageService localStorageService)
+        {
+            _localStorageService = localStorageService;
+            _infoRepository.AddLocalStorageService(localStorageService);
+            _stateRepository.AddLocalStorageService(localStorageService);
+        }
 
         public IResumeInfoModel GetModel()
         {
-            int id = _stateRepository.LastUsedModelId;
+            int id = _stateRepository?.LastUsedModelId ?? 0;
             return GetModel(id);
         }
 
@@ -25,6 +34,7 @@ namespace ResumeBuilder.UI.Services
         {
             throw new NotImplementedException();
         }
+
 
         public ResumeModelService(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
         {
