@@ -8,17 +8,17 @@ namespace ResumeBuilder.UI.Repositories
 {
     public class ResumeInfoRepository : IResumeInfoRepository
     {
-        private const string RESUME_PREFIX = "Resume_";
+        private const string RESUME_PREFIX = "resume_";
         private ISyncLocalStorageService _localStorageService;
 
-        public void AddLocalStorageService(ISyncLocalStorageService localStorageService)
+        public ResumeInfoRepository(ISyncLocalStorageService localStorageService)
         {
             _localStorageService = localStorageService;
         }
 
         public IResumeInfoModel GetResumeInfoModel(int id)
         {
-            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id) ?? MockResumeInfo.GetInfo();
+            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id) ?? MockResumeInfo.GetInfo(); // not for final release
             //return MockResumeInfo.GetInfo();
         }
 
@@ -27,7 +27,7 @@ namespace ResumeBuilder.UI.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<bool> SaveResumeInfoModelAsync(IResumeInfoModel model, int id)
+        public bool SaveResumeInfoModel(IResumeInfoModel model, int id)
         {
             _localStorageService.SetItem(RESUME_PREFIX + id, model);
             return true;

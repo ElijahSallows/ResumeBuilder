@@ -5,7 +5,7 @@ namespace ResumeBuilder.UI.Repositories.Interfaces
 {
     public interface IResumeInfoRepository
     {
-        void AddLocalStorageService(ISyncLocalStorageService localStorageService);
+        //void AddLocalStorageService(ISyncLocalStorageService localStorageService);
         IList<IResumeInfoModel> GetResumeInfoModels();
         IResumeInfoModel GetResumeInfoModel(int id);
     }

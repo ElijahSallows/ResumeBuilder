@@ -10,22 +10,59 @@
 
 <main class="main-wrapper">
     <div class="resume-wrapper">
-        <EditForm class="resume-body" Model="@Model">
-            <DataAnnotationsValidator />
-            <section class="user-details">
-                <h2>
-                    <span>User Details</span>
-                </h2>
+        @if (Model != null)
+        {
+            <EditForm class="resume-body" Model="@Model">
+                <DataAnnotationsValidator />
+                <section class="user-details">
+                    <h2>
+                        <span>User Details</span>
+                    </h2>
 
-                <label for="user-name">
-                    <span>Name</span>
-                </label>
-                <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
+                    <label for="user-name">
+                        <span>Name</span>
+                    </label>
+                    <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
 
-            </section>
-            <button type="submit">Submit</button>
-            <ValidationSummary />
-        </EditForm>
+                    <label for="user-title">
+                        <span>Title</span>
+                    </label>
+                    <InputText class="input" id="user-title" @bind-Value="Model.User.Title" />
+
+                    <label for="user-address-city">
+                        <span>City</span>
+                    </label>
+                    <InputText class="input" id="user-city" @bind-Value="Model.User.Address.City" />
+
+                    <label for="user-address-state">
+                        <span>State</span>
+                    </label>
+                    <InputText class="input" id="user-state" @bind-Value="Model.User.Address.State" />
+
+                    <label for="user-address-zip">
+                        <span>Zip</span>
+                    </label>
+                    <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
+
+                    <label for="user-email">
+                        <span>Email</span>
+                    </label>
+                    <InputText class="input" id="user-email" @bind-Value="Model.User.Email" />
+
+                    <label for="user-about">
+                        <span>About</span>
+                    </label>
+                    <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
+
+                </section>
+                <button type="submit">Submit</button>
+                <ValidationSummary />
+            </EditForm>
+        }
+        else
+        {
+            <p>The Model is null. Please report this error.</p>
+        }
     </div>
 </main>
 
@@ -39,7 +76,7 @@
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
-        ModelService.AddLocalStorageService(LocalStorageService);
+        //ModelService.AddLocalStorageService(LocalStorageService);
         Model = ModelService.GetModel();
         await base.SetParametersAsync(parameters);
     }
