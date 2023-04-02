@@ -2,8 +2,8 @@
 {
     public interface ISocialLink
     {
-        byte[]? Image { get; set; }
-        string? Name { get; set; }
-        string? Url { get; set; }
+        byte[] Image { get; set; }
+        string Name { get; set; }
+        string Url { get; set; }
     }
 }

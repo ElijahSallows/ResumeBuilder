@@ -2,7 +2,7 @@
 {
     public interface ISectionInfo<T>
     {
-        List<T>? Bullets { get; set; }
-        string? Name { get; set; }
+        List<T> Bullets { get; set; }
+        string Name { get; set; }
     }
 }

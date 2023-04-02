@@ -14,33 +14,34 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddBlazoredLocalStorage();
-//var ModelServiceFactory = new 
-//builder.Services.AddSingleton(BuildResumeModelService(localStorageInstance));
+builder.Services.AddSingleton(BuildResumeModelService());
 
 var host = builder.Build();
 
 var localStorageService = host.Services.GetRequiredService<ISyncLocalStorageService>();
-//ModelServiceFactory
+var modelService = host.Services.GetRequiredService<IResumeModelService>();
+
+modelService.Initialize(localStorageService, 
+    GetResumeInfoRepository(localStorageService),
+    GetStateInfoRepository(localStorageService));
 
 await host.RunAsync();
 
 
 #region BuilderFunctions
 // Builder methods for dependency injection
-IResumeInfoRepository GetResumeInfoRepository(ISyncLocalStorageService localStorageInstance)
+IResumeInfoRepository GetResumeInfoRepository(ISyncLocalStorageService localStorageService)
 {
-    return new ResumeInfoRepository(localStorageInstance);
+    return new ResumeInfoRepository(localStorageService);
 }
 
-IStateInfoRepository GetStateInfoRepository(ISyncLocalStorageService localStorageInstance)
+IStateInfoRepository GetStateInfoRepository(ISyncLocalStorageService localStorageService)
 {
-    return new StateInfoRepository(localStorageInstance);
+    return new StateInfoRepository(localStorageService);
 }
 
-IResumeModelService BuildResumeModelService(ISyncLocalStorageService localStorageInstance)
+IResumeModelService BuildResumeModelService()
 {
-    IResumeInfoRepository resumeInfoRepo = GetResumeInfoRepository(localStorageInstance);
-    IStateInfoRepository stateInfoRepo = GetStateInfoRepository(localStorageInstance);
-    return new ResumeModelService(resumeInfoRepo, stateInfoRepo);
+    return new ResumeModelService();
 }
 #endregion

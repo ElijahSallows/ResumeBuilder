@@ -9,8 +9,8 @@ namespace ResumeBuilder.Shared.Models
 {
     public class FontModel : IFontModel
     {
-        public string? Main { get; set; }
-        public string? Header { get; set; }
-        public string? Social { get; set; }
+        public string Main { get; set; }
+        public string Header { get; set; }
+        public string Social { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 {
     public interface IFontModel
     {
-        string? Header { get; set; }
-        string? Main { get; set; }
-        string? Social { get; set; }
+        string Header { get; set; }
+        string Main { get; set; }
+        string Social { get; set; }
     }
 }

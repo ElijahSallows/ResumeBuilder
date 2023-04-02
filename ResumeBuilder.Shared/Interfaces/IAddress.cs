@@ -2,8 +2,8 @@
 {
     public interface IAddress
     {
-        string? City { get; set; }
-        string? State { get; set; }
-        string? Zip { get; set; }
+        string City { get; set; }
+        string State { get; set; }
+        string Zip { get; set; }
     }
 }

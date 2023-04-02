@@ -8,15 +8,24 @@ namespace ResumeBuilder.UI.Services
 {
     public class ResumeModelService : IResumeModelService
     {
-        private IResumeInfoRepository _infoRepository;
-        private IStateInfoRepository _stateRepository;
-        private ISyncLocalStorageService _localStorageService;
+        private IResumeInfoRepository _infoRepository = default!;
+        private IStateInfoRepository _stateRepository = default!;
+        private ISyncLocalStorageService _localStorageService = default!;
 
-        public ResumeModelService(ISyncLocalStorageService localStorageService)
+        public ResumeModelService() {}
+
+        public ResumeModelService(ISyncLocalStorageService localStorageService, IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
         {
             _localStorageService = localStorageService;
-            //_infoRepository.AddLocalStorageService(localStorageService);
-            //_stateRepository.AddLocalStorageService(localStorageService);
+            _infoRepository = infoRepository;
+            _stateRepository = stateRepository;
+        }
+
+        public void Initialize(ISyncLocalStorageService localStorageService, IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
+        {
+            _localStorageService = localStorageService;
+            _infoRepository = infoRepository;
+            _stateRepository = stateRepository;
         }
 
         public IResumeInfoModel GetModel()
@@ -35,11 +44,5 @@ namespace ResumeBuilder.UI.Services
             throw new NotImplementedException();
         }
 
-
-        public ResumeModelService(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
-        {
-            _infoRepository = infoRepository;
-            _stateRepository = stateRepository;
-        }
     }
 }

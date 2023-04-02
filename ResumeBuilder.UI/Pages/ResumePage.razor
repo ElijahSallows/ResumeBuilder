@@ -13,7 +13,7 @@
         @if (Model != null)
         {
             <EditForm class="resume-body" Model="@Model">
-                <DataAnnotationsValidator />
+                @*<DataAnnotationsValidator />*@
                 <section class="user-details">
                     <h2>
                         <span>User Details</span>
@@ -45,9 +45,14 @@
                     <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
 
                     <label for="user-email">
-                        <span>Email</span>
+                        <span>Email Address</span>
                     </label>
                     <InputText class="input" id="user-email" @bind-Value="Model.User.Email" />
+
+                    <label for="user-phone">
+                        <span>Phone Number</span>
+                    </label>
+                    <InputText class="input" id="user-phone" @bind-Value="Model.User.Phone" />
 
                     <label for="user-about">
                         <span>About</span>
@@ -55,8 +60,8 @@
                     <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
 
                 </section>
-                <button type="submit">Submit</button>
-                <ValidationSummary />
+                <button @onclick="@OnSubmitPressed" type="submit">Submit</button>
+                @*<ValidationSummary />*@
             </EditForm>
         }
         else
@@ -68,11 +73,7 @@
 
 @code {
     [Parameter]
-    public IResumeInfoModel Model { get; set; }
-
-    public ResumePage()
-    {
-    }
+    public IResumeInfoModel? Model { get; set; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
@@ -80,6 +81,12 @@
         Model = ModelService.GetModel();
         await base.SetParametersAsync(parameters);
     }
+
+    private void OnSubmitPressed(MouseEventArgs args)
+    {
+        Model.User.Name = "test";
+    }
+
 
 
 }
