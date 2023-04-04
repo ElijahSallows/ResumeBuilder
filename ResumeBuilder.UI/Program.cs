@@ -21,15 +21,13 @@ var host = builder.Build();
 var localStorageService = host.Services.GetRequiredService<ISyncLocalStorageService>();
 var modelService = host.Services.GetRequiredService<IResumeModelService>();
 
-modelService.Initialize(localStorageService, 
-    GetResumeInfoRepository(localStorageService),
-    GetStateInfoRepository(localStorageService));
+modelService.Initialize(GetResumeInfoRepository(localStorageService), GetStateInfoRepository(localStorageService));
 
 await host.RunAsync();
 
 
-#region BuilderFunctions
 // Builder methods for dependency injection
+#region BuilderFunctions
 IResumeInfoRepository GetResumeInfoRepository(ISyncLocalStorageService localStorageService)
 {
     return new ResumeInfoRepository(localStorageService);

@@ -7,10 +7,12 @@ namespace ResumeBuilder.UI.Services.Interfaces
 {
     public interface IResumeModelService
     {
-        //void AddLocalStorageService(ISyncLocalStorageService localStorageService);
-        void Initialize(ISyncLocalStorageService localStorageService, IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository);
+        void Initialize(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository);
         IResumeInfoModel GetModel();
         IResumeInfoModel GetModel(int id);
-        Task<bool> VerifyAsync();
+        void SaveTemp(IResumeInfoModel model);
+        void Save(IResumeInfoModel model, int id);
+        void DeleteTemp();
+        void Delete(int id);
     }
 }

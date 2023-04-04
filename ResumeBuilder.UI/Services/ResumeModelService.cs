@@ -10,20 +10,17 @@ namespace ResumeBuilder.UI.Services
     {
         private IResumeInfoRepository _infoRepository = default!;
         private IStateInfoRepository _stateRepository = default!;
-        private ISyncLocalStorageService _localStorageService = default!;
 
         public ResumeModelService() {}
 
-        public ResumeModelService(ISyncLocalStorageService localStorageService, IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
+        public ResumeModelService(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
         {
-            _localStorageService = localStorageService;
             _infoRepository = infoRepository;
             _stateRepository = stateRepository;
         }
 
-        public void Initialize(ISyncLocalStorageService localStorageService, IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
+        public void Initialize(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
         {
-            _localStorageService = localStorageService;
             _infoRepository = infoRepository;
             _stateRepository = stateRepository;
         }
@@ -39,10 +36,32 @@ namespace ResumeBuilder.UI.Services
             return _infoRepository.GetResumeInfoModel(id);
         }
 
-        public Task<bool> VerifyAsync()
+        public void SaveTemp(IResumeInfoModel model)
+        {
+            if (model == null)
+            {
+                return;
+            }
+            _infoRepository.SaveResumeInfoModel(model, "temp");
+        }
+
+        public void Save(IResumeInfoModel model, int id)
+        {
+            if (model == null)
+            {
+                return;
+            }
+            _infoRepository.SaveResumeInfoModel(model, id);
+        }
+
+        public void DeleteTemp()
         {
             throw new NotImplementedException();
         }
 
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

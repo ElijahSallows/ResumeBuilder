@@ -18,19 +18,32 @@ namespace ResumeBuilder.UI.Repositories
 
         public IResumeInfoModel GetResumeInfoModel(int id)
         {
-            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id) ?? MockResumeInfo.GetInfo(); // not for final release
-            //return MockResumeInfo.GetInfo();
+            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id);// ?? MockResumeInfo.GetInfo(); // not for final release
         }
 
         public IList<IResumeInfoModel> GetResumeInfoModels()
         {
             throw new NotImplementedException();
+            //var a = _localStorageService.Keys().Where(x => x.StartsWith(RESUME_PREFIX));//ToList<IResumeInfoModel>();
+        }
+
+        public bool SaveResumeInfoModel(IResumeInfoModel model, string key)
+        {
+            try
+            {
+                _localStorageService.SetItem(RESUME_PREFIX + key, model);
+                return true;
+            }
+            catch (Exception ex) 
+            {
+                //log exception
+                return false;
+            }
         }
 
         public bool SaveResumeInfoModel(IResumeInfoModel model, int id)
         {
-            _localStorageService.SetItem(RESUME_PREFIX + id, model);
-            return true;
+            return SaveResumeInfoModel(model, id.ToString());
         }
     }
 }

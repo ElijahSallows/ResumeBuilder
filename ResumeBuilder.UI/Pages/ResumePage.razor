@@ -1,19 +1,20 @@
-﻿@page "/resume"
+﻿@page "/"
 @using ResumeBuilder.Shared.Interfaces;
 @using ResumeBuilder.UI.Services.Interfaces;
 @using ResumeBuilder.Shared.Models;
 @using Blazored.LocalStorage;
-@inject ISyncLocalStorageService LocalStorageService;
-@inject IResumeModelService ModelService;
+@using Microsoft.AspNetCore.Components.Forms;
+    @inject IResumeModelService ModelService;
 
+<PageTitle>Resume Builder</PageTitle>
 <h3>ResumePage</h3>
 
 <main class="main-wrapper">
     <div class="resume-wrapper">
         @if (Model != null)
         {
-            <EditForm class="resume-body" Model="@Model">
-                @*<DataAnnotationsValidator />*@
+            <EditForm class="resume-body" EditContext="@EditContext">
+                <DataAnnotationsValidator />
                 <section class="user-details">
                     <h2>
                         <span>User Details</span>
@@ -28,21 +29,6 @@
                         <span>Title</span>
                     </label>
                     <InputText class="input" id="user-title" @bind-Value="Model.User.Title" />
-
-                    <label for="user-address-city">
-                        <span>City</span>
-                    </label>
-                    <InputText class="input" id="user-city" @bind-Value="Model.User.Address.City" />
-
-                    <label for="user-address-state">
-                        <span>State</span>
-                    </label>
-                    <InputText class="input" id="user-state" @bind-Value="Model.User.Address.State" />
-
-                    <label for="user-address-zip">
-                        <span>Zip</span>
-                    </label>
-                    <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
 
                     <label for="user-email">
                         <span>Email Address</span>
@@ -59,6 +45,27 @@
                     </label>
                     <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
 
+                    <section class="address">
+                        <label for="user-address-city">
+                            <span>City</span>
+                        </label>
+                        <InputText class="input" id="user-address-city" @bind-Value="Model.User.Address.City" />
+
+                        <label for="user-address-state">
+                            <span>State</span>
+                        </label>
+                        <InputText class="input" id="user-address-state" @bind-Value="Model.User.Address.State" />
+
+                        <label for="user-address-zip">
+                            <span>Zip</span>
+                        </label>
+                        <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
+                    </section>
+                </section>
+                <section class="">
+                    <h2>
+                        
+                    </h2>
                 </section>
                 <button @onclick="@OnSubmitPressed" type="submit">Submit</button>
                 @*<ValidationSummary />*@
@@ -74,12 +81,19 @@
 @code {
     [Parameter]
     public IResumeInfoModel? Model { get; set; }
+    public EditContext EditContext { get; set; }
 
-    public override async Task SetParametersAsync(ParameterView parameters)
+    protected override void OnInitialized()
     {
-        //ModelService.AddLocalStorageService(LocalStorageService);
         Model = ModelService.GetModel();
-        await base.SetParametersAsync(parameters);
+        EditContext = new EditContext(Model);
+        EditContext.OnFieldChanged += EditContext_OnFieldChanged;
+        base.OnInitialized();
+    }
+
+    private void EditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        ModelService.SaveTemp(Model);
     }
 
     private void OnSubmitPressed(MouseEventArgs args)

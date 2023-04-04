@@ -8,5 +8,7 @@ namespace ResumeBuilder.UI.Repositories.Interfaces
         //void AddLocalStorageService(ISyncLocalStorageService localStorageService);
         IList<IResumeInfoModel> GetResumeInfoModels();
         IResumeInfoModel GetResumeInfoModel(int id);
+        bool SaveResumeInfoModel(IResumeInfoModel model, string key);
+        bool SaveResumeInfoModel(IResumeInfoModel model, int id);
     }
 }
