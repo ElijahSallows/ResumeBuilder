@@ -25,8 +25,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
         {
             string _startDate = Education.StartDate.ToString("MMM yyy");
             string _endDate =
-                !Education.Current && Education.EndDate.HasValue
-                ? Education.EndDate.Value.ToString("MMM yyy")
+                !Education.Current
+                ? Education.EndDate.ToString("MMM yyy")
                 : "Current";
 
             container.Table(table =>

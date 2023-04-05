@@ -4,8 +4,8 @@ namespace ResumeBuilder.Shared.Models
 {
     public class SocialLink : ISocialLink
     {
-        public string Url { get; set; }
-        public byte[] Image { get; set; }
-        public string Name { get; set; }
+        public required string Url { get; set; }
+        public required byte[] Image { get; set; }
+        public required string Name { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace ResumeBuilder.UI.Repositories
 
         public IResumeInfoModel GetResumeInfoModel(int id)
         {
-            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id);// ?? MockResumeInfo.GetInfo(); // not for final release
+            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id) ?? MockResumeInfo.GetInfo(); // not for final release
         }
 
         public IList<IResumeInfoModel> GetResumeInfoModels()

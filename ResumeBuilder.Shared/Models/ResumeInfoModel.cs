@@ -4,10 +4,10 @@ namespace ResumeBuilder.Shared.Models
 {
     public class ResumeInfoModel : IResumeInfoModel
     {
-        public IUserInfoModel User { get; set; }
-        public List<IExperience> Experiences { get; set; }
-        public ISectionInfo<ISkill> Skills { get; set; }
-        public List<IProject> Projects { get; set; }
-        public List<IEducation> Education { get; set; }
+        public required IUserInfoModel User { get; set; }
+        public required List<IExperience> Experiences { get; set; }
+        public required ISectionInfo<ISkill> Skills { get; set; }
+        public required List<IProject> Projects { get; set; }
+        public required List<IEducation> Education { get; set; }
     }
 }

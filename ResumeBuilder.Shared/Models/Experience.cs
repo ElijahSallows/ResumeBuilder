@@ -4,11 +4,11 @@ namespace ResumeBuilder.Shared.Models
 {
     public class Experience : IExperience
     {
-        public string CompanyName { get; set; }
-        public string Title { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public List<string> Points { get; set; }
-        public bool Current { get; set; }
+        public required string CompanyName { get; set; }
+        public required string Title { get; set; }
+        public required DateTime StartDate { get; set; }
+        public required DateTime EndDate { get; set; }
+        public required List<string> Points { get; set; }
+        public required bool Current { get; set; }
     }
 }

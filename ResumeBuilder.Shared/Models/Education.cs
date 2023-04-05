@@ -4,10 +4,10 @@ namespace ResumeBuilder.Shared.Models
 {
     public class Education : IEducation
     {
-        public string SchoolName { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public List<string> Points { get; set; }
-        public bool Current { get; set; }
+        public required string SchoolName { get; set; }
+        public required DateTime StartDate { get; set; }
+        public required DateTime EndDate { get; set; }
+        public required List<string> Points { get; set; }
+        public required bool Current { get; set; }
     }
 }

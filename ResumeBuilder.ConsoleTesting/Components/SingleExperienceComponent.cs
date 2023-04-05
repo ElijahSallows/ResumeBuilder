@@ -23,8 +23,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
             // I don't know whether this belongs somewhere separate yet.
             string _startDate = Experience.StartDate.ToString("MMM yyy");
             string _endDate =
-                !Experience.Current && Experience.EndDate.HasValue
-                ? Experience.EndDate.Value.ToString("MMM yyy")
+                !Experience.Current
+                ? Experience.EndDate.ToString("MMM yyy")
                 : "Current";
 
             container.Table(table =>

@@ -11,7 +11,7 @@
 
 <main class="main-wrapper">
     <div class="resume-wrapper">
-        @if (Model != null)
+        @if (EditContext != null && Model != null)
         {
             <EditForm class="resume-body" EditContext="@EditContext">
                 <DataAnnotationsValidator />
@@ -81,14 +81,14 @@
 @code {
     [Parameter]
     public IResumeInfoModel? Model { get; set; }
-    public EditContext EditContext { get; set; }
+    public EditContext? EditContext { get; set; }
 
-    protected override void OnInitialized()
+    public override async Task SetParametersAsync(ParameterView parameters)
     {
         Model = ModelService.GetModel();
         EditContext = new EditContext(Model);
         EditContext.OnFieldChanged += EditContext_OnFieldChanged;
-        base.OnInitialized();
+        await base.SetParametersAsync(parameters);
     }
 
     private void EditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
