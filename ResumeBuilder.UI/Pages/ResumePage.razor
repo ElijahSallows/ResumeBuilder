@@ -4,10 +4,10 @@
 @using ResumeBuilder.Shared.Models;
 @using Blazored.LocalStorage;
 @using Microsoft.AspNetCore.Components.Forms;
-    @inject IResumeModelService ModelService;
+@inject IResumeModelService ModelService;
 
 <PageTitle>Resume Builder</PageTitle>
-<h3>ResumePage</h3>
+<h1>ResumePage</h1>
 
 <main class="main-wrapper">
     <div class="resume-wrapper">
@@ -15,57 +15,129 @@
         {
             <EditForm class="resume-body" EditContext="@EditContext">
                 <DataAnnotationsValidator />
-                <section class="user-details">
-                    <h2>
+                <section class="user-wrapper section-wrapper">
+                    <h2 class="section-header">
                         <span>User Details</span>
                     </h2>
 
-                    <label for="user-name">
-                        <span>Name</span>
-                    </label>
-                    <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
-
-                    <label for="user-title">
-                        <span>Title</span>
-                    </label>
-                    <InputText class="input" id="user-title" @bind-Value="Model.User.Title" />
-
-                    <label for="user-email">
-                        <span>Email Address</span>
-                    </label>
-                    <InputText class="input" id="user-email" @bind-Value="Model.User.Email" />
-
-                    <label for="user-phone">
-                        <span>Phone Number</span>
-                    </label>
-                    <InputText class="input" id="user-phone" @bind-Value="Model.User.Phone" />
-
-                    <label for="user-about">
-                        <span>About</span>
-                    </label>
-                    <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
-
-                    <section class="address">
-                        <label for="user-address-city">
-                            <span>City</span>
+                    <div class="input-wrapper">
+                        <label for="user-name">
+                            <span>Name</span>
                         </label>
-                        <InputText class="input" id="user-address-city" @bind-Value="Model.User.Address.City" />
+                        <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
+                    </div>
 
-                        <label for="user-address-state">
-                            <span>State</span>
+                    <div class="input-wrapper">
+                        <label for="user-title">
+                            <span>Title</span>
                         </label>
-                        <InputText class="input" id="user-address-state" @bind-Value="Model.User.Address.State" />
+                        <InputText class="input" id="user-title" @bind-Value="Model.User.Title" />
+                    </div>
 
-                        <label for="user-address-zip">
-                            <span>Zip</span>
+                    <div class="input-wrapper">
+                        <label for="user-email">
+                            <span>Email Address</span>
                         </label>
-                        <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
+                        <InputText class="input" id="user-email" @bind-Value="Model.User.Email" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="user-phone">
+                            <span>Phone Number</span>
+                        </label>
+                        <InputText class="input" id="user-phone" @bind-Value="Model.User.Phone" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="user-about">
+                            <span>About</span>
+                        </label>
+                        <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
+                    </div>
+
+                    <section class="address-wrapper section-wrapper">
+
+                        <div class="input-wrapper">
+                            <label for="user-address-city">
+                                <span>City</span>
+                            </label>
+                            <InputText class="input" id="user-address-city" @bind-Value="Model.User.Address.City" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="user-address-state">
+                                <span>State</span>
+                            </label>
+                            <InputText class="input" id="user-address-state" @bind-Value="Model.User.Address.State" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="user-address-zip">
+                                <span>Zip</span>
+                            </label>
+                            <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
+                        </div>
                     </section>
                 </section>
-                <section class="">
-                    <h2>
-                        
+                <section class="experience-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Experiences</span>
                     </h2>
+
+                    @foreach (var experience in Model.Experiences)
+                    {
+                        <div class="input-wrapper">
+                            <label for="exp-name">
+                                <span class="label">Company Name</span>
+                            </label>
+                            <InputText class="input" id="exp-name" @bind-Value="experience.CompanyName" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="exp-title">
+                                <span class="label">Title</span>
+                            </label>
+                            <InputText class="input" id="exp-title" @bind-Value="experience.Title" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="exp-start">
+                                <span class="label">Start Date</span>
+                            </label>
+                            <InputDate class="input" id="exp-start" @bind-Value="experience.StartDate" TValue="DateTime" />
+                        </div>
+
+                        @if (!experience.Current)
+                        {
+                            <div class="input-wrapper">
+                                <label for="exp-end">
+                                    <span class="label">End Date</span>
+                                </label>
+                                <InputDate class="input" id="exp-" @bind-Value="experience.EndDate" TValue="DateTime" />
+                            </div>
+                        }
+
+                        <div class="input-wrapper">
+                            <label for="exp-current">
+                                <span class="label">Current?</span>
+                            </label>
+                            <InputCheckbox class="input" id="exp-current" @bind-Value="experience.Current" />
+                        </div>
+
+                        @foreach (var point in experience.Points.Select((e, i) => new { Value = e, Index = i }))
+                        {
+                            // See https://stackoverflow.com/a/56426146/323447
+                            // Due to this bug, we have to bind both get and set to achieve the desired effect.
+
+                            <div class="input-wrapper">
+                                @*<label for="exp-">
+                                    <span class="label"></span>
+                                </label>*@  
+                                <InputText class="input" @bind-Value:get="point.Value" 
+                                    @bind-Value:set="(value) => { experience.Points[point.Index] = value; }" />
+                            </div>
+                        }
+                    }
                 </section>
                 <button @onclick="@OnSubmitPressed" type="submit">Submit</button>
                 @*<ValidationSummary />*@
@@ -80,8 +152,8 @@
 
 @code {
     [Parameter]
-    public IResumeInfoModel? Model { get; set; }
-    public EditContext? EditContext { get; set; }
+    public required IResumeInfoModel Model { get; set; }
+    public required EditContext EditContext { get; set; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
@@ -93,12 +165,12 @@
 
     private void EditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
     {
-        ModelService.SaveTemp(Model);
+        ModelService.SaveTemp(Model!);
     }
 
     private void OnSubmitPressed(MouseEventArgs args)
     {
-        Model.User.Name = "test";
+        //ModelService.Save(Model!);
     }
 
 

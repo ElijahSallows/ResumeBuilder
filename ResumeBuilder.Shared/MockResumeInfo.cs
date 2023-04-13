@@ -59,6 +59,7 @@ namespace ResumeBuilder.Shared
             StartDate = DateTime.Now,
             SchoolName = "Current Work",
             //ClassName = "Software Developer",
+            EndDate = DateTime.Now,
             Current = true,
             Points = new List<string>()
             {
@@ -85,6 +86,7 @@ namespace ResumeBuilder.Shared
             new Experience()
             {
                 StartDate = DateTime.Now,
+            EndDate = DateTime.Now,
                 CompanyName = "Current Work",
                 Title = "Software Developer",
                 Current = true,
@@ -111,6 +113,7 @@ namespace ResumeBuilder.Shared
             new Experience()
             {
                 StartDate = DateTime.Now,
+            EndDate = DateTime.Now,
                 CompanyName = "idk 1",
                 Title = "debug :)",
                 Current = true,
@@ -123,6 +126,7 @@ namespace ResumeBuilder.Shared
             new Experience()
             {
                 StartDate = DateTime.Now,
+            EndDate = DateTime.Now,
                 CompanyName = "idk 2",
                 Title = "debug to test limit. Shouldn't be visible.",
                 Current = true,

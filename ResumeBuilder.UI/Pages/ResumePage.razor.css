@@ -1,0 +1,20 @@
+﻿body {
+    background-color: #0d0d0e;
+}
+
+::deep .input {
+    /*display: inline-block;*/
+}
+
+.user-wrapper {
+
+}
+
+.section-wrapper {
+    display: block;
+    border: 1px;
+}
+
+.input-wrapper {
+    display:block;
+}

@@ -34,7 +34,7 @@ namespace ResumeBuilder.UI.Repositories
                 _localStorageService.SetItem(RESUME_PREFIX + key, model);
                 return true;
             }
-            catch (Exception ex) 
+            catch 
             {
                 //log exception
                 return false;
