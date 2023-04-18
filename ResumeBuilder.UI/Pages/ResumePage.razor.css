@@ -1,20 +1,60 @@
-﻿body {
-    background-color: #0d0d0e;
+﻿.main-wrapper {
+    background-color: var(--bg-color);
+    height: 100%;
+    width: 100%;
+    display: flex;
 }
 
-::deep .input {
-    /*display: inline-block;*/
+.resume-wrapper {
+    margin: auto;
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    border: 1px dotted #fff;
 }
 
-.user-wrapper {
-
+::deep .resume {
+    display: flex;
+    /*align-items: center;*/
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .section-wrapper {
-    display: block;
-    border: 1px;
+    /*max-width: 400px;*/
+    /*display: inline-flex;*/
+    display:flex;
+    flex-flow: column nowrap;
+    border: 3px solid #73AD21;
+    align-items: center;
 }
 
 .input-wrapper {
-    display:block;
+    display: flex;
+    flex-direction: row;
+}
+
+/*.input-wrapper > label {
+    align-self: flex-start;
+}
+::deep .input-wrapper > .input {
+    align-self: flex-end;
+}*/
+
+button {
+    min-width: 50px;
+    min-height: 50px;
+    width: 5vw;
+    height: 5vw;
+
+    transition: .2s;
+    transition-property: background-color, color;
+    background-color: #2e2e2e;
+    color: #fff;
+}
+
+button:hover {
+    background-color: #5e5e5e;
+    color: #000;
 }

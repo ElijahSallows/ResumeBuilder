@@ -65,7 +65,8 @@ namespace ResumeBuilder.Shared
             {
                 "work here now",
                 "happy face :)"
-            }
+            },
+            Title = "title :)"
         },
         new Education()
         {
@@ -78,7 +79,8 @@ namespace ResumeBuilder.Shared
             {
                 "worked here",
                 "don't anymore"
-            }
+            },
+            Title = "title :)"
         }
     },
                 Experiences = new List<IExperience>()
@@ -170,18 +172,16 @@ namespace ResumeBuilder.Shared
             }
         }
     },
-                Skills = new SectionInfo<ISkill>()
+                Skills = new List<ISkill>()
                 {
-                    Bullets = new List<ISkill>()
-                    {
-                        //new Skill("C#"),
-                        //new Skill("HTML / CSS"),
-                        //new Skill("a"),
-                        //new Skill("b"),
-                        //new Skill("c"),
-                        //new Skill("d"),
-                        //new Skill("e")
-                    }
+                        new Skill("C#"),
+                        new Skill("HTML / CSS"),
+                        new Skill("a"),
+                        new Skill("b"),
+                        new Skill("c"),
+                        new Skill("d"),
+                        new Skill("e")
+
                 }
             };
         }

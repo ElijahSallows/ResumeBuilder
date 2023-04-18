@@ -217,7 +217,7 @@ namespace ResumeBuilder.ConsoleTesting
                     .Text("Education");
 
                 // Component declarations
-                var skillsComponent = new SkillsComponent(Info.Skills.Bullets, Theme);
+                var skillsComponent = new SkillsComponent(Info.Skills, Theme);
                 var projectsComponent = new ProjectsComponent(Info.Projects, Theme);
                 var experiencesComponent = new ExperiencesComponent(Info.Experiences, Theme);
                 var educationComponent = new EducationsComponent(Info.Education, Theme);

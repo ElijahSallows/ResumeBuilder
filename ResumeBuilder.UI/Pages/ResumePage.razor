@@ -4,16 +4,16 @@
 @using ResumeBuilder.Shared.Models;
 @using Blazored.LocalStorage;
 @using Microsoft.AspNetCore.Components.Forms;
+@layout FormLayout
 @inject IResumeModelService ModelService;
 
 <PageTitle>Resume Builder</PageTitle>
-<h1>ResumePage</h1>
 
 <main class="main-wrapper">
     <div class="resume-wrapper">
         @if (EditContext != null && Model != null)
         {
-            <EditForm class="resume-body" EditContext="@EditContext">
+            <EditForm class="resume" EditContext="@EditContext">
                 <DataAnnotationsValidator />
                 <section class="user-wrapper section-wrapper">
                     <h2 class="section-header">
@@ -79,6 +79,7 @@
                         </div>
                     </section>
                 </section>
+
                 <section class="experience-wrapper section-wrapper">
                     <h2 class="section-header">
                         <span>Experiences</span>
@@ -113,7 +114,7 @@
                                 <label for="exp-end">
                                     <span class="label">End Date</span>
                                 </label>
-                                <InputDate class="input" id="exp-" @bind-Value="experience.EndDate" TValue="DateTime" />
+                                <InputDate class="input" id="exp-end" @bind-Value="experience.EndDate" TValue="DateTime" />
                             </div>
                         }
 
@@ -124,21 +125,107 @@
                             <InputCheckbox class="input" id="exp-current" @bind-Value="experience.Current" />
                         </div>
 
-                        @foreach (var point in experience.Points.Select((e, i) => new { Value = e, Index = i }))
-                        {
-                            // See https://stackoverflow.com/a/56426146/323447
-                            // Due to this bug, we have to bind both get and set to achieve the desired effect.
+                        <InputTextList List="experience.Points" />
+                        @*@foreach (var point in experience.Points.Select((e, i) => new { Value = e, Index = i }))
+                {
+                // See https://stackoverflow.com/a/56426146/323447
+                // Due to this bug, we have to bind both get and set to achieve the desired effect.
 
-                            <div class="input-wrapper">
-                                @*<label for="exp-">
-                                    <span class="label"></span>
-                                </label>*@  
-                                <InputText class="input" @bind-Value:get="point.Value" 
-                                    @bind-Value:set="(value) => { experience.Points[point.Index] = value; }" />
-                            </div>
-                        }
+                <div class="input-wrapper">
+                <InputText class="input" @bind-Value:get="point.Value"
+                @bind-Value:set="(value) => { experience.Points[point.Index] = value; }" />
+                </div>
+                }*@
                     }
                 </section>
+
+                <section class="skill-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Skills</span>
+                    </h2>
+
+                    @foreach (var skill in Model.Skills)
+                    {
+                        <div class="input-wrapper">
+                            <InputText class="input" @bind-Value="skill.Name" />
+                        </div>
+                    }
+                </section>
+
+                <section class="education-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Education</span>
+                    </h2>
+
+                    @foreach (var education in Model.Education)
+                    {
+                        <div class="input-wrapper">
+                            <label for="edu-name">
+                                <span class="label">School Name</span>
+                            </label>
+                            <InputText class="input" id="edu-name" @bind-Value="education.SchoolName" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="edu-title">
+                                <span class="label">Title</span>
+                            </label>
+                            <InputText class="input" id="edu-title" @bind-Value="education.Title" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="edu-start">
+                                <span class="label">Start Date</span>
+                            </label>
+                            <InputDate class="input" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
+                        </div>
+
+                        @if (!education.Current)
+                        {
+                            <div class="input-wrapper">
+                                <label for="edu-end">
+                                    <span class="label">End Date</span>
+                                </label>
+                                <InputDate class="input" id="edu-end" @bind-Value="education.EndDate" TValue="DateTime" />
+                            </div>
+                        }
+
+                        <div class="input-wrapper">
+                            <label for="edu-current">
+                                <span class="label">Current?</span>
+                            </label>
+                            <InputCheckbox class="input" id="edu-current" @bind-Value="education.Current" />
+                        </div>
+
+                        <InputTextList List="education.Points" />
+                    }
+                </section>
+
+                <section class="education-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Projects</span>
+                    </h2>
+
+                    @foreach (var project in Model.Projects)
+                    {
+                        <div class="input-wrapper">
+                            <label for="project-name">
+                                <span class="label">Project Name</span>
+                            </label>
+                            <InputText class="input" id="project-name" @bind-Value="project.Name" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="project-date">
+                                <span class="label">Project Date</span>
+                            </label>
+                            <InputText class="input" id="project-date" @bind-Value="project.Date" />
+                        </div>
+
+                        <InputTextList List="project.Points" />
+                    }
+                </section>
+
                 <button @onclick="@OnSubmitPressed" type="submit">Submit</button>
                 @*<ValidationSummary />*@
             </EditForm>
@@ -149,6 +236,7 @@
         }
     </div>
 </main>
+
 
 @code {
     [Parameter]

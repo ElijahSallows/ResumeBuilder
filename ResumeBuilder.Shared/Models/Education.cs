@@ -9,5 +9,6 @@ namespace ResumeBuilder.Shared.Models
         public required DateTime EndDate { get; set; }
         public required List<string> Points { get; set; }
         public required bool Current { get; set; }
+        public required string Title { get; set; }
     }
 }

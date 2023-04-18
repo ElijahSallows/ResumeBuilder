@@ -7,5 +7,6 @@
         List<string> Points { get; set; }
         string SchoolName { get; set; }
         DateTime StartDate { get; set; }
+        string Title { get; set; }
     }
 }
