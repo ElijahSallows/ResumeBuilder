@@ -10,6 +10,15 @@
 <PageTitle>Resume Builder</PageTitle>
 
 <main class="main-wrapper">
+    <aside class="right-menu menu">
+        <div class="button-wrapper">
+            <button @onclick="@OnGeneratePressed">
+                Generate
+                <div class="button-border"></div>
+                <div class="button-mask"></div>
+            </button>
+        </div>
+    </aside>
     <div class="resume-wrapper">
         @if (EditContext != null && Model != null)
         {
@@ -87,45 +96,46 @@
 
                     @foreach (var experience in Model.Experiences)
                     {
-                        <div class="input-wrapper">
-                            <label for="exp-name">
-                                <span class="label">Company Name</span>
-                            </label>
-                            <InputText class="input" id="exp-name" @bind-Value="experience.CompanyName" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="exp-title">
-                                <span class="label">Title</span>
-                            </label>
-                            <InputText class="input" id="exp-title" @bind-Value="experience.Title" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="exp-start">
-                                <span class="label">Start Date</span>
-                            </label>
-                            <InputDate class="input" id="exp-start" @bind-Value="experience.StartDate" TValue="DateTime" />
-                        </div>
-
-                        @if (!experience.Current)
-                        {
+                        <div class="experience">
                             <div class="input-wrapper">
-                                <label for="exp-end">
-                                    <span class="label">End Date</span>
+                                <label for="exp-name">
+                                    <span class="label">Company Name</span>
                                 </label>
-                                <InputDate class="input" id="exp-end" @bind-Value="experience.EndDate" TValue="DateTime" />
+                                <InputText class="input" id="exp-name" @bind-Value="experience.CompanyName" />
                             </div>
-                        }
 
-                        <div class="input-wrapper">
-                            <label for="exp-current">
-                                <span class="label">Current?</span>
-                            </label>
-                            <InputCheckbox class="input" id="exp-current" @bind-Value="experience.Current" />
+                            <div class="input-wrapper">
+                                <label for="exp-title">
+                                    <span class="label">Title</span>
+                                </label>
+                                <InputText class="input" id="exp-title" @bind-Value="experience.Title" />
+                            </div>
+
+                            <div class="input-wrapper">
+                                <label for="exp-start">
+                                    <span class="label">Start Date</span>
+                                </label>
+                                <InputDate class="input" id="exp-start" @bind-Value="experience.StartDate" TValue="DateTime" />
+                            </div>
+
+                            @if (!experience.Current)
+                            {
+                                <div class="input-wrapper">
+                                    <label for="exp-end">
+                                        <span class="label">End Date</span>
+                                    </label>
+                                    <InputDate class="input" id="exp-end" @bind-Value="experience.EndDate" TValue="DateTime" />
+                                </div>
+                            }
+
+                            <div class="input-wrapper">
+                                <label for="exp-current">
+                                    <span class="label">Current?</span>
+                                </label>
+                                <InputCheckbox class="input" id="exp-current" @bind-Value="experience.Current" />
+                            </div>
+                            <InputTextList List="experience.Points" />
                         </div>
-
-                        <InputTextList List="experience.Points" />
                         @*@foreach (var point in experience.Points.Select((e, i) => new { Value = e, Index = i }))
                 {
                 // See https://stackoverflow.com/a/56426146/323447
@@ -226,7 +236,6 @@
                     }
                 </section>
 
-                <button @onclick="@OnSubmitPressed" type="submit">Submit</button>
                 @*<ValidationSummary />*@
             </EditForm>
         }
@@ -256,7 +265,7 @@
         ModelService.SaveTemp(Model!);
     }
 
-    private void OnSubmitPressed(MouseEventArgs args)
+    private void OnGeneratePressed(MouseEventArgs args)
     {
         //ModelService.Save(Model!);
     }

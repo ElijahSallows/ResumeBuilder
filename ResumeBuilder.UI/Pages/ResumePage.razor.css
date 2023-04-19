@@ -1,4 +1,8 @@
 ﻿.main-wrapper {
+    --generate-bg-color1: #425e8a;
+    --generate-bg-color2: #4d0e5e;
+    --generate-bdr-color1: #63bf6d;
+    --generate-bdr-color2: #7794d9;
     background-color: var(--bg-color);
     height: 100%;
     width: 100%;
@@ -7,8 +11,10 @@
 
 .resume-wrapper {
     margin: auto;
+    left: 5vw;
     height: 100%;
     width: 45%;
+    position: relative;
     display: flex;
     flex-direction: row;
     border: 1px dotted #fff;
@@ -24,7 +30,7 @@
 .section-wrapper {
     /*max-width: 400px;*/
     /*display: inline-flex;*/
-    display:flex;
+    display: flex;
     flex-flow: column nowrap;
     border: 3px solid #73AD21;
     align-items: center;
@@ -35,26 +41,91 @@
     flex-direction: row;
 }
 
-/*.input-wrapper > label {
-    align-self: flex-start;
+.experience {
+    background-color: rgb(233, 233, 233, 0.18);
+    border: 1px solid #fff;
 }
-::deep .input-wrapper > .input {
-    align-self: flex-end;
-}*/
 
-button {
+.menu {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /*border: 1px dotted #88ff88;*/
+}
+
+.right-menu {
+    height: 80%;
+    width: 17.5%;
+    left: 80%;
+    top: 10%;
+}
+
+.button-wrapper {
     min-width: 50px;
     min-height: 50px;
-    width: 5vw;
-    height: 5vw;
-
-    transition: .2s;
-    transition-property: background-color, color;
-    background-color: #2e2e2e;
-    color: #fff;
+    margin: auto;
+    width: 90%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
 }
 
-button:hover {
-    background-color: #5e5e5e;
-    color: #000;
+button {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
 }
+
+    button > .button-mask, button > .button-border {
+        inset: 0;
+        content: "";
+        position: absolute;
+        z-index: -2;
+        overflow: hidden;
+        border-radius: 4px;
+        transition: 500ms cubic-bezier(.54,.47,.5,1.7);
+        transition-property: transform;
+    }
+
+    button:hover > .button-mask {
+        transform: scale(1.05);
+    }
+
+    button > .button-mask::after {
+        background: linear-gradient(100deg, var(--generate-bg-color1) 20%, var(--generate-bg-color2));
+    }
+
+    button:hover > .button-mask::after {
+        transform: rotate(-250deg);
+    }
+
+    button:hover > .button-border {
+        transform: scale(1.1);
+    }
+
+    button > .button-border::after {
+        background: linear-gradient(100deg, var(--generate-bdr-color1) 10%, var(--generate-bdr-color2));
+    }
+
+    button:hover > .button-border::after {
+        transform: rotate(250deg);
+    }
+
+    button > .button-mask::after, button > .button-border::after {
+        width: 400px;
+        height: 400px;
+        inset: 0;
+        left: -30%;
+        margin: auto;
+        content: "";
+        position: absolute;
+        z-index: -1;
+        transition: 750ms ease-in-out;
+        transition-property: transform;
+    }
