@@ -71,7 +71,7 @@
     justify-content: center;
 }
 
-button {
+.generate-button {
     position: relative;
     background-color: transparent;
     border: none;
@@ -82,7 +82,8 @@ button {
     font-size: 20px;
 }
 
-    button > .button-mask, button > .button-border {
+    .generate-button > .button-mask, 
+    .generate-button > .button-border {
         inset: 0;
         content: "";
         position: absolute;
@@ -93,31 +94,32 @@ button {
         transition-property: transform;
     }
 
-    button:hover > .button-mask {
+    .generate-button:hover > .button-mask {
         transform: scale(1.05);
     }
 
-    button > .button-mask::after {
+    .generate-button > .button-mask::after {
         background: linear-gradient(100deg, var(--generate-bg-color1) 20%, var(--generate-bg-color2));
     }
 
-    button:hover > .button-mask::after {
+    .generate-button:hover > .button-mask::after {
         transform: rotate(-250deg);
     }
 
-    button:hover > .button-border {
+    .generate-button:hover > .button-border {
         transform: scale(1.1);
     }
 
-    button > .button-border::after {
+    .generate-button > .button-border::after {
         background: linear-gradient(100deg, var(--generate-bdr-color1) 10%, var(--generate-bdr-color2));
     }
 
-    button:hover > .button-border::after {
+    .generate-button:hover > .button-border::after {
         transform: rotate(250deg);
     }
 
-    button > .button-mask::after, button > .button-border::after {
+    .generate-button > .button-mask::after,
+    .generate-button > .button-border::after {
         width: 400px;
         height: 400px;
         inset: 0;

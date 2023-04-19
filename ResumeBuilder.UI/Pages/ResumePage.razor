@@ -12,7 +12,7 @@
 <main class="main-wrapper">
     <aside class="right-menu menu">
         <div class="button-wrapper">
-            <button @onclick="@OnGeneratePressed">
+            <button @onclick="@OnGeneratePressed" class="generate-button">
                 Generate
                 <div class="button-border"></div>
                 <div class="button-mask"></div>
@@ -96,6 +96,10 @@
 
                     @foreach (var experience in Model.Experiences)
                     {
+                        <div class="experience-delete-wrapper">
+                            <button @onclick="() => DeleteExperience(experience)" class="button-delete">-</button>
+                        </div>
+
                         <div class="experience">
                             <div class="input-wrapper">
                                 <label for="exp-name">
@@ -270,6 +274,10 @@
         //ModelService.Save(Model!);
     }
 
-
+    private void DeleteExperience(IExperience experience)
+    {
+        //confirm deletion
+        Model.Experiences.Remove(experience);
+    }
 
 }
