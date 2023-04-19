@@ -10,9 +10,40 @@ html, body {
     color: white;
 }
 
-#loading-wrapper {
+#loading {
     margin: auto;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-wrapper {
+    width: 25vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: auto;
+}
+
+.loading-text {
     width: 100%;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.loading-bar {
+    content: "";
+    width: var(--blazor-load-percentage, 0%);
+    height: 50%;
+    border-radius: 50px;
+    background-color: blue;
+}
+
+.loading-text::after {
+    /*content: var(--blazor-load-percentage);*/
 }
 
 .loading-progress {
