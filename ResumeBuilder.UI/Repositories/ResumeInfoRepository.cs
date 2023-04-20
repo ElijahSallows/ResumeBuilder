@@ -16,12 +16,14 @@ namespace ResumeBuilder.UI.Repositories
             _localStorageService = localStorageService;
         }
 
-        public IResumeInfoModel GetResumeInfoModel(int id)
+        public T GetResumeInfoModel<T>(int id)
+            where T : IResumeInfoModel
         {
-            return _localStorageService.GetItem<IResumeInfoModel>(RESUME_PREFIX + id) ?? MockResumeInfo.GetInfo(); // not for final release
+            return _localStorageService.GetItem<T>(RESUME_PREFIX + id);
         }
 
-        public IList<IResumeInfoModel> GetResumeInfoModels()
+        public IList<T> GetResumeInfoModels<T>()
+            where T : IResumeInfoModel
         {
             throw new NotImplementedException();
             //var a = _localStorageService.Keys().Where(x => x.StartsWith(RESUME_PREFIX));//ToList<IResumeInfoModel>();

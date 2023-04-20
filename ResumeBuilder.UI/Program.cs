@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI;
 using ResumeBuilder.UI.Repositories;
 using ResumeBuilder.UI.Repositories.Interfaces;
@@ -40,6 +41,6 @@ IStateInfoRepository GetStateInfoRepository(ISyncLocalStorageService localStorag
 
 IResumeModelService BuildResumeModelService()
 {
-    return new ResumeModelService();
+    return new ResumeModelService<ResumeInfoModel>();
 }
 #endregion

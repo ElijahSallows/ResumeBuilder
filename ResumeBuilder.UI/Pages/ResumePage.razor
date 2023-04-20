@@ -11,9 +11,33 @@
 <PageTitle>Resume Builder</PageTitle>
 
 <main class="main-wrapper">
+    <aside class="left-menu menu">
+        <div class="model-selector-wrapper">
+            @*@for (int i = 0; i < 5; i++)
+            {
+                <div class="button-wrapper">
+                    <button @onclick="() => OnChangeModelPressed(i)" class="model-button @(i == CurrentModelId ? "model-active" : "")">@i</button>
+                </div>
+            }*@
+        </div>
+        <div class="button-wrapper">
+            <button @onclick="@OnDebugPressed" class="debug-button">
+                DEBUG
+                <div class="button-border"></div>
+                <div class="button-mask"></div>
+            </button>
+        </div>
+    </aside>
     <aside class="right-menu menu">
         <div class="button-wrapper">
-            <button @onclick="@OnGeneratePressed" class="generate-button">
+            <button @onclick="@OnSavePressed" class="save-button large-button">
+                Save
+                <div class="button-border"></div>
+                <div class="button-mask"></div>
+            </button>
+        </div>
+        <div class="button-wrapper">
+            <button @onclick="@OnGeneratePressed" class="generate-button large-button">
                 Generate
                 <div class="button-border"></div>
                 <div class="button-mask"></div>
@@ -96,8 +120,8 @@
                     </h2>
 
                     <ExperienceList Experiences="Model.Experiences"
-                        OnExperienceDeleted="@DeleteExperience"/>
-                    
+                                OnExperienceDeleted="@DeleteExperience" />
+
                 </section>
 
                 <section class="skill-wrapper section-wrapper">
@@ -202,6 +226,7 @@
     [Parameter]
     public required IResumeInfoModel Model { get; set; }
     public required EditContext EditContext { get; set; }
+    private int CurrentModelId{ get => ModelService.CurrentModelId; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
@@ -213,12 +238,27 @@
 
     private void EditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
     {
-        ModelService.SaveTemp(Model!);
+        ModelService.SaveTemp(Model);
+    }
+
+    private void OnChangeModelPressed(int id)
+    {
+        ModelService.GetModel(id);
+    }
+
+    private void OnDebugPressed(MouseEventArgs args)
+    {
+        Model = ModelService.DebugRegen();
+    }
+
+    private void OnSavePressed(MouseEventArgs args)
+    {
+        ModelService.Save(Model);
     }
 
     private void OnGeneratePressed(MouseEventArgs args)
     {
-        //ModelService.Save(Model!);
+        ModelService.GenerateResume(Model);
     }
 
     private void DeleteExperience(IExperience experience)

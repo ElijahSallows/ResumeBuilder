@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using ResumeBuilder.Shared;
 using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
@@ -6,10 +7,13 @@ using ResumeBuilder.UI.Services.Interfaces;
 
 namespace ResumeBuilder.UI.Services
 {
-    public class ResumeModelService : IResumeModelService
+    public class ResumeModelService<T> : IResumeModelService
+        where T : class, IResumeInfoModel, new()
     {
         private IResumeInfoRepository _infoRepository = default!;
         private IStateInfoRepository _stateRepository = default!;
+        
+        public int CurrentModelId { get; private set; }
 
         public ResumeModelService() {}
 
@@ -25,6 +29,16 @@ namespace ResumeBuilder.UI.Services
             _stateRepository = stateRepository;
         }
 
+        public IResumeInfoModel DebugRegen()
+        {
+            return MockResumeInfo.GetInfo();
+        }
+
+        public void GenerateResume(IResumeInfoModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public IResumeInfoModel GetModel()
         {
             int id = _stateRepository?.LastUsedModelId ?? 0;
@@ -33,7 +47,8 @@ namespace ResumeBuilder.UI.Services
 
         public IResumeInfoModel GetModel(int id)
         {
-            return _infoRepository.GetResumeInfoModel(id);
+            CurrentModelId = id;
+            return _infoRepository?.GetResumeInfoModel<T>(id) ?? new T();
         }
 
         public void SaveTemp(IResumeInfoModel model)
@@ -42,16 +57,18 @@ namespace ResumeBuilder.UI.Services
             {
                 return;
             }
+
             _infoRepository.SaveResumeInfoModel(model, "temp");
         }
 
-        public void Save(IResumeInfoModel model, int id)
+        public void Save(IResumeInfoModel model)
         {
             if (model == null)
             {
                 return;
             }
-            _infoRepository.SaveResumeInfoModel(model, id);
+
+            _infoRepository.SaveResumeInfoModel(model, CurrentModelId);
         }
 
         public void DeleteTemp()
@@ -59,7 +76,7 @@ namespace ResumeBuilder.UI.Services
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
+        public void Delete()
         {
             throw new NotImplementedException();
         }
