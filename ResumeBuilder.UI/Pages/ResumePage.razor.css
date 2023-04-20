@@ -36,12 +36,12 @@
     align-items: center;
 }
 
-.input-wrapper {
+::deep .input-wrapper {
     display: flex;
     flex-direction: row;
 }
 
-.experience {
+::deep .experience {
     background-color: rgb(233, 233, 233, 0.18);
     border: 1px solid #fff;
 }

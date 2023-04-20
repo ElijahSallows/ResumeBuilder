@@ -1,0 +1,61 @@
+﻿@using ResumeBuilder.Shared.Interfaces;
+
+@foreach (var experience in Experiences)
+{
+    <div class="experience">
+        <div class="experience-delete-wrapper">
+            <button @onclick="() => DeleteExperience(experience)" class="button-delete">-</button>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="exp-name">
+                <span class="label">Company Name</span>
+            </label>
+            <InputText class="input" id="exp-name" @bind-Value="experience.CompanyName" />
+        </div>
+
+        <div class="input-wrapper">
+            <label for="exp-title">
+                <span class="label">Title</span>
+            </label>
+            <InputText class="input" id="exp-title" @bind-Value="experience.Title" />
+        </div>
+
+        <div class="input-wrapper">
+            <label for="exp-start">
+                <span class="label">Start Date</span>
+            </label>
+            <InputDate class="input" id="exp-start" @bind-Value="experience.StartDate" TValue="DateTime" />
+        </div>
+
+        @if (!experience.Current)
+        {
+            <div class="input-wrapper">
+                <label for="exp-end">
+                    <span class="label">End Date</span>
+                </label>
+                <InputDate class="input" id="exp-end" @bind-Value="experience.EndDate" TValue="DateTime" />
+            </div>
+        }
+
+        <div class="input-wrapper">
+            <label for="exp-current">
+                <span class="label">Current?</span>
+            </label>
+            <InputCheckbox class="input" id="exp-current" @bind-Value="experience.Current" />
+        </div>
+        <InputTextList List="experience.Points" />
+    </div>
+}
+@code {
+    [Parameter]
+    public required List<IExperience> Experiences { get; set; }
+
+    [Parameter]
+    public required EventCallback<IExperience> OnExperienceDeleted { get; set; }
+
+    private async Task DeleteExperience(IExperience experience)
+    {
+        await OnExperienceDeleted.InvokeAsync(experience);
+    }
+}
