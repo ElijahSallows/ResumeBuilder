@@ -41,6 +41,6 @@ IStateInfoRepository GetStateInfoRepository(ISyncLocalStorageService localStorag
 
 IResumeModelService BuildResumeModelService()
 {
-    return new ResumeModelService<ResumeInfoModel>();
+    return new ResumeModelService();
 }
 #endregion

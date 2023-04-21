@@ -12,13 +12,14 @@
 <main class="main-wrapper">
     <aside class="left-menu menu">
         <div class="model-selector-wrapper">
-            @*@for (int i = 0; i < 5; i++)
+            @for (int i = 0; i < 5; i++)
             {
-            might need fix because of aforementioned github issue (see InputTextList.razor).
+                // See https://stackoverflow.com/a/56426146/323447
+                int iCopy = i;
                 <div class="button-wrapper">
-                    <button @onclick="() => OnChangeModelPressed(i)" class="model-button @(i == CurrentModelId ? "model-active" : "")">@i</button>
+                    <button @onclick="() => OnChangeModelPressed(iCopy)" class="model-button @(iCopy == CurrentModelId ? "model-active" : "")">@iCopy</button>
                 </div>
-            }*@
+            }
         </div>
         <div class="button-wrapper">
             <button @onclick="@OnDebugPressed" class="debug-button">
@@ -226,7 +227,7 @@
     [Parameter]
     public required ResumeInfoModel Model { get; set; }
     public required EditContext EditContext { get; set; }
-    private int CurrentModelId{ get => ModelService.CurrentModelId; }
+    private int CurrentModelId { get => ModelService.CurrentModelId; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
@@ -243,7 +244,7 @@
 
     private void OnChangeModelPressed(int id)
     {
-        ModelService.GetModel(id);
+        Model = ModelService.GetModel(id);
     }
 
     private void OnDebugPressed(MouseEventArgs args)

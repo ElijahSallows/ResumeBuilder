@@ -89,11 +89,13 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .model-button {
     background-color: red;
+    flex-shrink: 1;
+    flex-grow: 1;
 }
 
 .model-active {

@@ -6,7 +6,7 @@ using ResumeBuilder.UI.Services.Interfaces;
 
 namespace ResumeBuilder.UI.Services
 {
-    public class ResumeModelService<T> : IResumeModelService
+    public class ResumeModelService : IResumeModelService
     {
         private IResumeInfoRepository _infoRepository = default!;
         private IStateInfoRepository _stateRepository = default!;
@@ -67,16 +67,17 @@ namespace ResumeBuilder.UI.Services
             }
 
             _infoRepository.SaveResumeInfoModel(model, CurrentModelId);
+            DeleteTemp();
         }
 
         public void DeleteTemp()
         {
-            throw new NotImplementedException();
+            _infoRepository.DeleteResumeInfoModel("temp");
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            _infoRepository.DeleteResumeInfoModel(CurrentModelId);
         }
     }
 }
