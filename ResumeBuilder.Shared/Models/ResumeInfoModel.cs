@@ -1,13 +1,12 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class ResumeInfoModel : IResumeInfoModel
+    public class ResumeInfoModel
     {
-        public required IUserInfoModel User { get; set; }
-        public required List<IExperience> Experiences { get; set; }
-        public required List<ISkill> Skills { get; set; }
-        public required List<IProject> Projects { get; set; }
-        public required List<IEducation> Education { get; set; }
+        public UserInfoModel User { get; set; }
+        public List<Experience> Experiences { get; set; }
+        public List<Skill> Skills { get; set; }
+        public List<Project> Projects { get; set; }
+        public List<Education> Education { get; set; }
     }
 }

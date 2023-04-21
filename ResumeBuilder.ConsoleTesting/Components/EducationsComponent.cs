@@ -1,6 +1,5 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
@@ -9,10 +8,10 @@ namespace ResumeBuilder.ConsoleTesting.Components
     {
         private int _numberOfDisplayedEducations;
 
-        public List<IEducation> Educations { get; set; }
-        public IDocumentTheme Theme { get; set; }
+        public List<Education> Educations { get; set; }
+        public DocumentTheme Theme { get; set; }
 
-        public EducationsComponent(List<IEducation> educations, IDocumentTheme theme)
+        public EducationsComponent(List<Education> educations, DocumentTheme theme)
         {
             Educations = educations;
             Theme = theme;

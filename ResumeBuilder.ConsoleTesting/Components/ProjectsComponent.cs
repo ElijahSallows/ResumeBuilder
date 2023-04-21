@@ -1,6 +1,5 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
@@ -9,10 +8,10 @@ namespace ResumeBuilder.ConsoleTesting.Components
     {
         private int _numberOfDisplayedProjects;
 
-        public List<IProject> Projects { get; set; }
-        public IDocumentTheme Theme { get; }
+        public List<Project> Projects { get; set; }
+        public DocumentTheme Theme { get; }
 
-        public ProjectsComponent(List<IProject> projects, IDocumentTheme theme)
+        public ProjectsComponent(List<Project> projects, DocumentTheme theme)
         {
             Projects = projects;
             Theme = theme;

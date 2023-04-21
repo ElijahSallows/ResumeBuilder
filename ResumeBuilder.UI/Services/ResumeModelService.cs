@@ -1,6 +1,5 @@
 ﻿using Blazored.LocalStorage;
 using ResumeBuilder.Shared;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 using ResumeBuilder.UI.Services.Interfaces;
@@ -8,7 +7,6 @@ using ResumeBuilder.UI.Services.Interfaces;
 namespace ResumeBuilder.UI.Services
 {
     public class ResumeModelService<T> : IResumeModelService
-        where T : class, IResumeInfoModel, new()
     {
         private IResumeInfoRepository _infoRepository = default!;
         private IStateInfoRepository _stateRepository = default!;
@@ -29,29 +27,29 @@ namespace ResumeBuilder.UI.Services
             _stateRepository = stateRepository;
         }
 
-        public IResumeInfoModel DebugRegen()
+        public ResumeInfoModel DebugRegen()
         {
             return MockResumeInfo.GetInfo();
         }
 
-        public void GenerateResume(IResumeInfoModel model)
+        public void GenerateResume(ResumeInfoModel model)
         {
             throw new NotImplementedException();
         }
 
-        public IResumeInfoModel GetModel()
+        public ResumeInfoModel GetModel()
         {
             int id = _stateRepository?.LastUsedModelId ?? 0;
             return GetModel(id);
         }
 
-        public IResumeInfoModel GetModel(int id)
+        public ResumeInfoModel GetModel(int id)
         {
             CurrentModelId = id;
-            return _infoRepository?.GetResumeInfoModel<T>(id) ?? new T();
+            return _infoRepository?.GetResumeInfoModel(id) ?? new ResumeInfoModel();
         }
 
-        public void SaveTemp(IResumeInfoModel model)
+        public void SaveTemp(ResumeInfoModel model)
         {
             if (model == null)
             {
@@ -61,7 +59,7 @@ namespace ResumeBuilder.UI.Services
             _infoRepository.SaveResumeInfoModel(model, "temp");
         }
 
-        public void Save(IResumeInfoModel model)
+        public void Save(ResumeInfoModel model)
         {
             if (model == null)
             {

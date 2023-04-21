@@ -1,14 +1,14 @@
 ﻿using Blazored.LocalStorage;
-using ResumeBuilder.Shared.Interfaces;
+using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.UI.Repositories.Interfaces
 {
     public interface IResumeInfoRepository
     {
         //void AddLocalStorageService(ISyncLocalStorageService localStorageService);
-        IList<T> GetResumeInfoModels<T>() where T : IResumeInfoModel;
-        T GetResumeInfoModel<T>(int id) where T : IResumeInfoModel;
-        bool SaveResumeInfoModel(IResumeInfoModel model, string key);
-        bool SaveResumeInfoModel(IResumeInfoModel model, int id);
+        IList<ResumeInfoModel> GetResumeInfoModels();
+        ResumeInfoModel GetResumeInfoModel(int id);
+        bool SaveResumeInfoModel(ResumeInfoModel model, string key);
+        bool SaveResumeInfoModel(ResumeInfoModel model, int id);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
@@ -10,10 +9,10 @@ namespace ResumeBuilder.ConsoleTesting.Components
     {
         private int _numberOfDisplayedSkills;
 
-        public List<ISkill> Skills { get; set; }
-        public IDocumentTheme Theme { get; set; }
+        public List<Skill> Skills { get; set; }
+        public DocumentTheme Theme { get; set; }
 
-        public SkillsComponent(List<ISkill> skills, IDocumentTheme theme)
+        public SkillsComponent(List<Skill> skills, DocumentTheme theme)
         {
             Skills = skills;
             Theme = theme;

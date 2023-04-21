@@ -1,5 +1,4 @@
 ﻿using ResumeBuilder.Shared;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 using Blazored.LocalStorage;
 using ResumeBuilder.UI.Repositories.Interfaces;
@@ -16,20 +15,18 @@ namespace ResumeBuilder.UI.Repositories
             _localStorageService = localStorageService;
         }
 
-        public T GetResumeInfoModel<T>(int id)
-            where T : IResumeInfoModel
+        public ResumeInfoModel GetResumeInfoModel(int id)
         {
-            return _localStorageService.GetItem<T>(RESUME_PREFIX + id);
+            return _localStorageService.GetItem<ResumeInfoModel>(RESUME_PREFIX + id);
         }
 
-        public IList<T> GetResumeInfoModels<T>()
-            where T : IResumeInfoModel
+        public IList<ResumeInfoModel> GetResumeInfoModels()
         {
             throw new NotImplementedException();
-            //var a = _localStorageService.Keys().Where(x => x.StartsWith(RESUME_PREFIX));//ToList<IResumeInfoModel>();
+            //var a = _localStorageService.Keys().Where(x => x.StartsWith(RESUME_PREFIX));//ToList<ResumeInfoModel>();
         }
 
-        public bool SaveResumeInfoModel(IResumeInfoModel model, string key)
+        public bool SaveResumeInfoModel(ResumeInfoModel model, string key)
         {
             try
             {
@@ -43,7 +40,7 @@ namespace ResumeBuilder.UI.Repositories
             }
         }
 
-        public bool SaveResumeInfoModel(IResumeInfoModel model, int id)
+        public bool SaveResumeInfoModel(ResumeInfoModel model, int id)
         {
             return SaveResumeInfoModel(model, id.ToString());
         }

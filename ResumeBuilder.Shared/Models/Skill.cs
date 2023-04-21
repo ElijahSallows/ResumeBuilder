@@ -1,8 +1,7 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class Skill : ISkill
+    public class Skill
     {
         public string Name { get; set; }
 

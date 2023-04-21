@@ -1,11 +1,10 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class Address : IAddress
+    public class Address
     {
-        public required string City { get; set; }
-        public required string State { get; set; }
-        public required string Zip { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
     }
 }

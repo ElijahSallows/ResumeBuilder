@@ -1,21 +1,15 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
     internal class SingleEducationComponent : IComponent
     {
-        public IEducation Education { get; set; }
-        public IDocumentTheme Theme { get; set; }
+        public Education Education { get; set; }
+        public DocumentTheme Theme { get; set; }
 
-        public SingleEducationComponent(IEducation education, IDocumentTheme theme)
+        public SingleEducationComponent(Education education, DocumentTheme theme)
         {
             Education = education;
             Theme = theme;

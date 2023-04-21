@@ -1,17 +1,16 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
     internal class SingleExperienceComponent : IComponent
     {
-        public IExperience Experience { get; set; }
-        public IDocumentTheme Theme { get; set; }
+        public Experience Experience { get; set; }
+        public DocumentTheme Theme { get; set; }
 
-        public SingleExperienceComponent(IExperience experience, IDocumentTheme theme)
+        public SingleExperienceComponent(Experience experience, DocumentTheme theme)
         {
             Experience = experience;
             Theme = theme;

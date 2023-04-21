@@ -1,11 +1,10 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class DocumentTheme : IDocumentTheme
+    public class DocumentTheme
     {
-        public IColorModel Colors { get; set; }
-        public IFontModel Fonts { get; set; }
+        public ColorModel Colors { get; set; }
+        public FontModel Fonts { get; set; }
         public string Bullet { get; set; } = "•";
 
         public float TopLineSize { get; set; }

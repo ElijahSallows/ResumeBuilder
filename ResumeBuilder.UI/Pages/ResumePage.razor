@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using ResumeBuilder.Shared.Interfaces;
 @using ResumeBuilder.UI.Pages.Components
 @using ResumeBuilder.UI.Services.Interfaces;
 @using ResumeBuilder.Shared.Models;
@@ -15,6 +14,7 @@
         <div class="model-selector-wrapper">
             @*@for (int i = 0; i < 5; i++)
             {
+            might need fix because of aforementioned github issue (see InputTextList.razor).
                 <div class="button-wrapper">
                     <button @onclick="() => OnChangeModelPressed(i)" class="model-button @(i == CurrentModelId ? "model-active" : "")">@i</button>
                 </div>
@@ -224,7 +224,7 @@
 
 @code {
     [Parameter]
-    public required IResumeInfoModel Model { get; set; }
+    public required ResumeInfoModel Model { get; set; }
     public required EditContext EditContext { get; set; }
     private int CurrentModelId{ get => ModelService.CurrentModelId; }
 
@@ -261,7 +261,7 @@
         ModelService.GenerateResume(Model);
     }
 
-    private void DeleteExperience(IExperience experience)
+    private void DeleteExperience(Experience experience)
     {
         //confirm deletion
         Model.Experiences.Remove(experience);

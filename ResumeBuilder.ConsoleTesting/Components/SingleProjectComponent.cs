@@ -1,16 +1,15 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
     internal class SingleProjectComponent : IComponent
     {
-        public IProject Project { get; set; }
-        public IDocumentTheme Theme { get; set; }
+        public Project Project { get; set; }
+        public DocumentTheme Theme { get; set; }
 
-        public SingleProjectComponent(IProject project, IDocumentTheme theme)
+        public SingleProjectComponent(Project project, DocumentTheme theme)
         {
             Project = project;
             Theme = theme;

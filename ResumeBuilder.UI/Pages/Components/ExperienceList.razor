@@ -1,4 +1,4 @@
-﻿@using ResumeBuilder.Shared.Interfaces;
+﻿@using ResumeBuilder.Shared.Models;
 
 @foreach (var experience in Experiences)
 {
@@ -50,12 +50,12 @@
 }
 @code {
     [Parameter]
-    public required List<IExperience> Experiences { get; set; }
+    public required List<Experience> Experiences { get; set; }
 
     [Parameter]
-    public required EventCallback<IExperience> OnExperienceDeleted { get; set; }
+    public required EventCallback<Experience> OnExperienceDeleted { get; set; }
 
-    private async Task DeleteExperience(IExperience experience)
+    private async Task DeleteExperience(Experience experience)
     {
         await OnExperienceDeleted.InvokeAsync(experience);
     }

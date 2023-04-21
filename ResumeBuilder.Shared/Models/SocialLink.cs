@@ -1,11 +1,10 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class SocialLink : ISocialLink
+    public class SocialLink
     {
-        public required string Url { get; set; }
-        public required byte[] Image { get; set; }
-        public required string Name { get; set; }
+        public string Url { get; set; }
+        public byte[] Image { get; set; }
+        public string Name { get; set; }
     }
 }

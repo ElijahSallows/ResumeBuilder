@@ -1,11 +1,10 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class Project : IProject
+    public class Project
     {
-        public required string Name { get; set; }
-        public required string Date { get; set; }
-        public required List<string> Points { get; set; }
+        public string Name { get; set; }
+        public string Date { get; set; }
+        public List<string> Points { get; set; }
     }
 }

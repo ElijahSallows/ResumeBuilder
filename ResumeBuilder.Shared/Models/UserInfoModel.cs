@@ -1,15 +1,14 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-
+﻿
 namespace ResumeBuilder.Shared.Models
 {
-    public class UserInfoModel : IUserInfoModel
+    public class UserInfoModel
     {
-        public required string Name { get; set; }
-        public required string Title { get; set; }
-        public required string Email { get; set; }
-        public required string Phone { get; set; }
-        public required IAddress Address { get; set; }
-        public required List<ISocialLink> Links { get; set; }
-        public required string About { get; set; }
+        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public Address Address { get; set; }
+        public List<SocialLink> Links { get; set; }
+        public string About { get; set; }
     }
 }

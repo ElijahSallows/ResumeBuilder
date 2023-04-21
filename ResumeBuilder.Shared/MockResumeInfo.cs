@@ -1,5 +1,4 @@
-﻿using ResumeBuilder.Shared.Interfaces;
-using ResumeBuilder.Shared.Models;
+﻿using ResumeBuilder.Shared.Models;
 using ResumeBuilder.Shared.Properties;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ namespace ResumeBuilder.Shared
 {
     public static class MockResumeInfo
     {
-        public static IResumeInfoModel GetInfo()
+        public static ResumeInfoModel GetInfo()
         {
             return new ResumeInfoModel()
             {
@@ -23,7 +22,7 @@ namespace ResumeBuilder.Shared
                     Phone = "(309)-xxx-xxxx",
                     Name = "Elijah Sallows",
                     Title = "Junior .NET Developer",
-                    Links = new List<ISocialLink>
+                    Links = new List<SocialLink>
         {
             new SocialLink()
             {
@@ -52,7 +51,7 @@ namespace ResumeBuilder.Shared
                         Zip = "85233"
                     }
                 },
-                Education = new List<IEducation>()
+                Education = new List<Education>()
     {
         new Education()
         {
@@ -83,7 +82,7 @@ namespace ResumeBuilder.Shared
             Title = "title :)"
         }
     },
-                Experiences = new List<IExperience>()
+                Experiences = new List<Experience>()
         {
             new Experience()
             {
@@ -140,7 +139,7 @@ namespace ResumeBuilder.Shared
             }
 
     },
-                Projects = new List<IProject>()
+                Projects = new List<Project>()
     {
         new Project()
         {
@@ -172,7 +171,7 @@ namespace ResumeBuilder.Shared
             }
         }
     },
-                Skills = new List<ISkill>()
+                Skills = new List<Skill>()
                 {
                         new Skill("C#"),
                         new Skill("HTML / CSS"),

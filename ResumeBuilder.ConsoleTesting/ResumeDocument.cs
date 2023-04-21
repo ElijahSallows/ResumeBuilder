@@ -3,7 +3,6 @@ using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.ConsoleTesting.Components;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 using System.Runtime.CompilerServices;
 
@@ -11,10 +10,10 @@ namespace ResumeBuilder.ConsoleTesting
 {
     public class ResumeDocument : IDocument
     {
-        public IResumeInfoModel Info { get; }
-        public IDocumentTheme Theme { get; }
+        public ResumeInfoModel Info { get; }
+        public DocumentTheme Theme { get; }
 
-        public ResumeDocument(IResumeInfoModel info, IDocumentTheme theme)
+        public ResumeDocument(ResumeInfoModel info, DocumentTheme theme)
         {
             Info = info;
             Theme = theme;

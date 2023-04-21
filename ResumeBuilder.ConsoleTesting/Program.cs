@@ -6,7 +6,6 @@ using QuestPDF.Helpers;
 using ResumeBuilder.ConsoleTesting;
 using ResumeBuilder.ConsoleTesting.Properties;
 using ResumeBuilder.Shared;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 
 Console.WriteLine("Hello, World!");

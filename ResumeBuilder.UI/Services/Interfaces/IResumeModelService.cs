@@ -1,5 +1,4 @@
 ﻿using Blazored.LocalStorage;
-using ResumeBuilder.Shared.Interfaces;
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 
@@ -9,13 +8,13 @@ namespace ResumeBuilder.UI.Services.Interfaces
     {
         void Initialize(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository);
         int CurrentModelId { get; }
-        IResumeInfoModel GetModel();
-        IResumeInfoModel GetModel(int id);
-        void GenerateResume(IResumeInfoModel model);
-        void SaveTemp(IResumeInfoModel model);
-        void Save(IResumeInfoModel model);
+        ResumeInfoModel GetModel();
+        ResumeInfoModel GetModel(int id);
+        void GenerateResume(ResumeInfoModel model);
+        void SaveTemp(ResumeInfoModel model);
+        void Save(ResumeInfoModel model);
         void DeleteTemp();
         void Delete();
-        IResumeInfoModel DebugRegen();
+        ResumeInfoModel DebugRegen();
     }
 }
