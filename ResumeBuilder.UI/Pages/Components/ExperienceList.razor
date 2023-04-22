@@ -1,10 +1,11 @@
 ﻿@using ResumeBuilder.Shared.Models;
+@inherits ResumeListComponent<Experience>
 
-@foreach (var experience in Experiences)
+@foreach (var experience in List)
 {
     <div class="experience">
-        <div class="experience-delete-wrapper">
-            <button @onclick="() => DeleteExperience(experience)" class="button-delete">-</button>
+        <div class="experience-delete-wrapper delete-wrapper">
+            <button @onclick="() => Delete(experience)" class="button-delete">-</button>
         </div>
 
         <div class="input-wrapper">
@@ -49,14 +50,5 @@
     </div>
 }
 @code {
-    [Parameter]
-    public required List<Experience> Experiences { get; set; }
 
-    [Parameter]
-    public required EventCallback<Experience> OnExperienceDeleted { get; set; }
-
-    private async Task DeleteExperience(Experience experience)
-    {
-        await OnExperienceDeleted.InvokeAsync(experience);
-    }
 }

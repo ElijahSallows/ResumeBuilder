@@ -1,0 +1,30 @@
+﻿@using ResumeBuilder.Shared.Models;
+@inherits ResumeListComponent<Project>
+
+@foreach (var project in List)
+{
+    <div class="project">
+        <div class="project-delete-wrapper delete-wrapper">
+            <button @onclick="() => Delete(project)" class="button-delete">-</button>
+        </div>
+        <div class="input-wrapper">
+            <label for="project-name">
+                <span class="label">Project Name</span>
+            </label>
+            <InputText class="input" id="project-name" @bind-Value="project.Name" />
+        </div>
+
+        <div class="input-wrapper">
+            <label for="project-date">
+                <span class="label">Project Date</span>
+            </label>
+            <InputText class="input" id="project-date" @bind-Value="project.Date" />
+        </div>
+
+        <InputTextList List="project.Points" />
+    </div>
+}
+
+@code {
+
+}

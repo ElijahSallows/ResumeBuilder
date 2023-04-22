@@ -120,9 +120,8 @@
                         <span>Experiences</span>
                     </h2>
 
-                    <ExperienceList Experiences="Model.Experiences"
-                                OnExperienceDeleted="@DeleteExperience" />
-
+                    <ExperienceList List="Model.Experiences"
+                                OnDeleted="@ConfirmDelete" />
                 </section>
 
                 <section class="skill-wrapper section-wrapper">
@@ -130,12 +129,8 @@
                         <span>Skills</span>
                     </h2>
 
-                    @foreach (var skill in Model.Skills)
-                    {
-                        <div class="input-wrapper">
-                            <InputText class="input" @bind-Value="skill.Name" />
-                        </div>
-                    }
+                    <SkillList List="Model.Skills"
+                           OnDeleted="@ConfirmDelete" />
                 </section>
 
                 <section class="education-wrapper section-wrapper">
@@ -143,73 +138,17 @@
                         <span>Education</span>
                     </h2>
 
-                    @foreach (var education in Model.Education)
-                    {
-                        <div class="input-wrapper">
-                            <label for="edu-name">
-                                <span class="label">School Name</span>
-                            </label>
-                            <InputText class="input" id="edu-name" @bind-Value="education.SchoolName" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="edu-title">
-                                <span class="label">Title</span>
-                            </label>
-                            <InputText class="input" id="edu-title" @bind-Value="education.Title" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="edu-start">
-                                <span class="label">Start Date</span>
-                            </label>
-                            <InputDate class="input" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
-                        </div>
-
-                        @if (!education.Current)
-                        {
-                            <div class="input-wrapper">
-                                <label for="edu-end">
-                                    <span class="label">End Date</span>
-                                </label>
-                                <InputDate class="input" id="edu-end" @bind-Value="education.EndDate" TValue="DateTime" />
-                            </div>
-                        }
-
-                        <div class="input-wrapper">
-                            <label for="edu-current">
-                                <span class="label">Current?</span>
-                            </label>
-                            <InputCheckbox class="input" id="edu-current" @bind-Value="education.Current" />
-                        </div>
-
-                        <InputTextList List="education.Points" />
-                    }
+                    <EducationList List="Model.Education"
+                               OnDeleted="@ConfirmDelete" />
                 </section>
 
-                <section class="education-wrapper section-wrapper">
+                <section class="project-wrapper section-wrapper">
                     <h2 class="section-header">
                         <span>Projects</span>
                     </h2>
 
-                    @foreach (var project in Model.Projects)
-                    {
-                        <div class="input-wrapper">
-                            <label for="project-name">
-                                <span class="label">Project Name</span>
-                            </label>
-                            <InputText class="input" id="project-name" @bind-Value="project.Name" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="project-date">
-                                <span class="label">Project Date</span>
-                            </label>
-                            <InputText class="input" id="project-date" @bind-Value="project.Date" />
-                        </div>
-
-                        <InputTextList List="project.Points" />
-                    }
+                    <ProjectList List="Model.Projects"
+                             OnDeleted="@ConfirmDelete" />
                 </section>
 
                 @*<ValidationSummary />*@
@@ -262,10 +201,43 @@
         ModelService.GenerateResume(Model);
     }
 
-    private void DeleteExperience(Experience experience)
+    private void ConfirmDelete<T>(T obj)
+        where T : class
     {
-        //confirm deletion
-        Model.Experiences.Remove(experience);
+        if (ShouldOpenConfirm(obj))
+        {
+            //TODO
+            Delete(obj);
+        }
     }
 
+    private bool ShouldOpenConfirm<T>(T obj)
+        where T : class
+    {
+        return true;
+    }
+
+    private void Delete<T>(T obj)
+        where T : class
+    {
+        switch(obj)
+        {
+            case Experience ex:
+                Model.Experiences.Remove(ex);
+                break;
+            case Education ed:
+                Model.Education.Remove(ed);
+                break;
+            case Skill sk:
+                Model.Skills.Remove(sk);
+                break;
+            case Project pr:
+                Model.Projects.Remove(pr);
+                break;
+
+            default:
+                break;
+        }
+        ModelService.SaveTemp(Model);
+    }
 }
