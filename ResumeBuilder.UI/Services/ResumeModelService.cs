@@ -1,5 +1,4 @@
-﻿using Blazored.LocalStorage;
-using ResumeBuilder.Shared;
+﻿using ResumeBuilder.Shared;
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 using ResumeBuilder.UI.Services.Interfaces;

@@ -29,22 +29,7 @@
             </button>
         </div>
     </aside>
-    <aside class="right-menu menu">
-        <div class="button-wrapper">
-            <button @onclick="@OnSavePressed" class="save-button large-button">
-                Save
-                <div class="button-border"></div>
-                <div class="button-mask"></div>
-            </button>
-        </div>
-        <div class="button-wrapper">
-            <button @onclick="@OnGeneratePressed" class="generate-button large-button">
-                Generate
-                <div class="button-border"></div>
-                <div class="button-mask"></div>
-            </button>
-        </div>
-    </aside>
+
     <div class="resume-wrapper">
         @if (EditContext != null && Model != null)
         {
@@ -52,7 +37,7 @@
                 <DataAnnotationsValidator />
                 <section class="user-wrapper section-wrapper">
                     <h2 class="section-header">
-                        <span>User Details</span>
+                        <span>Your Details</span>
                     </h2>
 
                     <div class="input-wrapper">
@@ -159,6 +144,22 @@
             <p>The Model is null. Please report this error.</p>
         }
     </div>
+    <aside class="right-menu menu">
+        <div class="button-wrapper">
+            <button @onclick="@OnSavePressed" class="save-button large-button">
+                Save
+                <div class="button-border"></div>
+                <div class="button-mask"></div>
+            </button>
+        </div>
+        <div class="button-wrapper">
+            <button @onclick="@OnGeneratePressed" class="generate-button large-button">
+                Generate
+                <div class="button-border"></div>
+                <div class="button-mask"></div>
+            </button>
+        </div>
+    </aside>
 </main>
 
 
