@@ -10,8 +10,44 @@
 <PageTitle>Resume Builder</PageTitle>
 
 <main class="main-wrapper">
-    <aside class="left-menu menu">
-        <div class="model-selector-wrapper">
+    <aside class="left-menu side-menu">
+        <div class="menu-header">
+            <a class="logo">
+                <span></span>
+            </a>
+
+            <button class="undo sm-btn">Undo</button>
+            <button class="undo sm-btn">Redo</button>
+
+            <button class="save sm-button" @onclick="@OnSavePressed">Save</button>
+            <button class="menu sm-button">Menu</button>
+        </div>
+
+        @for (int i = 0; i < 12; i++)
+        {
+            <button class="btn-@i md-btn">@i</button>
+        }
+
+        <div class="layout-list">
+            @for (int i = 0; i < 5; i++)
+            {
+                <div class="layout-wrapper">
+                    <button class="layout lg-button">@i</button>
+                    <button class="layout sm-button">Rename</button>
+                    <button class="layout sm-button">Delete</button>
+                </div>
+            }
+        </div>
+
+        <button @onclick="@OnGeneratePressed" class="generate-button large-button">
+            Generate
+            <div class="button-border"></div>
+            <div class="button-mask"></div>
+        </button>
+
+        @*<ResumeSectionSelector Sections="" />*@
+
+        @*<div class="model-selector-wrapper">
             @for (int i = 0; i < 5; i++)
             {
                 // See https://stackoverflow.com/a/56426146/323447
@@ -20,14 +56,15 @@
                     <button @onclick="() => OnChangeModelPressed(iCopy)" class="model-button @(iCopy == CurrentModelId ? "model-active" : "")">@iCopy</button>
                 </div>
             }
-        </div>
-        <div class="button-wrapper">
+        </div>*@
+
+        @*<div class="button-wrapper">
             <button @onclick="@OnDebugPressed" class="debug-button">
                 DEBUG
                 <div class="button-border"></div>
                 <div class="button-mask"></div>
             </button>
-        </div>
+        </div>*@
     </aside>
 
     <div class="resume-wrapper">
@@ -144,21 +181,7 @@
             <p>The Model is null. Please report this error.</p>
         }
     </div>
-    <aside class="right-menu menu">
-        <div class="button-wrapper">
-            <button @onclick="@OnSavePressed" class="save-button large-button">
-                Save
-                <div class="button-border"></div>
-                <div class="button-mask"></div>
-            </button>
-        </div>
-        <div class="button-wrapper">
-            <button @onclick="@OnGeneratePressed" class="generate-button large-button">
-                Generate
-                <div class="button-border"></div>
-                <div class="button-mask"></div>
-            </button>
-        </div>
+    <aside class="right-menu side-menu">
     </aside>
 </main>
 
@@ -221,7 +244,7 @@
     private void Delete<T>(T obj)
         where T : class
     {
-        switch(obj)
+        switch (obj)
         {
             case Experience ex:
                 Model.Experiences.Remove(ex);

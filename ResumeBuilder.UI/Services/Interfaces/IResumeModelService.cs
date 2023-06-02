@@ -15,5 +15,6 @@ namespace ResumeBuilder.UI.Services.Interfaces
         void DeleteTemp();
         void Delete();
         ResumeInfoModel DebugRegen();
+        //string GetLayoutName(int id);
     }
 }
