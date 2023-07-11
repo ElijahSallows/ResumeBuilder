@@ -1,0 +1,13 @@
+﻿@using ResumeBuilder.Shared.Models;
+
+<div class="resume-section-select">
+    @foreach (ResumeSection resumeSection in Sections)
+    {
+        <button class="@(!resumeSection.Active ? "hidden" : "")">@resumeSection.Name</button>
+    }
+
+</div>
+
+@code {
+    public required List<ResumeSection> Sections { get; set; }
+}

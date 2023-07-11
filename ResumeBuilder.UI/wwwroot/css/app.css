@@ -1,8 +1,85 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --bg-color: #222323;
+    --bg-color-light: #383c3c;
+    --bdr-color: #585c5c;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: white;
 }
+
+#loading {
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-wrapper {
+    width: 25vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: auto;
+}
+
+.loading-text {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.loading-bar {
+    content: "";
+    width: var(--blazor-load-percentage, 0%);
+    height: 50%;
+    border-radius: 50px;
+    background-color: blue;
+}
+
+.loading-text::after {
+    /*content: var(--blazor-load-percentage);*/
+}
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+        .loading-progress circle:last-child {
+            stroke: #1b6ec2;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+    .loading-progress-text:after {
+        content: var(--blazor-load-percentage-text, "Loading");
+    }
 
 h1:focus {
     outline: none;

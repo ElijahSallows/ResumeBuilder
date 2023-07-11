@@ -1,0 +1,18 @@
+﻿@if (List != null)
+{
+    @foreach (var element in List.Select((e, i) => new { Value = e, Index = i }))
+    {
+        // See https://stackoverflow.com/a/56426146/323447
+        // Due to this bug, we have to bind both get and set to achieve the desired effect.
+
+        <div class="input-wrapper">
+            <InputText class="input" @bind-Value:get="element.Value"
+               @bind-Value:set="(value) => { List[element.Index] = value; }" />
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public IList<string>? List { get; set; }
+}

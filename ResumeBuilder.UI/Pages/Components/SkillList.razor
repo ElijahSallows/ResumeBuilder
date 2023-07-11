@@ -1,0 +1,18 @@
+﻿@using ResumeBuilder.Shared.Models;
+@inherits ResumeListComponent<Skill>
+
+@foreach (var skill in List)
+{
+    <div class="skill">
+        <div class="skill-delete-wrapper delete-wrapper">
+            <button @onclick="() => Delete(skill)" class="button-delete">-</button>
+        </div>
+        <div class="input-wrapper">
+            <InputText class="input" @bind-Value="skill.Name" />
+        </div>
+    </div>
+}
+
+@code {
+
+}

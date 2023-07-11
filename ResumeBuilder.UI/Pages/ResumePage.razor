@@ -1,13 +1,279 @@
-﻿<h3>ResumePage</h3>
+﻿@page "/"
+@using ResumeBuilder.UI.Pages.Components
+@using ResumeBuilder.UI.Services.Interfaces;
+@using ResumeBuilder.Shared.Models;
+@using Blazored.LocalStorage;
+@using Microsoft.AspNetCore.Components.Forms;
+@layout FormLayout
+@inject IResumeModelService ModelService;
 
+<PageTitle>Resume Builder</PageTitle>
+
+<aside class="top-info">
+    <h6>This website is under development. It currently has no function.</h6>
+</aside>
 <main class="main-wrapper">
+    <aside class="left-menu side-menu">
+        @*Top row*@
+        <div class="menu-header">
+            @*<a class="logo" href="https://github.com/ElijahSallows/">
+            <span>Elijah</span>
+            </a>*@
+
+            <div class="controls">
+                <button class="menu header-btn menu-btn oi oi-menu"></button>
+                <button class="save header-btn menu-btn oi oi-clipboard" @onclick="@OnSavePressed"></button>
+
+                <button class="undo header-btn state-controls menu-btn oi oi-action-undo"></button>
+                <button class="redo header-btn state-controls menu-btn oi oi-action-redo"></button>
+            </div>
+        </div>
+
+        @*Resume section selectors*@
+        <div class="btn-container">
+            @for (int i = 0; i < 12; i++)
+            {
+                <button class="btn-@i section-selector menu-btn">@i</button>
+            }
+        </div>
+
+        @*Saved layout selectors*@
+        <div class="layout-list">
+            @for (int i = 0; i < 5; i++)
+            {
+                @*TODO: provide "model-active" class to the selected model*@
+                <div class="layout-wrapper">
+                    <button class="layout layout-main menu-btn">@i</button>
+                    <button class="layout layout-sub sm-btn menu-btn hidden oi oi-pencil"></button>
+                    <button class="layout layout-sub sm-btn menu-btn hidden oi oi-trash"></button>
+                </div>
+            }
+        </div>
+
+        @*Generate (and download) PDF*@ @*@onclick="@OnGeneratePressed"*@
+        <button class="generate-button">
+            Generate
+            <div class="button-border"></div>
+            <div class="button-mask"></div>
+        </button>
+
+        @*<ResumeSectionSelector Sections="" />*@
+
+        @*<div class="model-selector-wrapper">
+        @for (int i = 0; i < 5; i++)
+        {
+        // See https://stackoverflow.com/a/56426146/323447
+        int iCopy = i;
+        <div class="button-wrapper">
+        <button @onclick="() => OnChangeModelPressed(iCopy)" class="model-button @(iCopy == CurrentModelId ? "model-active" : "")">@iCopy</button>
+        </div>
+        }
+        </div>*@
+
+        @*<div class="button-wrapper">
+        <button @onclick="@OnDebugPressed" class="debug-button">
+        DEBUG
+        <div class="button-border"></div>
+        <div class="button-mask"></div>
+        </button>
+        </div>*@
+    </aside>
+
     <div class="resume-wrapper">
-        <EditForm class="resume-body">
-            
-        </EditForm>
+        @if (EditContext != null && Model != null)
+        {
+            <EditForm class="resume" EditContext="@EditContext">
+                <DataAnnotationsValidator />
+                <section class="user-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Your Details</span>
+                    </h2>
+
+                    <div class="input-wrapper">
+                        <label for="user-name">
+                            <span>Name</span>
+                        </label>
+                        <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="user-title">
+                            <span>Title</span>
+                        </label>
+                        <InputText class="input" id="user-title" @bind-Value="Model.User.Title" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="user-email">
+                            <span>Email Address</span>
+                        </label>
+                        <InputText class="input" id="user-email" @bind-Value="Model.User.Email" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="user-phone">
+                            <span>Phone Number</span>
+                        </label>
+                        <InputText class="input" id="user-phone" @bind-Value="Model.User.Phone" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="user-about">
+                            <span>About</span>
+                        </label>
+                        <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
+                    </div>
+
+                    <section class="address-wrapper section-wrapper">
+
+                        <div class="input-wrapper">
+                            <label for="user-address-city">
+                                <span>City</span>
+                            </label>
+                            <InputText class="input" id="user-address-city" @bind-Value="Model.User.Address.City" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="user-address-state">
+                                <span>State</span>
+                            </label>
+                            <InputText class="input" id="user-address-state" @bind-Value="Model.User.Address.State" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="user-address-zip">
+                                <span>Zip</span>
+                            </label>
+                            <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
+                        </div>
+                    </section>
+                </section>
+
+                <section class="experiences-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Experiences</span>
+                    </h2>
+
+                    <ExperienceList List="Model.Experiences"
+                                    OnDeleted="@ConfirmDelete" />
+                </section>
+
+                <section class="skill-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Skills</span>
+                    </h2>
+
+                    <SkillList List="Model.Skills"
+                               OnDeleted="@ConfirmDelete" />
+                </section>
+
+                <section class="education-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Education</span>
+                    </h2>
+
+                    <EducationList List="Model.Education"
+                                   OnDeleted="@ConfirmDelete" />
+                </section>
+
+                <section class="project-wrapper section-wrapper">
+                    <h2 class="section-header">
+                        <span>Projects</span>
+                    </h2>
+
+                    <ProjectList List="Model.Projects"
+                                 OnDeleted="@ConfirmDelete" />
+                </section>
+
+                @*<ValidationSummary />*@
+            </EditForm>
+        }
+        else
+        {
+            <p>The Model is null. Please report this error.</p>
+        }
     </div>
+    <aside class="right-menu side-menu">
+    </aside>
 </main>
 
-@code {
 
+@code {
+    [Parameter]
+    public required ResumeInfoModel Model { get; set; }
+    public required EditContext EditContext { get; set; }
+    private int CurrentModelId { get => ModelService.CurrentModelId; }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        Model = ModelService.GetModel();
+        EditContext = new EditContext(Model);
+        EditContext.OnFieldChanged += EditContext_OnFieldChanged;
+        await base.SetParametersAsync(parameters);
+    }
+
+    private void EditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        ModelService.SaveTemp(Model);
+    }
+
+    private void OnChangeModelPressed(int id)
+    {
+        Model = ModelService.GetModel(id);
+    }
+
+    private void OnDebugPressed(MouseEventArgs args)
+    {
+        Model = ModelService.DebugRegen();
+    }
+
+    private void OnSavePressed(MouseEventArgs args)
+    {
+        ModelService.Save(Model);
+    }
+
+    private void OnGeneratePressed(MouseEventArgs args)
+    {
+        ModelService.GenerateResume(Model);
+    }
+
+    private void ConfirmDelete<T>(T obj)
+        where T : class
+    {
+        if (ShouldOpenConfirm(obj))
+        {
+            //TODO
+            Delete(obj);
+        }
+    }
+
+    private bool ShouldOpenConfirm<T>(T obj)
+        where T : class
+    {
+        return true;
+    }
+
+    private void Delete<T>(T obj)
+        where T : class
+    {
+        switch (obj)
+        {
+            case Experience ex:
+                Model.Experiences.Remove(ex);
+                break;
+            case Education ed:
+                Model.Education.Remove(ed);
+                break;
+            case Skill sk:
+                Model.Skills.Remove(sk);
+                break;
+            case Project pr:
+                Model.Projects.Remove(pr);
+                break;
+
+            default:
+                break;
+        }
+        ModelService.SaveTemp(Model);
+    }
 }

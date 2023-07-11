@@ -1,11 +1,6 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.ConsoleTesting.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ResumeBuilder.Shared.Models;
 
 namespace ResumeBuilder.ConsoleTesting.Components
 {
@@ -24,8 +19,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
         {
             string _startDate = Education.StartDate.ToString("MMM yyy");
             string _endDate =
-                !Education.Current && Education.EndDate.HasValue
-                ? Education.EndDate.Value.ToString("MMM yyy")
+                !Education.Current
+                ? Education.EndDate.ToString("MMM yyy")
                 : "Current";
 
             container.Table(table =>

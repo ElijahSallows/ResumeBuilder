@@ -1,4 +1,5 @@
-﻿namespace ResumeBuilder.ConsoleTesting.Models
+﻿
+namespace ResumeBuilder.Shared.Models
 {
     public class DocumentTheme
     {

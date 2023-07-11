@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeBuilder.UI", "ResumeB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeBuilder.ConsoleTesting", "ResumeBuilder.ConsoleTesting\ResumeBuilder.ConsoleTesting.csproj", "{E3E97589-6CA1-4082-BF81-A429711B373B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeBuilder.Shared", "ResumeBuilder.Shared\ResumeBuilder.Shared.csproj", "{D61247E5-DDC9-4D91-A932-E5B7050701A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeBuilder.Shared", "ResumeBuilder.Shared\ResumeBuilder.Shared.csproj", "{D61247E5-DDC9-4D91-A932-E5B7050701A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
