@@ -1,4 +1,17 @@
-﻿.main-wrapper {
+﻿.top-info {
+    position: fixed;
+    left: 25%;
+    top: 1%;
+    width: 50%;
+    height: 5vh;
+    align-content: center;
+}
+
+    .top-info > h6 {
+        text-align: center;
+    }
+
+.main-wrapper {
     --generate-bg-color1: #425e8a;
     --generate-bg-color2: #4d0e5e;
     --generate-bdr-color1: #63bf6d;
@@ -187,32 +200,33 @@
     height: 100%;
     width: 100%;
 }
-    .layout-main {
-        flex: 1 0 60%;
-    }
 
-    .layout-wrapper > .hidden {
-        min-width: 0px;
-        /*max-width: 0px;*/
-        flex-basis: 0px;
-        flex-grow: 0;
-        color: var(--bg-color);
-    }
+.layout-main {
+    flex: 1 0 60%;
+}
 
-    .layout-wrapper:hover > .hidden {
-        color: white;
-        flex-basis: 10%;
-        flex-grow: 1;
-        max-width: 100%;
-    }
+.layout-wrapper > .hidden {
+    min-width: 0px;
+    /*max-width: 0px;*/
+    flex-basis: 0px;
+    flex-grow: 0;
+    color: var(--bg-color);
+}
 
-    .layout-wrapper:hover > .layout {
-    }
+.layout-wrapper:hover > .hidden {
+    color: white;
+    flex-basis: 10%;
+    flex-grow: 1;
+    max-width: 100%;
+}
 
-        .layout-wrapper:hover > .layout + .layout {
-            border-left: 1px solid var(--bdr-color);
-            /*line-height: 5px;*/
-        }
+.layout-wrapper:hover > .layout {
+}
+
+    .layout-wrapper:hover > .layout + .layout {
+        border-left: 1px solid var(--bdr-color);
+        /*line-height: 5px;*/
+    }
 
 .layout {
     margin: 0;

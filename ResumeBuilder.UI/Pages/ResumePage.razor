@@ -9,12 +9,15 @@
 
 <PageTitle>Resume Builder</PageTitle>
 
+<aside class="top-info">
+    <h6>This website is under development. It currently has no function.</h6>
+</aside>
 <main class="main-wrapper">
     <aside class="left-menu side-menu">
         @*Top row*@
         <div class="menu-header">
             @*<a class="logo" href="https://github.com/ElijahSallows/">
-                <span>Elijah</span>
+            <span>Elijah</span>
             </a>*@
 
             <div class="controls">
@@ -31,7 +34,7 @@
             @for (int i = 0; i < 12; i++)
             {
                 <button class="btn-@i section-selector menu-btn">@i</button>
-            }   
+            }
         </div>
 
         @*Saved layout selectors*@
@@ -47,7 +50,7 @@
             }
         </div>
 
-        @*Generate (and download) PDF*@ @*@onclick="@OnGeneratePressed"*@ 
+        @*Generate (and download) PDF*@ @*@onclick="@OnGeneratePressed"*@
         <button class="generate-button">
             Generate
             <div class="button-border"></div>
@@ -152,7 +155,7 @@
                     </h2>
 
                     <ExperienceList List="Model.Experiences"
-                                OnDeleted="@ConfirmDelete" />
+                                    OnDeleted="@ConfirmDelete" />
                 </section>
 
                 <section class="skill-wrapper section-wrapper">
@@ -161,7 +164,7 @@
                     </h2>
 
                     <SkillList List="Model.Skills"
-                           OnDeleted="@ConfirmDelete" />
+                               OnDeleted="@ConfirmDelete" />
                 </section>
 
                 <section class="education-wrapper section-wrapper">
@@ -170,7 +173,7 @@
                     </h2>
 
                     <EducationList List="Model.Education"
-                               OnDeleted="@ConfirmDelete" />
+                                   OnDeleted="@ConfirmDelete" />
                 </section>
 
                 <section class="project-wrapper section-wrapper">
@@ -179,7 +182,7 @@
                     </h2>
 
                     <ProjectList List="Model.Projects"
-                             OnDeleted="@ConfirmDelete" />
+                                 OnDeleted="@ConfirmDelete" />
                 </section>
 
                 @*<ValidationSummary />*@
