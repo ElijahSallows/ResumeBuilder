@@ -261,6 +261,7 @@
     color: white;
     font-weight: bold;
     font-size: 20px;
+    z-index: 1;
 }
 
     .generate-button > .button-mask,
@@ -301,8 +302,8 @@
 
     .generate-button > .button-mask::after,
     .generate-button > .button-border::after {
-        width: 400px;
-        height: 400px;
+        width: 800px;
+        height: 800px;
         inset: 0;
         left: -30%;
         margin: auto;
