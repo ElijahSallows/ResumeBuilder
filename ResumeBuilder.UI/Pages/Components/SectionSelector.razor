@@ -1,0 +1,75 @@
+﻿@using ResumeBuilder.Shared.Models;
+
+<button class="section-selector @(Model.User.IsActive ? "active" : "")"
+@onclick="@OnUserPressed">
+    Your Details
+</button>
+
+<button class="section-selector @(Model.Address.IsActive ? "active" : "")"
+@onclick="@OnAddressPressed">
+    Address
+</button>
+
+<button class="section-selector @(Model.Experiences.IsActive ? "active" : "")"
+@onclick="@OnExperiencesPressed">
+    Experience
+</button>
+
+<button class="section-selector @(Model.Skills.IsActive ? "active" : "")"
+@onclick="@OnSkillsPressed">
+    Skills
+</button>
+
+<button class="section-selector @(Model.Education.IsActive ? "active" : "")"
+@onclick="@OnEducationPressed">
+    Education
+</button>
+
+<button class="section-selector @(Model.Projects.IsActive ? "active" : "")"
+@onclick="@OnProjectsPressed">
+    Projects
+</button>
+
+@code {
+    [Parameter]
+    public required ResumeInfoModel Model { get; set; }
+
+    [Parameter]
+    public required EventCallback OnUpdate { get; set; }
+
+    private void OnUserPressed()
+    {
+        Model.User.IsActive = !Model.User.IsActive;
+        OnUpdate.InvokeAsync();
+    }
+
+    private void OnAddressPressed()
+    {
+        Model.Address.IsActive = !Model.Address.IsActive;
+        OnUpdate.InvokeAsync();
+    }
+
+    private void OnExperiencesPressed()
+    {
+        Model.Experiences.IsActive = !Model.Experiences.IsActive;
+        OnUpdate.InvokeAsync();
+    }
+
+    private void OnSkillsPressed()
+    {
+        Model.Skills.IsActive = !Model.Skills.IsActive;
+        OnUpdate.InvokeAsync();
+    }
+
+    private void OnEducationPressed()
+    {
+        Model.Education.IsActive = !Model.Education.IsActive;
+        OnUpdate.InvokeAsync();
+    }
+
+    private void OnProjectsPressed()
+    {
+        Model.Projects.IsActive = !Model.Projects.IsActive;
+        OnUpdate.InvokeAsync();
+    }
+}

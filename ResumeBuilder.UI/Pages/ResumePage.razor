@@ -9,6 +9,7 @@
 
 <PageTitle>Resume Builder</PageTitle>
 
+@*Temporary message*@
 <aside class="top-info">
     <h6>This website is under development. It currently has no function.</h6>
 </aside>
@@ -30,25 +31,25 @@
         </div>
 
         @*Resume section selectors*@
-        <div class="btn-container">
-            @for (int i = 0; i < 12; i++)
-            {
-                <button class="btn-@i section-selector menu-btn">@i</button>
-            }
-        </div>
+        <section class="section-selector-wrapper">
+            <SectionSelector Model="@Model"
+                             OnUpdate="@OnUpdate" />
+        </section>
 
         @*Saved layout selectors*@
-        <div class="layout-list">
+        <section class="layout-list">
             @for (int i = 0; i < 5; i++)
             {
-                @*TODO: provide "model-active" class to the selected model*@
-                <div class="layout-wrapper">
+                // See https://stackoverflow.com/a/56426146/323447
+                int iCopy = i;
+
+                <div class="layout-wrapper @(iCopy == CurrentModelId ? "active" : "")">
                     <button class="layout layout-main menu-btn">@i</button>
-                    <button class="layout layout-sub sm-btn menu-btn hidden oi oi-pencil"></button>
-                    <button class="layout layout-sub sm-btn menu-btn hidden oi oi-trash"></button>
+                    <button class="layout layout-sub menu-btn hidden oi oi-pencil"></button>
+                    <button class="layout layout-sub menu-btn hidden oi oi-trash"></button>
                 </div>
             }
-        </div>
+        </section>
 
         @*Generate (and download) PDF*@ @*@onclick="@OnGeneratePressed"*@
         <button class="generate-button">
@@ -84,106 +85,74 @@
         {
             <EditForm class="resume" EditContext="@EditContext">
                 <DataAnnotationsValidator />
-                <section class="user-wrapper section-wrapper">
-                    <h2 class="section-header">
-                        <span>Your Details</span>
-                    </h2>
-
-                    <div class="input-wrapper">
-                        <label for="user-name">
-                            <span>Name</span>
-                        </label>
-                        <InputText class="input" id="user-name" @bind-Value="Model.User.Name" />
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="user-title">
-                            <span>Title</span>
-                        </label>
-                        <InputText class="input" id="user-title" @bind-Value="Model.User.Title" />
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="user-email">
-                            <span>Email Address</span>
-                        </label>
-                        <InputText class="input" id="user-email" @bind-Value="Model.User.Email" />
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="user-phone">
-                            <span>Phone Number</span>
-                        </label>
-                        <InputText class="input" id="user-phone" @bind-Value="Model.User.Phone" />
-                    </div>
-
-                    <div class="input-wrapper">
-                        <label for="user-about">
-                            <span>About</span>
-                        </label>
-                        <InputText class="input" id="user-about" @bind-Value="Model.User.About" />
-                    </div>
-
-                    <section class="address-wrapper section-wrapper">
-
-                        <div class="input-wrapper">
-                            <label for="user-address-city">
-                                <span>City</span>
-                            </label>
-                            <InputText class="input" id="user-address-city" @bind-Value="Model.User.Address.City" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="user-address-state">
-                                <span>State</span>
-                            </label>
-                            <InputText class="input" id="user-address-state" @bind-Value="Model.User.Address.State" />
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="user-address-zip">
-                                <span>Zip</span>
-                            </label>
-                            <InputText class="input" id="user-address-zip" @bind-Value="Model.User.Address.Zip" />
-                        </div>
+                @if (Model.User.IsActive)
+                {
+                    <section class="user-wrapper section-wrapper">
+                        <UserInfoView Info="@Model.User.Info" />
                     </section>
-                </section>
+                }
 
-                <section class="experiences-wrapper section-wrapper">
-                    <h2 class="section-header">
-                        <span>Experiences</span>
-                    </h2>
+                @if (Model.Address.IsActive)
+                {
+                    <section class="address-wrapper section-wrapper">
+                        <AddressView Info="@Model.Address.Info" />
+                    </section>
+                }
 
-                    <ExperienceList List="Model.Experiences"
-                                    OnDeleted="@ConfirmDelete" />
-                </section>
+                @if (Model.Experiences.IsActive)
+                {
+                    <section class="experiences-wrapper section-wrapper">
+                        <h2 class="section-header">
+                            <span>Experiences</span>
+                            <button class="oi oi-plus"></button>
+                        </h2>
 
-                <section class="skill-wrapper section-wrapper">
-                    <h2 class="section-header">
-                        <span>Skills</span>
-                    </h2>
+                        <ExperienceList List="Model.Experiences.Info"
+                                        OnDeleted="@ConfirmDelete" />
+                    </section>
+                }
 
-                    <SkillList List="Model.Skills"
-                               OnDeleted="@ConfirmDelete" />
-                </section>
 
-                <section class="education-wrapper section-wrapper">
-                    <h2 class="section-header">
-                        <span>Education</span>
-                    </h2>
+                @if (Model.Skills.IsActive)
+                {
+                    <section class="skill-wrapper section-wrapper">
+                        <h2 class="section-header">
+                            <span>Skills</span>
+                            <button class="oi oi-plus"></button>
+                        </h2>
 
-                    <EducationList List="Model.Education"
+                        <SkillList List="Model.Skills.Info"
                                    OnDeleted="@ConfirmDelete" />
-                </section>
+                    </section>
+                }
 
-                <section class="project-wrapper section-wrapper">
-                    <h2 class="section-header">
-                        <span>Projects</span>
-                    </h2>
 
-                    <ProjectList List="Model.Projects"
-                                 OnDeleted="@ConfirmDelete" />
-                </section>
+                @if (Model.Education.IsActive)
+                {
+                    <section class="education-wrapper section-wrapper">
+                        <h2 class="section-header">
+                            <span>Education</span>
+                            <button class="oi oi-plus"></button>
+                        </h2>
+
+                        <EducationList List="Model.Education.Info"
+                                       OnDeleted="@ConfirmDelete" />
+                    </section>
+                }
+
+
+                @if (Model.Projects.IsActive)
+                {
+                    <section class="project-wrapper section-wrapper">
+                        <h2 class="section-header">
+                            <span>Projects</span>
+                            <button class="oi oi-plus"></button>
+                        </h2>
+
+                        <ProjectList List="Model.Projects.Info"
+                                     OnDeleted="@ConfirmDelete" />
+                    </section>
+                }
 
                 @*<ValidationSummary />*@
             </EditForm>
@@ -206,13 +175,19 @@
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
-        Model = ModelService.GetModel();
+        // If there is a Temp model, we'll use that. Otherwise, get the last one used.
+        Model = ModelService.GetTempModel() ?? ModelService.GetModel();
         EditContext = new EditContext(Model);
         EditContext.OnFieldChanged += EditContext_OnFieldChanged;
         await base.SetParametersAsync(parameters);
     }
 
     private void EditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        ModelService.SaveTemp(Model);
+    }
+
+    private void OnUpdate()
     {
         ModelService.SaveTemp(Model);
     }
@@ -259,16 +234,16 @@
         switch (obj)
         {
             case Experience ex:
-                Model.Experiences.Remove(ex);
+                Model.Experiences.Info.Remove(ex);
                 break;
             case Education ed:
-                Model.Education.Remove(ed);
+                Model.Education.Info.Remove(ed);
                 break;
             case Skill sk:
-                Model.Skills.Remove(sk);
+                Model.Skills.Info.Remove(sk);
                 break;
             case Project pr:
-                Model.Projects.Remove(pr);
+                Model.Projects.Info.Remove(pr);
                 break;
 
             default:

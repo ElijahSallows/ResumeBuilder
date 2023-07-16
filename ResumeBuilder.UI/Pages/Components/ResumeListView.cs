@@ -2,7 +2,7 @@
 
 namespace ResumeBuilder.UI.Pages.Components
 {
-    public class ResumeListComponent<T> : ComponentBase
+    public class ResumeListView<T> : ComponentBase
     {
         [Parameter]
         public required List<T> List { get; set; }
