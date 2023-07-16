@@ -1,0 +1,44 @@
+﻿@using ResumeBuilder.Shared.Models;
+@inherits ResumeSingleView<UserInfoModel>;
+
+<h2 class="section-header">
+    <span>Your Details</span>
+</h2>
+
+<div class="input-wrapper">
+    <label for="user-name">
+        <span>Name</span>
+    </label>
+    <InputText class="input" id="user-name" @bind-Value="Info.Name" />
+</div>
+
+<div class="input-wrapper">
+    <label for="user-title">
+        <span>Title</span>
+    </label>
+    <InputText class="input" id="user-title" @bind-Value="Info.Title" />
+</div>
+
+<div class="input-wrapper">
+    <label for="user-email">
+        <span>Email Address</span>
+    </label>
+    <InputText class="input" id="user-email" @bind-Value="Info.Email" />
+</div>
+
+<div class="input-wrapper">
+    <label for="user-phone">
+        <span>Phone Number</span>
+    </label>
+    <InputText class="input" id="user-phone" @bind-Value="Info.Phone" />
+</div>
+
+<div class="input-wrapper">
+    <label for="user-about">
+        <span>About</span>
+    </label>
+    <InputText class="input" id="user-about" @bind-Value="Info.About" />
+</div>
+@code {
+
+}

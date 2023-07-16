@@ -36,6 +36,11 @@ namespace ResumeBuilder.UI.Services
             throw new NotImplementedException();
         }
 
+        public ResumeInfoModel GetTempModel()
+        {
+            return _infoRepository.GetResumeInfoModel("temp");
+        }
+
         public ResumeInfoModel GetModel()
         {
             int id = _stateRepository?.LastUsedModelId ?? 0;
