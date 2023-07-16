@@ -37,39 +37,39 @@
     [Parameter]
     public required EventCallback OnUpdate { get; set; }
 
-    private void OnUserPressed()
+    private async void OnUserPressed()
     {
         Model.User.IsActive = !Model.User.IsActive;
-        OnUpdate.InvokeAsync();
+        await OnUpdate.InvokeAsync();
     }
 
-    private void OnAddressPressed()
+    private async void OnAddressPressed()
     {
         Model.Address.IsActive = !Model.Address.IsActive;
-        OnUpdate.InvokeAsync();
+        await OnUpdate.InvokeAsync();
     }
 
-    private void OnExperiencesPressed()
+    private async void OnExperiencesPressed()
     {
         Model.Experiences.IsActive = !Model.Experiences.IsActive;
-        OnUpdate.InvokeAsync();
+        await OnUpdate.InvokeAsync();
     }
 
-    private void OnSkillsPressed()
+    private async void OnSkillsPressed()
     {
         Model.Skills.IsActive = !Model.Skills.IsActive;
-        OnUpdate.InvokeAsync();
+        await OnUpdate.InvokeAsync();
     }
 
-    private void OnEducationPressed()
+    private async void OnEducationPressed()
     {
         Model.Education.IsActive = !Model.Education.IsActive;
-        OnUpdate.InvokeAsync();
+        await OnUpdate.InvokeAsync();
     }
 
-    private void OnProjectsPressed()
+    private async void OnProjectsPressed()
     {
         Model.Projects.IsActive = !Model.Projects.IsActive;
-        OnUpdate.InvokeAsync();
+        await OnUpdate.InvokeAsync();
     }
 }

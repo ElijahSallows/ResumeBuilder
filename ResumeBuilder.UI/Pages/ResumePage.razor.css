@@ -34,32 +34,42 @@
     padding: 3% 0%;
 }
 
+.modal-wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(0, 0, 0, 0.75);
+    z-index: 5;
+}
+
+::deep modal {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    background-color: var(--bg-color);
+
+    z-index: 6;
+}
+
 .resume-wrapper {
     margin: auto;
-    /*left: 5vw;*/
     height: 100%;
     width: 50%;
     position: relative;
     display: flex;
     flex-direction: column;
-    /*border: 1px dotted #fff;*/
     overflow-y: scroll;
 }
 
 ::deep .resume {
     display: flex;
-    /*align-items: center;*/
     flex-direction: column;
     justify-content: space-around;
-    /*overflow-y: auto;*/
 }
 
 .section-wrapper {
-    /*max-width: 400px;*/
-    /*display: inline-flex;*/
     display: flex;
     flex-flow: row wrap;
-    /*border: 3px solid #73AD21;*/
     justify-content: space-between;
     align-items: center;
     padding: 1% 2%;
@@ -70,9 +80,6 @@
     flex-direction: column;
 }
 
-    ::deep .input-wrapper > input {
-    }
-
 ::deep .section-header {
     width: 100%;
     font-size: 28px;
@@ -80,10 +87,14 @@
     justify-content: space-between;
 }
 
-/*.section-header > button {
-        outline: none;
-        background: transparent;
-    }*/
+.section-header > button {
+    color: var(--bg-color-light);
+}
+
+    .section-header > button:hover {
+        color: white;
+        background: initial;
+    }
 
 /*.education-wrapper, .experience-wrapper, .project-wrapper {
     justify-content: space-around;
@@ -98,25 +109,6 @@
 
 .delete-wrapper {
 }
-
-/*.hidden {
-    display: none;
-    flex-basis: 0px;
-    color: var(--bg-color);
-    transition: color .3s;
-}*/
-
-/*.menu-btn {
-    background-color: var(--bg-color);
-    color: white;
-    border: none;
-    transition: background-color .3s, color .3s;
-}
-
-    .menu-btn:hover {
-        background-color: var(--bg-color-light)
-    }*/
-
 
 .side-menu {
     margin: auto;
@@ -184,7 +176,7 @@
 }
 
 ::deep .inactive, ::deep .inactive > button {
-    color: var(--bdr-color);
+    color: var(--bg-color-light);
 }
 
     ::deep .inactive:hover, ::deep .inactive:hover > button {

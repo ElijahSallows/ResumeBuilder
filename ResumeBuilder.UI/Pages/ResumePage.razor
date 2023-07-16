@@ -14,6 +14,13 @@
     <h6>This website is under development. It currently has no function.</h6>
 </aside>
 <main class="main-wrapper">
+    @if (ShouldShowSaveModal)
+    {
+        <div class="modal-wrapper">
+            <SaveConfirmModal OnCancel="@OnSaveModalCancelPressed"
+                OnLeave="@OnSaveModalLeavePressed"/>
+        </div>
+    } 
     <aside class="left-menu side-menu">
         @*Top row*@
         <div class="menu-header">
@@ -25,8 +32,8 @@
                 <button class="menu header-btn menu-btn oi oi-menu"></button>
                 <button class="save header-btn menu-btn oi oi-clipboard" @onclick="@OnSavePressed"></button>
 
-                <button class="undo header-btn state-controls menu-btn oi oi-action-undo"></button>
-                <button class="redo header-btn state-controls menu-btn oi oi-action-redo"></button>
+                <button class="undo header-btn state-controls menu-btn inactive oi oi-action-undo"></button>
+                <button class="redo header-btn state-controls menu-btn inactive oi oi-action-redo"></button>
             </div>
         </div>
 
@@ -44,7 +51,7 @@
                 int iCopy = i;
 
                 <div class="layout-wrapper @(iCopy == CurrentModelId ? "active" : "inactive")">
-                    <button class="layout layout-main menu-btn">@i</button>
+                    <button class="layout layout-main menu-btn" @onclick="() => OnChangeModelPressed(iCopy)">@i</button>
                     <button class="layout layout-sub menu-btn hidden oi oi-pencil"></button>
                     <button class="layout layout-sub menu-btn hidden oi oi-trash"></button>
                 </div>
@@ -89,13 +96,9 @@
                 @if (Model.Experiences.IsActive)
                 {
                     <section class="experiences-wrapper section-wrapper">
-                        <h2 class="section-header">
-                            <span>Experiences</span>
-                            <button class="oi oi-plus"></button>
-                        </h2>
 
                         <ExperienceList List="Model.Experiences.Info"
-                                        OnDeleted="@ConfirmDelete" />
+                                        OnDeleted="@OnTryDelete" />
                     </section>
                 }
 
@@ -109,7 +112,7 @@
                         </h2>
 
                         <SkillList List="Model.Skills.Info"
-                                   OnDeleted="@ConfirmDelete" />
+                                   OnDeleted="@OnTryDelete" />
                     </section>
                 }
 
@@ -123,7 +126,7 @@
                         </h2>
 
                         <EducationList List="Model.Education.Info"
-                                       OnDeleted="@ConfirmDelete" />
+                                       OnDeleted="@OnTryDelete" />
                     </section>
                 }
 
@@ -137,7 +140,7 @@
                         </h2>
 
                         <ProjectList List="Model.Projects.Info"
-                                     OnDeleted="@ConfirmDelete" />
+                                     OnDeleted="@OnTryDelete" />
                     </section>
                 }
 
@@ -159,6 +162,9 @@
     public required ResumeInfoModel Model { get; set; }
     public required EditContext EditContext { get; set; }
     private int CurrentModelId { get => ModelService.CurrentModelId; }
+    private int TargetModelId { get; set; }
+    private bool IsUnsaved { get => ModelService.IsUnsaved; }
+    private bool ShouldShowSaveModal { get; set; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
@@ -181,6 +187,35 @@
 
     private void OnChangeModelPressed(int id)
     {
+        if (id == CurrentModelId)
+        {
+            return;
+        }
+        else if (IsUnsaved)
+        {
+            TargetModelId = id;
+            ShouldShowSaveModal = true;
+            return;
+        }
+        else
+        {
+            ChangeModel(id);
+        }
+    }
+
+    private void OnSaveModalCancelPressed()
+    {
+        ShouldShowSaveModal = false;
+    }
+
+    private void OnSaveModalLeavePressed()
+    {
+        ShouldShowSaveModal = false;
+        ChangeModel(TargetModelId);
+    }
+
+    private void ChangeModel(int id)
+    {
         Model = ModelService.GetModel(id);
     }
 
@@ -199,7 +234,7 @@
         ModelService.GenerateResume(Model);
     }
 
-    private void ConfirmDelete<T>(T obj)
+    private void OnTryDelete<T>(T obj)
         where T : class
     {
         if (ShouldOpenConfirm(obj))

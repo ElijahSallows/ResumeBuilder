@@ -1,0 +1,26 @@
+﻿<div class="modal">
+    <div class="modal-header">
+        <h3>Are you sure you want to leave with unsaved changes?</h3>
+        <button class="oi oi-x" @onclick="@OnCancelPressed" />
+    </div>
+    <div class="modal-body">
+        <button class="modal-cancel" @onclick="@OnCancelPressed" autofocus>Cancel</button>
+        <button class="modal-leave" @onclick="@OnLeavePressed">Leave</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public required EventCallback OnCancel { get; set; }
+    [Parameter]
+    public required EventCallback OnLeave { get; set; }
+
+    private async void OnCancelPressed()
+    {
+        await OnCancel.InvokeAsync();
+    }
+    private async void OnLeavePressed()
+    {
+        await OnLeave.InvokeAsync();
+    }
+}

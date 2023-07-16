@@ -14,5 +14,10 @@ namespace ResumeBuilder.UI.Pages.Components
         {
             await OnDeleted.InvokeAsync(obj);
         }
+
+        private protected async Task OnAddClicked()
+        {
+
+        }
     }
 }

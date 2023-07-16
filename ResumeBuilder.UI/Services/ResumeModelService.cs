@@ -11,6 +11,7 @@ namespace ResumeBuilder.UI.Services
         private IStateInfoRepository _stateRepository = default!;
         
         public int CurrentModelId { get; private set; }
+        public bool IsUnsaved { get; private set; }
 
         public ResumeModelService() {}
 
@@ -50,6 +51,7 @@ namespace ResumeBuilder.UI.Services
         public ResumeInfoModel GetModel(int id)
         {
             CurrentModelId = id;
+            IsUnsaved = false;
             return _infoRepository?.GetResumeInfoModel(id) ?? new ResumeInfoModel();
         }
 
@@ -60,6 +62,7 @@ namespace ResumeBuilder.UI.Services
                 return;
             }
 
+            IsUnsaved = true;
             _infoRepository.SaveResumeInfoModel(model, "temp");
         }
 
@@ -71,6 +74,7 @@ namespace ResumeBuilder.UI.Services
             }
 
             _infoRepository.SaveResumeInfoModel(model, CurrentModelId);
+            IsUnsaved = false;
             DeleteTemp();
         }
 

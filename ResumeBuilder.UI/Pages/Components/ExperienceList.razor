@@ -1,6 +1,11 @@
 ﻿@using ResumeBuilder.Shared.Models;
 @inherits ResumeListView<Experience>
 
+<h2 class="section-header">
+    <span>Experiences</span>
+    <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
+</h2>
+
 @foreach (var experience in List)
 {
     <div class="experience">
