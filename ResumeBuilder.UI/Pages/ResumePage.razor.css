@@ -205,6 +205,7 @@
 
 ::deep .section-selector {
     min-width: 30%;
+    flex-basis: 30%;
     flex-grow: 1;
     padding: 0px;
 }
