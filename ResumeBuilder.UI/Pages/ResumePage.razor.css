@@ -183,16 +183,17 @@
     margin: 0;
 }
 
-::deep .active {
-    box-sizing: border-box;
-    border: 5px solid;
-    border-color: var(--active-color-light);
+::deep .inactive, ::deep .inactive > button {
+    color: var(--bdr-color);
 }
 
-    ::deep .active:hover {
-        /*border: 1px solid;*/
-        /*background-color: var(--active-color-light);*/
+    ::deep .inactive:hover, ::deep .inactive:hover > button {
+        color: white;
     }
+
+::deep .active, ::deep .active > button {
+    color: white;
+}
 
 ::deep .section-selector-wrapper {
     width: 100%;
@@ -205,6 +206,7 @@
 ::deep .section-selector {
     min-width: 30%;
     flex-grow: 1;
+    padding: 0px;
 }
 
 .layout-list {

@@ -1,31 +1,31 @@
 ﻿@using ResumeBuilder.Shared.Models;
 
-<button class="section-selector @(Model.User.IsActive ? "active" : "")"
+<button class="section-selector @(Model.User.IsActive ? "active" : "inactive")"
 @onclick="@OnUserPressed">
     Your Details
 </button>
 
-<button class="section-selector @(Model.Address.IsActive ? "active" : "")"
+<button class="section-selector @(Model.Address.IsActive ? "active" : "inactive")"
 @onclick="@OnAddressPressed">
     Address
 </button>
 
-<button class="section-selector @(Model.Experiences.IsActive ? "active" : "")"
+<button class="section-selector @(Model.Experiences.IsActive ? "active" : "inactive")"
 @onclick="@OnExperiencesPressed">
     Experience
 </button>
 
-<button class="section-selector @(Model.Skills.IsActive ? "active" : "")"
+<button class="section-selector @(Model.Skills.IsActive ? "active" : "inactive")"
 @onclick="@OnSkillsPressed">
     Skills
 </button>
 
-<button class="section-selector @(Model.Education.IsActive ? "active" : "")"
+<button class="section-selector @(Model.Education.IsActive ? "active" : "inactive")"
 @onclick="@OnEducationPressed">
     Education
 </button>
 
-<button class="section-selector @(Model.Projects.IsActive ? "active" : "")"
+<button class="section-selector @(Model.Projects.IsActive ? "active" : "inactive")"
 @onclick="@OnProjectsPressed">
     Projects
 </button>

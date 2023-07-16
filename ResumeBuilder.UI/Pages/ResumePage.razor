@@ -43,7 +43,7 @@
                 // See https://stackoverflow.com/a/56426146/323447
                 int iCopy = i;
 
-                <div class="layout-wrapper @(iCopy == CurrentModelId ? "active" : "")">
+                <div class="layout-wrapper @(iCopy == CurrentModelId ? "active" : "inactive")">
                     <button class="layout layout-main menu-btn">@i</button>
                     <button class="layout layout-sub menu-btn hidden oi oi-pencil"></button>
                     <button class="layout layout-sub menu-btn hidden oi oi-trash"></button>
@@ -57,19 +57,6 @@
             <div class="button-border"></div>
             <div class="button-mask"></div>
         </button>
-
-        @*<ResumeSectionSelector Sections="" />*@
-
-        @*<div class="model-selector-wrapper">
-        @for (int i = 0; i < 5; i++)
-        {
-        // See https://stackoverflow.com/a/56426146/323447
-        int iCopy = i;
-        <div class="button-wrapper">
-        <button @onclick="() => OnChangeModelPressed(iCopy)" class="model-button @(iCopy == CurrentModelId ? "model-active" : "")">@iCopy</button>
-        </div>
-        }
-        </div>*@
 
         @*<div class="button-wrapper">
         <button @onclick="@OnDebugPressed" class="debug-button">
