@@ -105,6 +105,7 @@
 }
 
     ::deep .modal-leave:hover {
+        background-color: #6a0000;
     }
 
 .resume-wrapper {
@@ -152,10 +153,6 @@
         background: initial;
     }
 
-/*.education-wrapper, .experience-wrapper, .project-wrapper {
-    justify-content: space-around;
-}*/
-
 ::deep .experience {
     background-color: rgb(233, 233, 233, 0.18);
     border: 1px solid #fff;
@@ -174,26 +171,6 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
-/*
-.sm-btn {
-    min-width: 10%;
-    flex-grow: 1;
-}
-
-.md-btn {
-    min-width: 30%;
-    flex-grow: 2;
-}
-
-.lg-btn {
-    min-width: 60%;
-    flex-grow: 7;
-}
-
-.sm-btn, .md-btn, .lg-button, .header-button {
-    font-size: small;
-    align-content: center;
-}*/
 
 .menu-header {
     width: 100%;
@@ -204,13 +181,6 @@
     flex-grow: 1;
     margin-bottom: 2%;
 }
-
-/*.logo {*/
-/*min-width: 30%;*/
-/*width: auto;
-    flex-grow: 1;
-    background-color: aliceblue;
-}*/
 
 .controls {
     display: flex;
@@ -229,6 +199,11 @@
 
 .state-controls {
     margin: 0;
+}
+
+.disabled, .disabled:hover {
+    color: var(--bg-color-light) !important;
+    background-color: var(--bg-color);
 }
 
 ::deep .inactive, ::deep .inactive > button {
@@ -280,7 +255,6 @@
 
 .layout-wrapper > .hidden {
     min-width: 0px;
-    /*max-width: 0px;*/
     flex-basis: 0px;
     flex-grow: 0;
     color: transparent;
@@ -294,7 +268,7 @@
 }
 
 
-.layout-wrapper:hover > .layout + .layout {
+.layout-wrapper:hover > .layout-sub {
     border-left: 1px solid var(--bdr-color);
     /*line-height: 5px;*/
 }
@@ -305,37 +279,6 @@
     height: 100%;
     padding: 0px;
     transition: border .5s, background-color .3s, flex-grow .3s, flex-basis ease-in-out .3s, display .3s, color .3s;
-}
-
-    .layout + .layout {
-    }
-
-/*.button-wrapper {
-    min-width: 50px;
-    min-height: 50px;
-    margin: auto;
-    width: 90%;
-    height: 20%;
-    display: flex;
-    justify-content: center;
-}*/
-
-/*.model-selector-wrapper {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: nowrap;
-}
-
-.model-button {
-    background-color: red;
-    flex-shrink: 1;
-    flex-grow: 1;
-}*/
-
-.model-active {
-    background-color: blue;
-    color: white;
 }
 
 .generate-button {
