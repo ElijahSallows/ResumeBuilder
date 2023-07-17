@@ -11,7 +11,7 @@ namespace ResumeBuilder.UI.Services
         private IStateInfoRepository _stateRepository = default!;
         
         public int CurrentModelId { get; private set; }
-        public bool IsUnsaved { get; private set; }
+        public bool IsUnsaved { get; set; }
 
         public ResumeModelService() {}
 

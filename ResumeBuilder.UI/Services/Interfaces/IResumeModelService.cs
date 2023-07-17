@@ -7,7 +7,7 @@ namespace ResumeBuilder.UI.Services.Interfaces
     {
         void Initialize(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository);
         int CurrentModelId { get; }
-        bool IsUnsaved { get; }
+        bool IsUnsaved { get; set; }
         ResumeInfoModel? GetTempModel();
         ResumeInfoModel GetModel();
         ResumeInfoModel GetModel(int id);

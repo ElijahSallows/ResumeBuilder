@@ -32,8 +32,8 @@
                 <button class="menu header-btn menu-btn oi oi-menu"></button>
                 <button class="save header-btn menu-btn oi oi-clipboard" @onclick="@OnSavePressed"></button>
 
-                <button class="undo header-btn state-controls menu-btn inactive oi oi-action-undo"></button>
-                <button class="redo header-btn state-controls menu-btn inactive oi oi-action-redo"></button>
+                <button class="undo header-btn state-controls menu-btn inactive oi oi-action-undo" disabled></button>
+                <button class="redo header-btn state-controls menu-btn inactive oi oi-action-redo" disabled></button>
             </div>
         </div>
 
@@ -163,13 +163,23 @@
     public required EditContext EditContext { get; set; }
     private int CurrentModelId { get => ModelService.CurrentModelId; }
     private int TargetModelId { get; set; }
-    private bool IsUnsaved { get => ModelService.IsUnsaved; }
+    private bool IsUnsaved { get => ModelService.IsUnsaved; set => ModelService.IsUnsaved = value; }
     private bool ShouldShowSaveModal { get; set; }
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
         // If there is a Temp model, we'll use that. Otherwise, get the last one used.
-        Model = ModelService.GetTempModel() ?? ModelService.GetModel();
+        var temp = ModelService.GetTempModel();
+        if (temp is not null)
+        {
+            Model = temp;
+            IsUnsaved = true;
+        }
+        else
+        {
+            Model = ModelService.GetModel();
+        }
+        
         EditContext = new EditContext(Model);
         EditContext.OnFieldChanged += EditContext_OnFieldChanged;
         await base.SetParametersAsync(parameters);

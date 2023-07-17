@@ -1,11 +1,15 @@
-﻿<div class="modal">
-    <div class="modal-header">
-        <h3>Are you sure you want to leave with unsaved changes?</h3>
-        <button class="oi oi-x" @onclick="@OnCancelPressed" />
+﻿<div class="modal-click-through" @onclick=@OnCancelPressed />
+<div class="modal-frame">
+    <div class="modal-head">
+        <h4>Are you sure you want to leave with unsaved changes?</h4>
+        <button class="modal-close modal-cancel oi oi-x" @onclick="@OnCancelPressed" />
     </div>
-    <div class="modal-body">
-        <button class="modal-cancel" @onclick="@OnCancelPressed" autofocus>Cancel</button>
-        <button class="modal-leave" @onclick="@OnLeavePressed">Leave</button>
+    <div class="modal-text">
+        <p>You have unsaved work.</p>
+    </div>
+    <div class="modal-controls">
+        <button class="modal-cancel modal-button" @onclick="@OnCancelPressed" autofocus>Cancel</button>
+        <button class="modal-leave modal-button" @onclick="@OnLeavePressed">Leave</button>
     </div>
 </div>
 
