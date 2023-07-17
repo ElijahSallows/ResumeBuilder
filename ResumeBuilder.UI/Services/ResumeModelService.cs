@@ -55,6 +55,11 @@ namespace ResumeBuilder.UI.Services
             return _infoRepository?.GetResumeInfoModel(id) ?? new ResumeInfoModel();
         }
 
+        public string GetModelName(int id)
+        {
+            return _infoRepository.GetResumeModelName(id) ?? "Resume " + id;
+        }
+
         public void SaveTemp(ResumeInfoModel model)
         {
             if (model == null)

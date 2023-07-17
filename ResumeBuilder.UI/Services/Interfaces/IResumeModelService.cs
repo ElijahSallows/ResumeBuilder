@@ -11,6 +11,7 @@ namespace ResumeBuilder.UI.Services.Interfaces
         ResumeInfoModel? GetTempModel();
         ResumeInfoModel GetModel();
         ResumeInfoModel GetModel(int id);
+        string GetModelName(int id);
         void GenerateResume(ResumeInfoModel model);
         void SaveTemp(ResumeInfoModel model);
         void Save(ResumeInfoModel model);

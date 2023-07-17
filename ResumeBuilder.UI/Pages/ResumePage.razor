@@ -51,7 +51,7 @@
                 int iCopy = i;
 
                 <div class="layout-wrapper @(iCopy == CurrentModelId ? "active" : "inactive")">
-                    <button class="layout layout-main menu-btn" @onclick="() => OnChangeModelPressed(iCopy)">@i</button>
+                    <button class="layout layout-main menu-btn" @onclick="() => OnChangeModelPressed(iCopy)">@ModelService.GetModelName(iCopy)</button>
                     <button class="layout layout-sub menu-btn hidden oi oi-pencil"></button>
                     <button class="layout layout-sub menu-btn hidden oi oi-trash"></button>
                 </div>
