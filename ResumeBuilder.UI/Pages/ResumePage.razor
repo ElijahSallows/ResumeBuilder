@@ -96,9 +96,8 @@
                 @if (Model.Experiences.IsActive)
                 {
                     <section class="experiences-wrapper section-wrapper">
-
                         <ExperienceList List="Model.Experiences.Info"
-                                        OnDeleted="@OnTryDelete" />
+                                        OnUpdated="@OnUpdate" />
                     </section>
                 }
 
@@ -106,13 +105,8 @@
                 @if (Model.Skills.IsActive)
                 {
                     <section class="skill-wrapper section-wrapper">
-                        <h2 class="section-header">
-                            <span>Skills</span>
-                            <button class="oi oi-plus"></button>
-                        </h2>
-
                         <SkillList List="Model.Skills.Info"
-                                   OnDeleted="@OnTryDelete" />
+                                   OnUpdated="@OnUpdate" />
                     </section>
                 }
 
@@ -120,13 +114,8 @@
                 @if (Model.Education.IsActive)
                 {
                     <section class="education-wrapper section-wrapper">
-                        <h2 class="section-header">
-                            <span>Education</span>
-                            <button class="oi oi-plus"></button>
-                        </h2>
-
                         <EducationList List="Model.Education.Info"
-                                       OnDeleted="@OnTryDelete" />
+                                       OnUpdated="@OnUpdate" />
                     </section>
                 }
 
@@ -134,13 +123,8 @@
                 @if (Model.Projects.IsActive)
                 {
                     <section class="project-wrapper section-wrapper">
-                        <h2 class="section-header">
-                            <span>Projects</span>
-                            <button class="oi oi-plus"></button>
-                        </h2>
-
                         <ProjectList List="Model.Projects.Info"
-                                     OnDeleted="@OnTryDelete" />
+                                     OnUpdated="@OnUpdate" />
                     </section>
                 }
 
@@ -244,43 +228,43 @@
         ModelService.GenerateResume(Model);
     }
 
-    private void OnTryDelete<T>(T obj)
-        where T : class
-    {
-        if (ShouldOpenConfirm(obj))
-        {
-            //TODO
-            Delete(obj);
-        }
-    }
+    //private void OnTryDelete<T>(T obj)
+    //    where T : class
+    //{
+    //    if (ShouldOpenConfirm(obj))
+    //    {
+    //        //TODO
+    //        Delete(obj);
+    //    }
+    //}
 
-    private bool ShouldOpenConfirm<T>(T obj)
-        where T : class
-    {
-        return true;
-    }
+    //private bool ShouldOpenConfirm<T>(T obj)
+    //    where T : class
+    //{
+    //    return true;
+    //}
 
-    private void Delete<T>(T obj)
-        where T : class
-    {
-        switch (obj)
-        {
-            case Experience ex:
-                Model.Experiences.Info.Remove(ex);
-                break;
-            case Education ed:
-                Model.Education.Info.Remove(ed);
-                break;
-            case Skill sk:
-                Model.Skills.Info.Remove(sk);
-                break;
-            case Project pr:
-                Model.Projects.Info.Remove(pr);
-                break;
+    //private void Delete<T>(T obj)
+    //    where T : class
+    //{
+    //    switch (obj)
+    //    {
+    //        case Experience ex:
+    //            Model.Experiences.Info.Remove(ex);
+    //            break;
+    //        case Education ed:
+    //            Model.Education.Info.Remove(ed);
+    //            break;
+    //        case Skill sk:
+    //            Model.Skills.Info.Remove(sk);
+    //            break;
+    //        case Project pr:
+    //            Model.Projects.Info.Remove(pr);
+    //            break;
 
-            default:
-                break;
-        }
-        ModelService.SaveTemp(Model);
-    }
+    //        default:
+    //            break;
+    //    }
+    //    ModelService.SaveTemp(Model);
+    //}
 }

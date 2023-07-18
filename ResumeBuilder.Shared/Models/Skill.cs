@@ -9,5 +9,10 @@ namespace ResumeBuilder.Shared.Models
         {
             Name = name;
         }
+
+        public Skill()
+        {
+            Name = string.Empty;
+        }
     }
 }
