@@ -206,7 +206,7 @@ namespace ResumeBuilder.ConsoleTesting
 
                     table.Cell()
                         .ColumnSpan(1)
-                        .PaddingRight(5f)
+                        //.PaddingRight(5f)
                         .Column(column =>
                         {
                             column.Item()
@@ -229,7 +229,7 @@ namespace ResumeBuilder.ConsoleTesting
 
                     table.Cell()
                         .ColumnSpan(2)
-                        .PaddingLeft(5f)
+                        .PaddingLeft(10f)
                         .Column(column =>
                         {
                             column.Item()
@@ -356,7 +356,7 @@ namespace ResumeBuilder.ConsoleTesting
         private IContainer StyleSectionBody(IContainer container)
         {
             return
-                container.Background(Theme.Colors.LightContrast);
+                container;//.Background(Theme.Colors.LightContrast);
             //.BorderVertical(Theme.BorderVerticalThickness);
         }
 
@@ -366,16 +366,24 @@ namespace ResumeBuilder.ConsoleTesting
             var textStyle = new TextStyle();
 
             textStyle = textStyle
-                .FontColor(Colors.White)
-                .FontSize(Theme.ContactComponentTextSize);
+                .FontColor(Theme.Colors.Main)
+                .FontSize(24f);
 
             return container.DefaultTextStyle(textStyle)
-                //.ExtendHorizontal()
-                .Background(Theme.Colors.Main)
-                .BorderColor(Theme.Colors.Main)
-                .BorderTop(2f)
-                .AlignCenter()
-                .AlignMiddle();
+                .PaddingVertical(12f)
+                .PaddingLeft(4f);
+
+            //textStyle = textStyle
+            //    .FontColor(Colors.White)
+            //    .FontSize(Theme.ContactComponentTextSize);
+
+            //return container.DefaultTextStyle(textStyle)
+            //    //.ExtendHorizontal()
+            //    .Background(Theme.Colors.Main)
+            //    .BorderColor(Theme.Colors.Main)
+            //    .BorderTop(2f)
+            //    .AlignCenter()
+            //    .AlignMiddle();
         }
     }
 }
