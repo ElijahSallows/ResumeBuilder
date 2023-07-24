@@ -89,8 +89,13 @@ namespace ResumeBuilder.ConsoleTesting
         public void ComposeHeader(IContainer container)
         {
             var info = Info.User.Info;
+            float headerWidth = PageSizes.Letter.Width - 20f;
 
-            container.Height(PageSizes.Letter.Height * 2f / 10f).Column(column =>
+            container.Height(PageSizes.Letter.Height * 2f / 10f)
+                //.Width(headerWidth * 0.75f)
+                //.Background(Colors.Black)
+                .AlignCenter()
+                .Column(column =>
             {
                 column.Item()
                     .AlignCenter()
@@ -103,9 +108,19 @@ namespace ResumeBuilder.ConsoleTesting
                     .FontSize(24f);
 
                 column.Item()
+                    .MaxWidth(headerWidth * 0.5f)
                     .AlignCenter()
-                    .Text(info.About)
-                    .FontSize(16f);
+                    .MinimalBox()
+                    //.Background(Colors.Cyan.Darken3)
+                    .Column(about =>
+                    {
+                        about.Item()
+                            .MinimalBox()
+                            //.Background(Colors.LightBlue.Lighten3)
+                            .Text(info.About)
+                            .FontSize(16f);
+
+                    });
 
                 /*column.Item()
                     .AlignCenter()

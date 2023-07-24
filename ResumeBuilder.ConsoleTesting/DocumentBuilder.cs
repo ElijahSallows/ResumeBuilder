@@ -17,15 +17,33 @@ namespace ResumeBuilder.ConsoleTesting
             _theme = theme;
         }
 
-        public void Build()
+        private Document Build()
         {
-
-            var document = Document.Create(container =>
+            return Document.Create(container =>
             {
                 _doc.Compose(container);
             });
             //document.GeneratePdf("deleteme.pdf");
-            document.ShowInPreviewer();
+        }
+
+        public IEnumerable<byte[]> BuildImages()
+        {
+            return Build().GenerateImages();
+        }
+
+        public byte[] BuildPdf()
+        {
+            return Build().GeneratePdf();
+        }
+
+        public byte[] BuildXps()
+        {
+            return Build().GenerateXps();
+        }
+
+        internal void BuildPreview()
+        {
+            Build().ShowInPreviewer();
         }
     }
 }

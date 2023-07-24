@@ -42,17 +42,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .ColumnSpan(2)
                         .AlignLeft()
                         .AlignMiddle()
-                        .PaddingLeft(Theme.ExperienceSpacing)
+                        .PaddingLeft(Theme.EducationSpacing)
                         .Text(Education.SchoolName)
-                        .FontSize(Theme.ExperienceCompanyNameTextSize);
+                        .FontSize(Theme.EducationSchoolNameTextSize);
 
                     header.Cell()
                         .Column(3)
                         .AlignRight()
                         .AlignMiddle()
-                        .PaddingRight(Theme.ExperienceSpacing)
+                        .PaddingRight(Theme.EducationSpacing)
                         .Text($"{_startDate} - {_endDate}")
-                        .FontSize(Theme.ExperienceTimeTextSize);
+                        .FontSize(Theme.EducationTimeTextSize);
                     header.Cell()
                         .ColumnSpan(3)
                         .PaddingHorizontal(10f)
@@ -68,9 +68,9 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .ColumnSpan(3)
                         .PaddingLeft(5f)
                         .PaddingRight(2f)
-                        .PaddingBottom(Theme.ExperienceSpacing)
+                        .PaddingBottom(Theme.EducationSpacing)
                         .Text(">  " + point)
-                        .FontSize(Theme.ExperienceTextSize)
+                        .FontSize(Theme.EducationTextSize)
                         .FontFamily(Theme.Fonts.Main);
                 }
             });
