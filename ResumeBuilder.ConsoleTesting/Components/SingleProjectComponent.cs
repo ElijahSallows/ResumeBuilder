@@ -28,8 +28,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
                 table.Header(header =>
                 {
                     header.Cell()
-                        .ColumnSpan(3)
-                        .Background(Theme.Colors.MediumContrast);
+                        .ColumnSpan(3);
+                        //.Background(Theme.Colors.MediumContrast);
 
                     header.Cell()
                         .Column(1)

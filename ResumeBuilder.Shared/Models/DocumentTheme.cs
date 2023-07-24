@@ -19,12 +19,16 @@ namespace ResumeBuilder.Shared.Models
         public float AboutTextSize { get; set; }
         public float ContactComponentTextSize { get; set; }
         public float SkillTextSize { get; set; }
+
+        public float ExperienceTitleTextSize { get; set; }
         public float ExperienceCompanyNameTextSize { get; set; }
         public float ExperienceTextSize { get; set; }
         public float ExperienceTimeTextSize { get; set; }
+
         public float ProjectNameTextSize { get; set; }
         public float ProjectTextSize { get; set; }
         public float ProjectTimeTextSize { get; set; }
+
         public float EducationSchoolNameTextSize { get; set; }
         public float EducationTextSize { get; set; }
         public float EducationTimeTextSize { get; set; }
@@ -54,12 +58,16 @@ namespace ResumeBuilder.Shared.Models
             float aboutTextSize = 14f,
             float contactComponentTextSize = 16f,
             float skillTextSize = 14f,
-            float experienceCompanyNameTextSize = 14f,
+
+            float experienceTitleTextSize = 12f,
+            float experienceCompanyNameTextSize = 10f,
             float experienceTextSize = 12f,
             float experienceTimeTextSize = 8f,
+
             float projectNameTextSize = 14f,
             float projectTextSize = 12f,
             float projectTimeTextSize = 8f,
+
             float educationSchoolNameTextSize = 14f,
             float educationTextSize = 12f,
             float educationTimeTextSize = 8f,
@@ -87,6 +95,7 @@ namespace ResumeBuilder.Shared.Models
             AboutTextSize = aboutTextSize;
             ContactComponentTextSize = contactComponentTextSize;
             SkillTextSize = skillTextSize;
+            ExperienceTitleTextSize = experienceTitleTextSize;
             ExperienceCompanyNameTextSize = experienceCompanyNameTextSize;
             ExperienceTextSize = experienceTextSize;
             ExperienceTimeTextSize = experienceTimeTextSize;

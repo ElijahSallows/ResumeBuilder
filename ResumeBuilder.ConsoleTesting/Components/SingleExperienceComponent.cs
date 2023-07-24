@@ -37,8 +37,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
                 table.Header(header =>
                 {
                     header.Cell()
-                        .ColumnSpan(3)
-                        .Background(Theme.Colors.MediumContrast);
+                        .ColumnSpan(3);
+                    //.Background(Theme.Colors.MediumContrast);
 
                     header.Cell()
                         .Column(1)
@@ -46,8 +46,18 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .AlignLeft()
                         .AlignMiddle()
                         .PaddingLeft(Theme.ExperienceSpacing)
-                        .Text(Experience.CompanyName)
-                        .FontSize(Theme.ExperienceCompanyNameTextSize);
+                        .ScaleToFit()
+                                .Text(text =>
+                                {
+                                    text.Span($"{Experience.Title} ")
+                                        .FontSize(Theme.ExperienceTitleTextSize);
+
+                                    if (!string.IsNullOrEmpty(Experience.CompanyName))
+                                    {
+                                        text.Span($" at {Experience.CompanyName}")
+                                            .FontSize(Theme.ExperienceCompanyNameTextSize);
+                                    }
+                                });
 
                     header.Cell()
                         .Column(3)
@@ -72,9 +82,9 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .PaddingLeft(5f)
                         .PaddingRight(2f)
                         .PaddingBottom(Theme.ExperienceSpacing)
-                        .Text(">  " + point)
-                        .FontSize(Theme.ExperienceTextSize)
-                        .FontFamily(Theme.Fonts.Main);
+                        .Text($"{Theme.Bullet}   {point}")
+                        .FontSize(Theme.ExperienceTextSize);
+                    //.FontFamily(Theme.Fonts.Main);
                 }
             });
         }

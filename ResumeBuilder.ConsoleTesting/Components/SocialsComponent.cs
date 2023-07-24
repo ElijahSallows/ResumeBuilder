@@ -19,8 +19,6 @@ namespace ResumeBuilder.ConsoleTesting.Components
         public void Compose(IContainer container)
         {
             container
-                .AlignLeft()
-                .AlignTop()
                 .Table(table =>
                 {
                     // Max of four columns (and therefore links)
@@ -47,26 +45,6 @@ namespace ResumeBuilder.ConsoleTesting.Components
                             .Component(comp);
                     }
                 });
-
-
-
-            //    .Column(column =>
-            //{
-            //    //column.Item().Grid
-            //    // I want a nice background
-            //    column.Item().Inlined(inlined =>
-            //    {
-            //        inlined.Spacing(5);
-            //        foreach (SocialLink link in Links)
-            //        {
-            //            inlined.Item().Element(element =>
-            //            {
-            //                //element.Hyperlink(link.Url).Image(link.Image);
-            //                element.Hyperlink(link.Url).Text(link.Name);
-            //            });
-            //        }
-            //    });
-            //});
         }
     }
 }

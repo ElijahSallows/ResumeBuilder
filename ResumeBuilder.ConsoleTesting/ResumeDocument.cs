@@ -27,6 +27,11 @@ namespace ResumeBuilder.ConsoleTesting
                 page.Size(PageSizes.Letter);
 
                 page.MarginHorizontal(20f);
+
+                TextStyle textStyle = new();
+                textStyle.FontFamily(Theme.Fonts.Main);
+                page.DefaultTextStyle(textStyle);
+
                 //page.PageColor(Theme.Colors.Secondary);
                 //page.Background()
                 //    //.BorderVertical(5)
@@ -204,6 +209,8 @@ namespace ResumeBuilder.ConsoleTesting
 
                     table.ExtendLastCellsToTableBottom();
 
+
+                    #region SectionHeaders
                     table.Cell()
                         .ColumnSpan(1)
                         //.PaddingRight(5f)
@@ -211,7 +218,7 @@ namespace ResumeBuilder.ConsoleTesting
                         {
                             column.Item()
                                 .Element(StyleSectionHeader)
-                                .Text("Skills");
+                                .Text("> Skills");
 
                             column.Item()
                                 .Element(StyleSectionBody)
@@ -219,7 +226,7 @@ namespace ResumeBuilder.ConsoleTesting
 
                             column.Item()
                                 .Element(StyleSectionHeader)
-                                .Text("Education");
+                                .Text("> Education");
 
 
                             column.Item()
@@ -234,7 +241,7 @@ namespace ResumeBuilder.ConsoleTesting
                         {
                             column.Item()
                                 .Element(StyleSectionHeader)
-                                .Text("Experience");
+                                .Text("> Experience");
 
 
                             column.Item()
@@ -243,65 +250,14 @@ namespace ResumeBuilder.ConsoleTesting
 
                             column.Item()
                                 .Element(StyleSectionHeader)
-                                .Text("Projects");
+                                .Text("> Projects");
 
 
                             column.Item()
                                 .Element(StyleSectionBody)
                                 .Component(projectsComponent);
                         });
-                    // Section headers
-                    /*table.Cell()
-                        .Row(2)
-                        .Column(1)
-                        .Element(StyleSectionHeader)
-                        .Text("Skills");
-                    table.Cell()
-                        .Row(4)
-                        .Column(1)
-                        .Element(StyleSectionHeader)
-                        .Text("Experiences");
-                    table.Cell()
-                        .Row(2)
-                        .Column(3)
-                        .Element(StyleSectionHeader)
-                        .Text("Featured Projects");
-                    table.Cell()
-                        .Row(4)
-                        .Column(3)
-                        .Element(StyleSectionHeader)
-                        .Text("Education");*/
-                    /*
-
-                    // Main components
-
-                    // Skills
-                    table.Cell()
-                        .Row(3)
-                        .Column(1)
-                        .Element(StyleSectionBody)
-                        .Component(skillsComponent);
-                    // Projects
-                    table.Cell()
-                        .Row(5)
-                        .Column(1)
-                        .ExtendVertical()
-                        .Element(StyleSectionBody)
-                        .Component(experiencesComponent);
-
-                    // Experiences
-                    table.Cell()
-                        .Row(3)
-                        .Column(3)
-                        .Element(StyleSectionBody)
-                        .Component(projectsComponent);
-                    // Education
-                    table.Cell()
-                        .Row(5)
-                        .Column(3)
-                        .ExtendVertical()
-                        .Element(StyleSectionBody)
-                        .Component(educationComponent);*/
+                    #endregion
                 });
         }
 
@@ -310,6 +266,7 @@ namespace ResumeBuilder.ConsoleTesting
             var socials = new SocialsComponent(Info.User.Info.Links, Theme);
 
             container.Height(PageSizes.Letter.Height / 10f)
+                .AlignMiddle()
                 .Table(table =>
             {
                 table.ColumnsDefinition(columns =>
@@ -356,7 +313,7 @@ namespace ResumeBuilder.ConsoleTesting
         private IContainer StyleSectionBody(IContainer container)
         {
             return
-                container;//.Background(Theme.Colors.LightContrast);
+                container.PaddingLeft(4f);//.Background(Theme.Colors.LightContrast);
             //.BorderVertical(Theme.BorderVerticalThickness);
         }
 
@@ -367,11 +324,12 @@ namespace ResumeBuilder.ConsoleTesting
 
             textStyle = textStyle
                 .FontColor(Theme.Colors.Main)
-                .FontSize(24f);
+                .FontFamily(Theme.Fonts.Main)
+                .FontSize(24f)
+                .Bold();
 
             return container.DefaultTextStyle(textStyle)
-                .PaddingVertical(12f)
-                .PaddingLeft(4f);
+                .PaddingVertical(12f);
 
             //textStyle = textStyle
             //    .FontColor(Colors.White)

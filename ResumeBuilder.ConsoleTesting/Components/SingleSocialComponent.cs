@@ -35,7 +35,8 @@ namespace ResumeBuilder.ConsoleTesting.Components
                     .Hyperlink(Link.Url)
                     .Text(Link.Name)
                     .FontSize(Theme.ContactComponentTextSize * .9f)
-                    //.FontColor(Theme.Colors.Background)
+                    .FontColor(Theme.Colors.Background)
+                    .Thin()
                     .FontFamily(Theme.Fonts.Social);
             });
         }
