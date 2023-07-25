@@ -2,10 +2,10 @@
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using ResumeBuilder.ConsoleTesting.Components;
 using ResumeBuilder.Shared.Models;
+using ResumeBuilder.Shared.ResumeGeneration.Components;
 
-namespace ResumeBuilder.ConsoleTesting
+namespace ResumeBuilder.Shared.ResumeGeneration
 {
     public class ResumeDocument : IDocument
     {

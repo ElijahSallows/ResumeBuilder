@@ -2,7 +2,7 @@
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting.Components
+namespace ResumeBuilder.Shared.ResumeGeneration.Components
 {
     internal class SingleSocialComponent : IComponent
     {

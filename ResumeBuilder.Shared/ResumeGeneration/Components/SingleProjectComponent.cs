@@ -2,27 +2,21 @@
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting.Components
+namespace ResumeBuilder.Shared.ResumeGeneration.Components
 {
-    internal class SingleEducationComponent : IComponent
+    internal class SingleProjectComponent : IComponent
     {
-        public Education Education { get; set; }
+        public Project Project { get; set; }
         public DocumentTheme Theme { get; set; }
 
-        public SingleEducationComponent(Education education, DocumentTheme theme)
+        public SingleProjectComponent(Project project, DocumentTheme theme)
         {
-            Education = education;
+            Project = project;
             Theme = theme;
         }
 
         public void Compose(IContainer container)
         {
-            string _startDate = Education.StartDate.ToString("MMM yyy");
-            string _endDate =
-                !Education.Current
-                ? Education.EndDate.ToString("MMM yyy")
-                : "Current";
-
             container.Table(table =>
             {
                 table.ColumnsDefinition(columns =>
@@ -42,17 +36,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .ColumnSpan(2)
                         .AlignLeft()
                         .AlignMiddle()
-                        .PaddingLeft(Theme.EducationSpacing)
-                        .Text(Education.SchoolName)
-                        .FontSize(Theme.EducationSchoolNameTextSize);
+                        .PaddingLeft(Theme.ProjectSpacing)
+                        .Text(Project.Name)
+                        .FontSize(Theme.ProjectNameTextSize);
 
                     header.Cell()
                         .Column(3)
                         .AlignRight()
                         .AlignMiddle()
-                        .PaddingRight(Theme.EducationSpacing)
-                        .Text($"{_startDate} - {_endDate}")
-                        .FontSize(Theme.EducationTimeTextSize);
+                        .PaddingRight(Theme.ProjectSpacing)
+                        .Text(Project.Date)
+                        .FontSize(Theme.ProjectTimeTextSize);
                     header.Cell()
                         .ColumnSpan(3)
                         .PaddingHorizontal(10f)
@@ -60,17 +54,17 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .BorderBottom(1f);
                 });
 
-                for (int i = 0; i < Education.Points.Count; i++)
+                for (int i = 0; i < Project.Points.Count; i++)
                 {
-                    var point = Education.Points[i];
+                    var point = Project.Points[i];
                     table.Cell()
                         .Row((uint)i + 2)
                         .ColumnSpan(3)
                         .PaddingLeft(5f)
                         .PaddingRight(2f)
-                        .PaddingBottom(Theme.EducationSpacing)
+                        .PaddingBottom(Theme.ProjectSpacing)
                         .Text(">  " + point)
-                        .FontSize(Theme.EducationTextSize)
+                        .FontSize(Theme.ProjectTextSize)
                         .FontFamily(Theme.Fonts.Main);
                 }
             });

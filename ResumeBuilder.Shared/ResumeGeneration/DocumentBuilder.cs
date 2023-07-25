@@ -3,9 +3,9 @@ using QuestPDF.Infrastructure;
 using QuestPDF.Previewer;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting
+namespace ResumeBuilder.Shared.ResumeGeneration
 {
-    internal class DocumentBuilder
+    public class DocumentBuilder
     {
         private IDocument _doc;
         private DocumentTheme _theme;
@@ -41,7 +41,7 @@ namespace ResumeBuilder.ConsoleTesting
             return Build().GenerateXps();
         }
 
-        internal void BuildPreview()
+        public void BuildPreview()
         {
             Build().ShowInPreviewer();
         }
