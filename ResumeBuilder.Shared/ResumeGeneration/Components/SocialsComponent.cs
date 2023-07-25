@@ -3,7 +3,7 @@ using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting.Components
+namespace ResumeBuilder.Shared.ResumeGeneration.Components
 {
     internal class SocialsComponent : IComponent
     {
@@ -19,7 +19,7 @@ namespace ResumeBuilder.ConsoleTesting.Components
         public void Compose(IContainer container)
         {
             container
-                .AlignLeft()
+                .AlignCenter()
                 .AlignTop()
                 .Table(table =>
                 {
@@ -47,26 +47,6 @@ namespace ResumeBuilder.ConsoleTesting.Components
                             .Component(comp);
                     }
                 });
-
-
-
-            //    .Column(column =>
-            //{
-            //    //column.Item().Grid
-            //    // I want a nice background
-            //    column.Item().Inlined(inlined =>
-            //    {
-            //        inlined.Spacing(5);
-            //        foreach (SocialLink link in Links)
-            //        {
-            //            inlined.Item().Element(element =>
-            //            {
-            //                //element.Hyperlink(link.Url).Image(link.Image);
-            //                element.Hyperlink(link.Url).Text(link.Name);
-            //            });
-            //        }
-            //    });
-            //});
         }
     }
 }

@@ -3,7 +3,7 @@ using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting.Components
+namespace ResumeBuilder.Shared.ResumeGeneration.Components
 {
     internal class SkillsComponent : IComponent
     {
@@ -20,7 +20,10 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            _numberOfDisplayedSkills = Skills.Count <= Theme.MaxSkillCount ? Skills.Count : Theme.MaxSkillCount;
+            _numberOfDisplayedSkills = 
+                Skills.Count <= Theme.MaxSkillCount 
+                ? Skills.Count 
+                : Theme.MaxSkillCount;
 
             container.Table(table =>
             {
@@ -38,24 +41,9 @@ namespace ResumeBuilder.ConsoleTesting.Components
                         .Column(GetColumnPosition(i))
                         .Row(GetRowPosition(i))
                         .PaddingBottom(Theme.SkillSpacing)
-                        .AlignCenter()
+                        .AlignLeft()
                         .Text($"{Theme.Bullet}   {Skills[i].Name}")
                         .FontSize(Theme.SkillTextSize);
-                    //.Row(row =>
-                    //{ 
-
-                    //    row.RelativeItem()
-                    //        .AlignRight()
-                    //        .Text(Theme.Bullet)
-                    //        .FontSize(Theme.SkillTextSize);
-
-                    //    row.ConstantItem(10f);
-
-                    //    row.RelativeItem(2f)
-                    //        .Text(Skills[i].Name)
-                    //        .FontSize(Theme.SkillTextSize);
-
-                    //});
                 }
             });
         }

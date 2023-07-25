@@ -1,11 +1,16 @@
 ﻿@using ResumeBuilder.Shared.Models;
 @inherits ResumeListView<Education>
 
+<h2 class="section-header">
+    <span>Education</span>
+    <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
+</h2>
+
 @foreach (var education in List)
 {
     <div class="education">
         <div class="education-delete-wrapper delete-wrapper">
-            <button @onclick="() => Delete(education)" class="button-delete">-</button>
+            <button @onclick="() => Delete(education)" class="oi oi-trash"></button>
         </div>
 
         <div class="input-wrapper">

@@ -1,12 +1,7 @@
-﻿// I'm doing a relatively quick learning of QuestPDF
-// and a mockup design of the resume format I may use.
-// I'm aware that there should be more comments.
-// I'll address that as I go along. :)
-using QuestPDF.Helpers;
-using ResumeBuilder.ConsoleTesting;
-using ResumeBuilder.ConsoleTesting.Properties;
+﻿using QuestPDF.Helpers;
 using ResumeBuilder.Shared;
 using ResumeBuilder.Shared.Models;
+using ResumeBuilder.Shared.ResumeGeneration;
 
 Console.WriteLine("Hello, World!");
 
@@ -37,7 +32,7 @@ var theme = new DocumentTheme(colors, fonts);
 // DEBUG
 for (int i = 0; i < theme.MaxSkillCount + 2; i++)
 {
-    info.Skills.Add(new Skill("Skill " + i.ToString()));
+    info.Skills.Info.Add(new Skill("Skill " + i.ToString()));
 }
 var builder = new DocumentBuilder(info, theme);
-builder.Build();
+builder.BuildPreview();

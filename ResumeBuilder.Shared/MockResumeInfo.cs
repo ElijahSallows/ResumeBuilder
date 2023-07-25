@@ -22,7 +22,7 @@ namespace ResumeBuilder.Shared
                         {
                             new SocialLink()
                             {
-                                Url = "https://www.linkedin.com/",
+                                Url = "www.linkedin.com/",
                                 Image = Resources.linkedin,
                                 Name = "LinkedIn"
                             },
@@ -38,6 +38,31 @@ namespace ResumeBuilder.Shared
                                 Image = Resources.gmail,
                                 Name = "email :)"
                             }
+                            //,
+                            //new SocialLink()
+                            //{
+                            //    Url = "Link.Url-2",
+                            //    Image = Resources.gmail,
+                            //    Name = "email :)"
+                            //},
+                            //new SocialLink()
+                            //{
+                            //    Url = "Link.Url-2",
+                            //    Image = Resources.gmail,
+                            //    Name = "email :)"
+                            //},
+                            //new SocialLink()
+                            //{
+                            //    Url = "Link.Url-2",
+                            //    Image = Resources.gmail,
+                            //    Name = "email :)"
+                            //},
+                            //new SocialLink()
+                            //{
+                            //    Url = "Link.Url-2",
+                            //    Image = Resources.upwork,
+                            //    Name = "Shouldn't be seen!"
+                            //}
                         }
                     }
                 },

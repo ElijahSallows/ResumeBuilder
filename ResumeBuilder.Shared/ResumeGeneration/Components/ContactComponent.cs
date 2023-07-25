@@ -2,7 +2,7 @@
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting.Components
+namespace ResumeBuilder.Shared.ResumeGeneration.Components
 {
     internal class ContactComponent : IComponent
     {
@@ -33,7 +33,7 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
                 column.Item()
                     .AlignRight()
-                    .Text($"{Address.City}, {Address.State}")
+                    .Text($"{Address.City}, {Address.State} {Address.Zip}")
                     .FontSize(Theme.ContactComponentTextSize)
                     .FontFamily(Theme.Fonts.Main);
 

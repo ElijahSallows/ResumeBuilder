@@ -9,6 +9,9 @@ namespace ResumeBuilder.Shared.Models
 
         public float TopLineSize { get; set; }
         public float NameSize { get; set; }
+        public float TitleSize { get; set; }
+        public float AboutTextSize { get; set; }
+        public float ContactComponentTextSize { get; set; }
 
         public float Spacing { get; set; }
         public float SkillSpacing { get; set; }
@@ -16,20 +19,21 @@ namespace ResumeBuilder.Shared.Models
         public float ProjectSpacing { get; set; }
         public float EducationSpacing { get; set; }
 
-        public float AboutTextSize { get; set; }
-        public float ContactComponentTextSize { get; set; }
         public float SkillTextSize { get; set; }
+
+        public float ExperienceTitleTextSize { get; set; }
         public float ExperienceCompanyNameTextSize { get; set; }
         public float ExperienceTextSize { get; set; }
         public float ExperienceTimeTextSize { get; set; }
+
         public float ProjectNameTextSize { get; set; }
         public float ProjectTextSize { get; set; }
         public float ProjectTimeTextSize { get; set; }
+
         public float EducationSchoolNameTextSize { get; set; }
         public float EducationTextSize { get; set; }
         public float EducationTimeTextSize { get; set; }
-
-        public bool ContactMeTextVisible { get; set; }
+        
         public float ImageSize { get; set; }
 
         public int SkillsColumnCount { get; set; }
@@ -44,27 +48,31 @@ namespace ResumeBuilder.Shared.Models
         public DocumentTheme(ColorModel colors,
             FontModel fonts,
             float topLineSize = 50f,
-            float nameSize = 36f,
+            float nameSize = 42f,
+            float titleSize = 20f,
+            float aboutTextSize = 14f,
 
             float spacing = 2f,
             float skillSpacing = 2f,
             float experienceSpacing = 2f,
             float projectSpacing = 2f,
 
-            float aboutTextSize = 14f,
             float contactComponentTextSize = 16f,
             float skillTextSize = 14f,
-            float experienceCompanyNameTextSize = 14f,
+
+            float experienceTitleTextSize = 12f,
+            float experienceCompanyNameTextSize = 10f,
             float experienceTextSize = 12f,
             float experienceTimeTextSize = 8f,
+
             float projectNameTextSize = 14f,
             float projectTextSize = 12f,
             float projectTimeTextSize = 8f,
+
             float educationSchoolNameTextSize = 14f,
             float educationTextSize = 12f,
             float educationTimeTextSize = 8f,
 
-            bool contactMeTextVisible = false,
             float imageSize = 24f,
 
             int skillsColumnCount = 2,
@@ -80,6 +88,7 @@ namespace ResumeBuilder.Shared.Models
             Fonts = fonts;
             TopLineSize = topLineSize;
             NameSize = nameSize;
+            TitleSize = titleSize;
             Spacing = spacing;
             SkillSpacing = skillSpacing;
             ExperienceSpacing = experienceSpacing;
@@ -87,6 +96,7 @@ namespace ResumeBuilder.Shared.Models
             AboutTextSize = aboutTextSize;
             ContactComponentTextSize = contactComponentTextSize;
             SkillTextSize = skillTextSize;
+            ExperienceTitleTextSize = experienceTitleTextSize;
             ExperienceCompanyNameTextSize = experienceCompanyNameTextSize;
             ExperienceTextSize = experienceTextSize;
             ExperienceTimeTextSize = experienceTimeTextSize;
@@ -96,7 +106,6 @@ namespace ResumeBuilder.Shared.Models
             EducationSchoolNameTextSize = educationSchoolNameTextSize;
             EducationTextSize = educationTextSize;
             EducationTimeTextSize = educationTimeTextSize;
-            ContactMeTextVisible = contactMeTextVisible;
             ImageSize = imageSize;
             SkillsColumnCount = skillsColumnCount;
             MaxSkillCount = maxSkillCount;

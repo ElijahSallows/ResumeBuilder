@@ -27,7 +27,14 @@ namespace ResumeBuilder.UI.Repositories
                 return false;
             }
             _localStorageService.RemoveItem(RESUME_PREFIX + key);
+         
             return true;
+        }
+
+        public List<ResumeInfoModel> GetResumeInfoModels()
+        {
+            throw new NotImplementedException();
+            //var a = _localStorageService.Keys().Where(x => x.StartsWith(RESUME_PREFIX));//ToList<ResumeInfoModel>();
         }
 
         public ResumeInfoModel GetResumeInfoModel(int id)
@@ -40,10 +47,9 @@ namespace ResumeBuilder.UI.Repositories
             return _localStorageService.GetItem<ResumeInfoModel>(RESUME_PREFIX + key);
         }
 
-        public List<ResumeInfoModel> GetResumeInfoModels()
+        public string? GetResumeModelName(int id)
         {
-            throw new NotImplementedException();
-            //var a = _localStorageService.Keys().Where(x => x.StartsWith(RESUME_PREFIX));//ToList<ResumeInfoModel>();
+            return _localStorageService.GetItem<string>(RESUME_PREFIX + "name" + id.ToString());
         }
 
         public bool SaveResumeInfoModel(ResumeInfoModel model, int id)

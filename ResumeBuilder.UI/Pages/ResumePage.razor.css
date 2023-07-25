@@ -34,44 +34,116 @@
     padding: 3% 0%;
 }
 
+.modal-wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgb(0, 0, 0, 0.75);
+    z-index: 5;
+    justify-content: center;
+}
+
+::deep .modal-click-through {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 6;
+}
+
+::deep .modal-frame {
+    margin: auto;
+    min-width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 1% 1%;
+    background-color: var(--bg-color);
+    z-index: 7;
+    border-radius: 20px;
+}
+
+::deep .modal-head {
+    width: 100%;
+    /*flex: 1 1 30%;*/
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+::deep .modal-close {
+    border-radius: 20px;
+    width: 10%;
+}
+
+::deep .modal-controls {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+::deep .modal-button {
+    border-radius: 20px;
+    font-size: 24px;
+    height: 10vh;
+    width: 10vw;
+}
+
+::deep .modal-cancel {
+    background-color: var(--bg-color-light);
+}
+
+    ::deep .modal-cancel:hover {
+        background-color: var(--bdr-color);
+    }
+
+::deep .modal-leave {
+    background-color: #430000;
+}
+
+    ::deep .modal-leave:hover {
+        background-color: #6a0000;
+    }
+
 .resume-wrapper {
     margin: auto;
-    /*left: 5vw;*/
     height: 100%;
     width: 50%;
     position: relative;
     display: flex;
     flex-direction: column;
-    /*border: 1px dotted #fff;*/
     overflow-y: scroll;
 }
 
 ::deep .resume {
     display: flex;
-    /*align-items: center;*/
     flex-direction: column;
     justify-content: space-around;
-    /*overflow-y: auto;*/
 }
 
 .section-wrapper {
-    /*max-width: 400px;*/
-    /*display: inline-flex;*/
     display: flex;
     flex-flow: row wrap;
-    /*border: 3px solid #73AD21;*/
     justify-content: space-between;
     align-items: center;
     padding: 1% 2%;
+}
+
+.section-wrapper + .section-wrapper::before {
+    width: 50%;
+    content: '';
+    display: block;
+    margin: 1% 25%;
+    border-bottom: 3px solid var(--bg-color-light);
 }
 
 ::deep .input-wrapper {
     display: flex;
     flex-direction: column;
 }
-
-    ::deep .input-wrapper > input {
-    }
 
 ::deep .section-header {
     width: 100%;
@@ -80,14 +152,14 @@
     justify-content: space-between;
 }
 
-/*.section-header > button {
-        outline: none;
-        background: transparent;
-    }*/
+.section-header > button {
+    color: var(--bg-color-light);
+}
 
-/*.education-wrapper, .experience-wrapper, .project-wrapper {
-    justify-content: space-around;
-}*/
+    .section-header > button:hover {
+        color: white;
+        background: initial;
+    }
 
 ::deep .experience {
     background-color: rgb(233, 233, 233, 0.18);
@@ -95,28 +167,6 @@
     min-width: 90%;
     flex-grow: 1;
 }
-
-.delete-wrapper {
-}
-
-/*.hidden {
-    display: none;
-    flex-basis: 0px;
-    color: var(--bg-color);
-    transition: color .3s;
-}*/
-
-/*.menu-btn {
-    background-color: var(--bg-color);
-    color: white;
-    border: none;
-    transition: background-color .3s, color .3s;
-}
-
-    .menu-btn:hover {
-        background-color: var(--bg-color-light)
-    }*/
-
 
 .side-menu {
     margin: auto;
@@ -126,26 +176,6 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
-/*
-.sm-btn {
-    min-width: 10%;
-    flex-grow: 1;
-}
-
-.md-btn {
-    min-width: 30%;
-    flex-grow: 2;
-}
-
-.lg-btn {
-    min-width: 60%;
-    flex-grow: 7;
-}
-
-.sm-btn, .md-btn, .lg-button, .header-button {
-    font-size: small;
-    align-content: center;
-}*/
 
 .menu-header {
     width: 100%;
@@ -156,13 +186,6 @@
     flex-grow: 1;
     margin-bottom: 2%;
 }
-
-/*.logo {*/
-/*min-width: 30%;*/
-/*width: auto;
-    flex-grow: 1;
-    background-color: aliceblue;
-}*/
 
 .controls {
     display: flex;
@@ -183,8 +206,13 @@
     margin: 0;
 }
 
+.disabled, .disabled:hover {
+    color: var(--bg-color-light) !important;
+    background-color: var(--bg-color);
+}
+
 ::deep .inactive, ::deep .inactive > button {
-    color: var(--bdr-color);
+    color: var(--bg-color-light);
 }
 
     ::deep .inactive:hover, ::deep .inactive:hover > button {
@@ -232,7 +260,6 @@
 
 .layout-wrapper > .hidden {
     min-width: 0px;
-    /*max-width: 0px;*/
     flex-basis: 0px;
     flex-grow: 0;
     color: transparent;
@@ -246,7 +273,7 @@
 }
 
 
-.layout-wrapper:hover > .layout + .layout {
+.layout-wrapper:hover > .layout-sub {
     border-left: 1px solid var(--bdr-color);
     /*line-height: 5px;*/
 }
@@ -257,37 +284,6 @@
     height: 100%;
     padding: 0px;
     transition: border .5s, background-color .3s, flex-grow .3s, flex-basis ease-in-out .3s, display .3s, color .3s;
-}
-
-    .layout + .layout {
-    }
-
-/*.button-wrapper {
-    min-width: 50px;
-    min-height: 50px;
-    margin: auto;
-    width: 90%;
-    height: 20%;
-    display: flex;
-    justify-content: center;
-}*/
-
-/*.model-selector-wrapper {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: nowrap;
-}
-
-.model-button {
-    background-color: red;
-    flex-shrink: 1;
-    flex-grow: 1;
-}*/
-
-.model-active {
-    background-color: blue;
-    color: white;
 }
 
 .generate-button {

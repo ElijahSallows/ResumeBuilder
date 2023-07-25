@@ -2,7 +2,7 @@
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
-namespace ResumeBuilder.ConsoleTesting.Components
+namespace ResumeBuilder.Shared.ResumeGeneration.Components
 {
     internal class SingleSocialComponent : IComponent
     {
@@ -17,26 +17,23 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.AlignCenter()
-                .AlignMiddle()
+            container.AlignMiddle()
                 .Row(row =>
             {
+                //row.AutoItem()
+                //    .PaddingRight(2)
+                //    .Width(Theme.ImageSize)
+                //    .Height(Theme.ImageSize)
+                //    .MinimalBox()
+                //    .Hyperlink(Link.Url)
+                //    .Image(Link.Image);
                 row.RelativeItem()
-                    .AlignRight()
-                    .MinimalBox()
-                    .PaddingRight(2)
-                    .Width(Theme.ImageSize)
-                    .Height(Theme.ImageSize)
-                    .Image(Link.Image);
-                row.RelativeItem()
-                    .AlignLeft()
+                    .AlignCenter()
                     .AlignMiddle()
                     .PaddingLeft(2)
                     .Hyperlink(Link.Url)
-                    .Text(Link.Name)
-                    .FontSize(Theme.ContactComponentTextSize * .9f)
-                    //.FontColor(Theme.Colors.Background)
-                    .FontFamily(Theme.Fonts.Social);
+                    .Text(Link.Url) //.Name
+                    .FontSize(Theme.ContactComponentTextSize * .9f);
             });
         }
     }
