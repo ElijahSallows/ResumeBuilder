@@ -56,7 +56,7 @@ namespace ResumeBuilder.ConsoleTesting.Components
                     header.Cell()
                         .ColumnSpan(3)
                         .PaddingHorizontal(10f)
-                        .BorderColor(Theme.Colors.DarkContrast)
+                        .BorderColor(Theme.Colors.Main)
                         .BorderBottom(1f);
                 });
 

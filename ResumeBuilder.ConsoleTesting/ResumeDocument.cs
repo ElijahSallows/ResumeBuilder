@@ -48,12 +48,13 @@ namespace ResumeBuilder.ConsoleTesting
                     });
 
                     TextStyle whiteText = new();
-                    whiteText = whiteText.FontColor(Theme.Colors.Background);
+                    whiteText = whiteText.FontColor(Theme.Colors.Main)
+                        .Bold();
 
                     table.Cell()
                         .RowSpan(3)
                         .AlignTop()
-                        .Background(Theme.Colors.Main)
+                        //.Background(Theme.Colors.Main)
                         .DefaultTextStyle(whiteText)
                         .Element(ComposeHeader);
 
@@ -63,11 +64,11 @@ namespace ResumeBuilder.ConsoleTesting
                         .Background(Theme.Colors.Background)
                         .Element(ComposeContent);
 
-                    table.Cell()
-                        .Row(10)
-                        .RowSpan(1)
-                        .Background(Theme.Colors.BottomContrast)
-                        .Element(ComposeFooter);
+                    //table.Cell()
+                    //    .Row(10)
+                    //    .RowSpan(1)
+                    //    .Background(Theme.Colors.BottomContrast)
+                    //    .Element(ComposeFooter);
                 });
                 //page.Header()
                 //    .AlignTop()
@@ -91,38 +92,60 @@ namespace ResumeBuilder.ConsoleTesting
             var info = Info.User.Info;
             float headerWidth = PageSizes.Letter.Width - 20f;
 
-            container.Height(PageSizes.Letter.Height * 2f / 10f)
+            var socials = new SocialsComponent(Info.User.Info.Links, Theme);
+
+            container.Background(Colors.Green.Lighten1)
+                .Height(PageSizes.Letter.Height * 2f / 10f)
                 //.Width(headerWidth * 0.75f)
                 //.Background(Colors.Black)
                 .AlignCenter()
-                .Column(column =>
-            {
-                column.Item()
-                    .AlignCenter()
-                    .Text(info.Name)
-                    .FontSize(48f);
-
-                column.Item()
-                    .AlignCenter()
-                    .Text(info.Title)
-                    .FontSize(24f);
-
-                column.Item()
-                    .MaxWidth(headerWidth * 0.5f)
-                    .AlignCenter()
-                    .MinimalBox()
-                    //.Background(Colors.Cyan.Darken3)
-                    .Column(about =>
+                .Table(table =>
+                {
+                    table.ColumnsDefinition(columns =>
                     {
-                        about.Item()
-                            .MinimalBox()
-                            //.Background(Colors.LightBlue.Lighten3)
-                            .Text(info.About)
-                            .FontSize(16f);
-
+                        columns.RelativeColumn();
+                        columns.RelativeColumn();
                     });
 
-                /*column.Item()
+                    table.Cell()
+                        //.ColumnSpan(3)
+                        .Column(column =>
+                        {
+
+                            column.Item()
+                                .AlignCenter()
+                                .Text(info.Name)
+                                .FontSize(Theme.NameSize);
+
+                            column.Item()
+                                .AlignCenter()
+                                .Text(info.Title)
+                                .FontSize(Theme.TitleSize);
+
+                            column.Item()
+                                .MaxWidth(headerWidth * 0.5f)
+                                .AlignCenter()
+                                .MinimalBox()
+                                //.Background(Colors.Cyan.Darken3)
+                                .Column(about =>
+                                {
+                                    about.Item()
+                                        .MinimalBox()
+                                        //.Background(Colors.LightBlue.Lighten3)
+                                        .Text(info.About)
+                                        .FontSize(Theme.AboutTextSize);
+
+                                });
+                        });
+
+                    table.Cell()
+                        .ColumnSpan(2)
+                        .Row(2)
+                        .Component(socials);
+
+
+
+                    /*column.Item()
                     .AlignCenter()
                     .AlignBottom()
                     .Background(Theme.Colors.Secondary)
@@ -199,7 +222,7 @@ namespace ResumeBuilder.ConsoleTesting
                     .Column(3)
                     .RowSpan(4)
                     .Component(addressEmail);*/
-            });
+                });
         }
 
         public void ComposeContent(IContainer container)
@@ -276,29 +299,19 @@ namespace ResumeBuilder.ConsoleTesting
                 });
         }
 
-        public void ComposeFooter(IContainer container)
+        /*public void ComposeFooter(IContainer container)
         {
             var socials = new SocialsComponent(Info.User.Info.Links, Theme);
 
             container.Height(PageSizes.Letter.Height / 10f)
-                .AlignMiddle()
-                .Table(table =>
+                .Column(column =>
             {
-                table.ColumnsDefinition(columns =>
-                {
-                    columns.RelativeColumn();
-                    columns.RelativeColumn();
-                    columns.RelativeColumn();
-                    columns.RelativeColumn();
-                });
 
 
                 // I'll need to find a way to streamline this.
                 // I think I can set it as .Element() or something.
-                table.Cell()
-                    .ColumnSpan(4)
-                    .AlignMiddle()
-                    .AlignCenter()
+                column.Item()
+                    .PaddingHorizontal(5f)
                     .Component(socials);
 
                 //table.Cell()
@@ -311,19 +324,19 @@ namespace ResumeBuilder.ConsoleTesting
                 //    .FontColor(Colors.White)
                 //    .FontSize(Theme.ContactComponentTextSize);
 
-                /*
-                table.Cell().Row(2).Column(2).AlignMiddle().AlignRight().PaddingRight(10)
-                    .Text(Info.User.Phone)
-                    .FontColor(Colors.White)
-                    .FontSize(Theme.ContactComponentTextSize);
+                
+                //table.Cell().Row(2).Column(2).AlignMiddle().AlignRight().PaddingRight(10)
+                //    .Text(Info.User.Phone)
+                //    .FontColor(Colors.White)
+                //    .FontSize(Theme.ContactComponentTextSize);
 
-                table.Cell().Row(2).Column(3).AlignMiddle().AlignLeft().PaddingRight(10)
-                    .Text(Info.User.Email)
-                    .FontColor(Colors.White)
-                    .FontSize(Theme.ContactComponentTextSize);
-                */
+                //table.Cell().Row(2).Column(3).AlignMiddle().AlignLeft().PaddingRight(10)
+                //    .Text(Info.User.Email)
+                //    .FontColor(Colors.White)
+                //    .FontSize(Theme.ContactComponentTextSize);
+                
             });
-        }
+        }*/
 
         private IContainer StyleSectionBody(IContainer container)
         {

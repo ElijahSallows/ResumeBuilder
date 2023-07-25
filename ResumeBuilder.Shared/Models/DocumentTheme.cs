@@ -9,6 +9,9 @@ namespace ResumeBuilder.Shared.Models
 
         public float TopLineSize { get; set; }
         public float NameSize { get; set; }
+        public float TitleSize { get; set; }
+        public float AboutTextSize { get; set; }
+        public float ContactComponentTextSize { get; set; }
 
         public float Spacing { get; set; }
         public float SkillSpacing { get; set; }
@@ -16,8 +19,6 @@ namespace ResumeBuilder.Shared.Models
         public float ProjectSpacing { get; set; }
         public float EducationSpacing { get; set; }
 
-        public float AboutTextSize { get; set; }
-        public float ContactComponentTextSize { get; set; }
         public float SkillTextSize { get; set; }
 
         public float ExperienceTitleTextSize { get; set; }
@@ -48,14 +49,15 @@ namespace ResumeBuilder.Shared.Models
         public DocumentTheme(ColorModel colors,
             FontModel fonts,
             float topLineSize = 50f,
-            float nameSize = 36f,
+            float nameSize = 40f,
+            float titleSize = 20f,
+            float aboutTextSize = 14f,
 
             float spacing = 2f,
             float skillSpacing = 2f,
             float experienceSpacing = 2f,
             float projectSpacing = 2f,
 
-            float aboutTextSize = 14f,
             float contactComponentTextSize = 16f,
             float skillTextSize = 14f,
 
@@ -88,6 +90,7 @@ namespace ResumeBuilder.Shared.Models
             Fonts = fonts;
             TopLineSize = topLineSize;
             NameSize = nameSize;
+            TitleSize = titleSize;
             Spacing = spacing;
             SkillSpacing = skillSpacing;
             ExperienceSpacing = experienceSpacing;

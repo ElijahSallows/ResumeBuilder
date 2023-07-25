@@ -1,5 +1,4 @@
 ﻿using QuestPDF.Fluent;
-using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
@@ -18,31 +17,38 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container
-                .Table(table =>
+            container.Table(table =>
                 {
-                    // Max of four columns (and therefore links)
+                    // Max of links
                     // Will likely either change or limit amount that can be put in.
-                    int amtColumn = Links.Count > 4 ? 3 : Links.Count;
+                    int amtLinks = Links.Count > 6 ? 6 : Links.Count;
+                    //bool secondColumn = Links.Count > 3;
+
                     table.ColumnsDefinition(columns =>
                     {
-                        // Generate a column for each link (max of four)
-                        for (int i = 0; i < amtColumn; i++)
-                        {
-                            columns.RelativeColumn();
-                        }
+                        columns.RelativeColumn();
+                        //if (secondColumn)
+                        //{
+                        //    columns.RelativeColumn();
+                        //}
                     });
 
-                    // QuestPDF uses a 1-based index system, unlike C#. Account for that here.
-                    for (int i = 1; i < amtColumn + 1; i++)
+                    for (int i = 0; i < amtLinks; i++)
                     {
-                        // comp has to account for the difference in indexing
-                        var comp = new SingleSocialComponent(Links[i - 1], Theme);
-                        // QuestPDF also requires .Column() to take in a uint as opposed to int. Casting, I suppose.
+                        // socialComponent has to account for the difference in indexing
+                        var socialComponent = new SingleSocialComponent(Links[i], Theme);
+
+                        // QuestPDF uses a 1-based index system, unlike C#. Account for that here.
+                        uint row = (uint)i % 3 + 1;
+                        //uint column = (uint)i / 3 + 1;
+
                         table.Cell()
-                            .Column((uint)i)
+                            .Row(row)
+                            //.Column(column)
+                            .PaddingVertical(1f)
+                            .AlignLeft()
                             //.Background(Colors.Cyan.Medium)
-                            .Component(comp);
+                            .Component(socialComponent);
                     }
                 });
         }
