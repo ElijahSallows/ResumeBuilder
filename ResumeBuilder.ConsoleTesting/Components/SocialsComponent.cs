@@ -1,4 +1,5 @@
 ﻿using QuestPDF.Fluent;
+using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using ResumeBuilder.Shared.Models;
 
@@ -17,38 +18,33 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
         public void Compose(IContainer container)
         {
-            container.Table(table =>
+            container
+                .AlignCenter()
+                .AlignTop()
+                .Table(table =>
                 {
-                    // Max of links
+                    // Max of four columns (and therefore links)
                     // Will likely either change or limit amount that can be put in.
-                    int amtLinks = Links.Count > 6 ? 6 : Links.Count;
-                    //bool secondColumn = Links.Count > 3;
-
+                    int amtColumn = Links.Count > 4 ? 3 : Links.Count;
                     table.ColumnsDefinition(columns =>
                     {
-                        columns.RelativeColumn();
-                        //if (secondColumn)
-                        //{
-                        //    columns.RelativeColumn();
-                        //}
+                        // Generate a column for each link (max of four)
+                        for (int i = 0; i < amtColumn; i++)
+                        {
+                            columns.RelativeColumn();
+                        }
                     });
 
-                    for (int i = 0; i < amtLinks; i++)
+                    // QuestPDF uses a 1-based index system, unlike C#. Account for that here.
+                    for (int i = 1; i < amtColumn + 1; i++)
                     {
-                        // socialComponent has to account for the difference in indexing
-                        var socialComponent = new SingleSocialComponent(Links[i], Theme);
-
-                        // QuestPDF uses a 1-based index system, unlike C#. Account for that here.
-                        uint row = (uint)i % 3 + 1;
-                        //uint column = (uint)i / 3 + 1;
-
+                        // comp has to account for the difference in indexing
+                        var comp = new SingleSocialComponent(Links[i - 1], Theme);
+                        // QuestPDF also requires .Column() to take in a uint as opposed to int. Casting, I suppose.
                         table.Cell()
-                            .Row(row)
-                            //.Column(column)
-                            .PaddingVertical(1f)
-                            .AlignLeft()
+                            .Column((uint)i)
                             //.Background(Colors.Cyan.Medium)
-                            .Component(socialComponent);
+                            .Component(comp);
                     }
                 });
         }

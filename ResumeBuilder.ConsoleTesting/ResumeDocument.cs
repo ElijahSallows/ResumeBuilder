@@ -92,10 +92,10 @@ namespace ResumeBuilder.ConsoleTesting
             var info = Info.User.Info;
             float headerWidth = PageSizes.Letter.Width - 20f;
 
+            var contact = new ContactComponent(Info.Address.Info, info.Email, info.Phone, Theme);
             var socials = new SocialsComponent(Info.User.Info.Links, Theme);
 
-            container.Background(Colors.Green.Lighten1)
-                .Height(PageSizes.Letter.Height * 2f / 10f)
+            container.MaxHeight(PageSizes.Letter.Height * 3f / 10f)
                 //.Width(headerWidth * 0.75f)
                 //.Background(Colors.Black)
                 .AlignCenter()
@@ -109,6 +109,7 @@ namespace ResumeBuilder.ConsoleTesting
 
                     table.Cell()
                         //.ColumnSpan(3)
+                        .PaddingBottom(10f)
                         .Column(column =>
                         {
 
@@ -131,6 +132,7 @@ namespace ResumeBuilder.ConsoleTesting
                                 {
                                     about.Item()
                                         .MinimalBox()
+                                        .AlignCenter()
                                         //.Background(Colors.LightBlue.Lighten3)
                                         .Text(info.About)
                                         .FontSize(Theme.AboutTextSize);
@@ -139,8 +141,14 @@ namespace ResumeBuilder.ConsoleTesting
                         });
 
                     table.Cell()
+                        .Column(2)
+                        .Component(contact);
+
+                    table.Cell()
                         .ColumnSpan(2)
                         .Row(2)
+                        .AlignCenter()
+                        .AlignBottom()
                         .Component(socials);
 
 
@@ -235,22 +243,20 @@ namespace ResumeBuilder.ConsoleTesting
             var educationComponent = new EducationsComponent(Info.Education.Info, Theme);
 
             container//.PaddingTop(10f)
-                .Height(PageSizes.Letter.Height * 7f / 10f)
+                .MaxHeight(PageSizes.Letter.Height * 7f / 10f)
                 .Table(table =>
                 {
                     table.ColumnsDefinition(columns =>
                     {
-                        columns.RelativeColumn();
-                        columns.RelativeColumn();
-                        columns.RelativeColumn();
+                        columns.RelativeColumn(2f);
+                        columns.RelativeColumn(3f);
                     });
 
                     table.ExtendLastCellsToTableBottom();
 
 
-                    #region SectionHeaders
+                    #region Sections
                     table.Cell()
-                        .ColumnSpan(1)
                         //.PaddingRight(5f)
                         .Column(column =>
                         {
@@ -273,7 +279,7 @@ namespace ResumeBuilder.ConsoleTesting
                         });
 
                     table.Cell()
-                        .ColumnSpan(2)
+                        .Column(2)
                         .PaddingLeft(10f)
                         .Column(column =>
                         {

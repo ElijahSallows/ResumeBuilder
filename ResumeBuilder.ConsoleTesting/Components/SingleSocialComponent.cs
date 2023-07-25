@@ -28,15 +28,12 @@ namespace ResumeBuilder.ConsoleTesting.Components
                 //    .Hyperlink(Link.Url)
                 //    .Image(Link.Image);
                 row.RelativeItem()
-                    .AlignLeft()
+                    .AlignCenter()
                     .AlignMiddle()
                     .PaddingLeft(2)
                     .Hyperlink(Link.Url)
                     .Text(Link.Url) //.Name
-                    .FontSize(Theme.ContactComponentTextSize * .9f)
-                    .FontColor(Theme.Colors.Background)
-                    .Thin()
-                    .FontFamily(Theme.Fonts.Social);
+                    .FontSize(Theme.ContactComponentTextSize * .9f);
             });
         }
     }

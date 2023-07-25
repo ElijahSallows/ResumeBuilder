@@ -33,7 +33,7 @@ namespace ResumeBuilder.ConsoleTesting.Components
 
                 column.Item()
                     .AlignRight()
-                    .Text($"{Address.City}, {Address.State}")
+                    .Text($"{Address.City}, {Address.State} {Address.Zip}")
                     .FontSize(Theme.ContactComponentTextSize)
                     .FontFamily(Theme.Fonts.Main);
 

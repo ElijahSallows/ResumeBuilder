@@ -1,10 +1,5 @@
-﻿// I'm doing a relatively quick learning of QuestPDF
-// and a mockup design of the resume format I may use.
-// I'm aware that there should be more comments.
-// I'll address that as I go along. :)
-using QuestPDF.Helpers;
+﻿using QuestPDF.Helpers;
 using ResumeBuilder.ConsoleTesting;
-using ResumeBuilder.ConsoleTesting.Properties;
 using ResumeBuilder.Shared;
 using ResumeBuilder.Shared.Models;
 

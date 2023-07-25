@@ -33,8 +33,7 @@ namespace ResumeBuilder.Shared.Models
         public float EducationSchoolNameTextSize { get; set; }
         public float EducationTextSize { get; set; }
         public float EducationTimeTextSize { get; set; }
-
-        public bool ContactMeTextVisible { get; set; }
+        
         public float ImageSize { get; set; }
 
         public int SkillsColumnCount { get; set; }
@@ -49,7 +48,7 @@ namespace ResumeBuilder.Shared.Models
         public DocumentTheme(ColorModel colors,
             FontModel fonts,
             float topLineSize = 50f,
-            float nameSize = 40f,
+            float nameSize = 42f,
             float titleSize = 20f,
             float aboutTextSize = 14f,
 
@@ -74,7 +73,6 @@ namespace ResumeBuilder.Shared.Models
             float educationTextSize = 12f,
             float educationTimeTextSize = 8f,
 
-            bool contactMeTextVisible = false,
             float imageSize = 24f,
 
             int skillsColumnCount = 2,
@@ -108,7 +106,6 @@ namespace ResumeBuilder.Shared.Models
             EducationSchoolNameTextSize = educationSchoolNameTextSize;
             EducationTextSize = educationTextSize;
             EducationTimeTextSize = educationTimeTextSize;
-            ContactMeTextVisible = contactMeTextVisible;
             ImageSize = imageSize;
             SkillsColumnCount = skillsColumnCount;
             MaxSkillCount = maxSkillCount;
