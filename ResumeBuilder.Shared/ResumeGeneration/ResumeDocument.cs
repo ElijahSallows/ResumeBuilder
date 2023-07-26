@@ -92,8 +92,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration
             var info = Info.User.Info;
             float headerWidth = PageSizes.Letter.Width - 20f;
 
-            var contact = new ContactComponent(Info.Address.Info, info.Email, info.Phone, Theme);
-            var socials = new SocialsComponent(Info.User.Info.Links, Theme);
+            bool displaySocials = info.Links.Count != 0;
 
             container.MaxHeight(PageSizes.Letter.Height * 3f / 10f)
                 //.Width(headerWidth * 0.75f)
@@ -140,18 +139,21 @@ namespace ResumeBuilder.Shared.ResumeGeneration
                                 });
                         });
 
+                    var contact = new ContactComponent(Info.Address.Info, info.Email, info.Phone, Theme);
                     table.Cell()
                         .Column(2)
                         .Component(contact);
 
-                    table.Cell()
-                        .ColumnSpan(2)
-                        .Row(2)
-                        .AlignCenter()
-                        .AlignBottom()
-                        .Component(socials);
-
-
+                    if (displaySocials)
+                    {
+                        var socials = new SocialsComponent(Info.User.Info.Links, Theme);
+                        table.Cell()
+                            .ColumnSpan(2)
+                            .Row(2)
+                            .AlignCenter()
+                            .AlignBottom()
+                            .Component(socials);
+                    }
 
                     /*column.Item()
                     .AlignCenter()

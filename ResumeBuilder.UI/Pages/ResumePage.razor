@@ -4,14 +4,16 @@
 @using ResumeBuilder.Shared.Models;
 @using Blazored.LocalStorage;
 @using Microsoft.AspNetCore.Components.Forms;
+@using System.IO;
 @layout FormLayout
 @inject IResumeModelService ModelService;
+@inject IJSRuntime JS;
 
 <PageTitle>Resume Builder</PageTitle>
 
 @*Temporary message*@
 <aside class="top-info">
-    <h6>This website is under development. It currently has no function.</h6>
+    <h6>This website is under development. It is not recommended for public use.</h6>
 </aside>
 <main class="main-wrapper">
     @if (ShouldShowSaveModal)
@@ -58,8 +60,8 @@
             }
         </section>
 
-        @*Generate (and download) PDF*@ @*@onclick="@OnGeneratePressed"*@
-        <button class="generate-button">
+        @*Generate (and download) PDF*@ @**@
+        <button class="generate-button"  @onclick="@OnGeneratePressed">
             Generate
             <div class="button-border"></div>
             <div class="button-mask"></div>
@@ -163,7 +165,7 @@
         {
             Model = ModelService.GetModel();
         }
-        
+
         EditContext = new EditContext(Model);
         EditContext.OnFieldChanged += EditContext_OnFieldChanged;
         await base.SetParametersAsync(parameters);
@@ -225,7 +227,30 @@
 
     private void OnGeneratePressed(MouseEventArgs args)
     {
-        ModelService.GenerateResume(Model);
+        var resume = ModelService.GenerateResumePdf(Model);
+    }
+
+
+    private Stream GetFileStream()
+    {
+        var randomBinaryData = new byte[50 * 1024];
+        var fileStream = new MemoryStream(randomBinaryData);
+
+        return fileStream;
+    }
+
+    private async Task DownloadFileFromStream()
+    {
+        var fileStream = GetFileStream();
+
+        string name = Model.User.Info.Name.Replace(' ', '-');
+        string title = Model.User.Info.Title.Replace(' ', '-');
+
+        var fileName = $"{name}-{title}";
+
+        using var streamRef = new DotNetStreamReference(stream: fileStream);
+
+        await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
     }
 
     //private void OnTryDelete<T>(T obj)

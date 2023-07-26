@@ -11,6 +11,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.4" PrivateAssets="all" />
     <PackageReference Include="QuestPDF" Version="2022.12.6" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp.Views.Blazor" Version="2.88.3" />
   </ItemGroup>
 
   <ItemGroup>

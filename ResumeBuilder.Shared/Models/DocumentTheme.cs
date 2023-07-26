@@ -45,6 +45,8 @@ namespace ResumeBuilder.Shared.Models
         public float BorderVerticalThickness { get; set; }
         public float BorderHorizontalThickness { get; set; }
 
+        public DocumentTheme(): this(new ColorModel(), new FontModel()) { }
+
         public DocumentTheme(ColorModel colors,
             FontModel fonts,
             float topLineSize = 50f,

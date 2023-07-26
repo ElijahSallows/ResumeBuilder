@@ -2,6 +2,7 @@
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 using ResumeBuilder.UI.Services.Interfaces;
+using System.Collections;
 
 namespace ResumeBuilder.UI.Services
 {
@@ -9,22 +10,25 @@ namespace ResumeBuilder.UI.Services
     {
         private IResumeInfoRepository _infoRepository = default!;
         private IStateInfoRepository _stateRepository = default!;
+        private IResumeGenerationService _generationService = default!;
         
         public int CurrentModelId { get; private set; }
         public bool IsUnsaved { get; set; }
 
         public ResumeModelService() {}
 
-        public ResumeModelService(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
+        public ResumeModelService(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository, IResumeGenerationService generationService)
         {
             _infoRepository = infoRepository;
             _stateRepository = stateRepository;
+            _generationService = generationService;
         }
 
-        public void Initialize(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository)
+        public void Initialize(IResumeInfoRepository infoRepository, IStateInfoRepository stateRepository, IResumeGenerationService generationService)
         {
             _infoRepository = infoRepository;
             _stateRepository = stateRepository;
+            _generationService = generationService;
         }
 
         public ResumeInfoModel DebugRegen()
@@ -32,9 +36,20 @@ namespace ResumeBuilder.UI.Services
             return MockResumeInfo.GetInfo();
         }
 
-        public void GenerateResume(ResumeInfoModel model)
+        public byte[] GenerateResumeImage(ResumeInfoModel model)
         {
-            throw new NotImplementedException();
+            var images = _generationService.GetImages(model);
+            if (images is List<byte[]>)
+            {
+                var imagesList = images as List<byte[]>;
+                return imagesList?[0] ?? Array.Empty<byte>();
+            }
+            return Array.Empty<byte>();
+        }
+
+        public byte[] GenerateResumePdf(ResumeInfoModel model)
+        {
+            return _generationService.GetPdf(model);
         }
 
         public ResumeInfoModel GetTempModel()
