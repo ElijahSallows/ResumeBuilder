@@ -218,6 +218,6 @@ namespace ResumeBuilder.Shared
                     }
                 }
             };
+        }
     }
-}
 }

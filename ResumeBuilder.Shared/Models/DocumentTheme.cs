@@ -1,5 +1,4 @@
-﻿
-namespace ResumeBuilder.Shared.Models
+﻿namespace ResumeBuilder.Shared.Models
 {
     public class DocumentTheme
     {
@@ -51,16 +50,18 @@ namespace ResumeBuilder.Shared.Models
             FontModel fonts,
             float topLineSize = 50f,
             float nameSize = 42f,
-            float titleSize = 20f,
-            float aboutTextSize = 14f,
+            float titleSize = 16f,
+            float aboutTextSize = 12f,
 
             float spacing = 2f,
-            float skillSpacing = 2f,
+            float skillSpacing = 8f,
             float experienceSpacing = 2f,
+            float educationSpacing = 2f,
             float projectSpacing = 2f,
 
             float contactComponentTextSize = 16f,
-            float skillTextSize = 14f,
+
+            float skillTextSize = 12f,
 
             float experienceTitleTextSize = 12f,
             float experienceCompanyNameTextSize = 10f,
@@ -78,7 +79,7 @@ namespace ResumeBuilder.Shared.Models
             float imageSize = 24f,
 
             int skillsColumnCount = 2,
-            int maxSkillCount = 24,
+            int maxSkillCount = 30,
             int maxExperienceCount = 4,
             int maxProjectCount = 4,
             int maxEducationCount = 4,
@@ -94,6 +95,7 @@ namespace ResumeBuilder.Shared.Models
             Spacing = spacing;
             SkillSpacing = skillSpacing;
             ExperienceSpacing = experienceSpacing;
+            EducationSpacing = educationSpacing;
             ProjectSpacing = projectSpacing;
             AboutTextSize = aboutTextSize;
             ContactComponentTextSize = contactComponentTextSize;

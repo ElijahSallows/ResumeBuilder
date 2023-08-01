@@ -42,7 +42,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                         .Row(GetRowPosition(i))
                         .PaddingBottom(Theme.SkillSpacing)
                         .AlignLeft()
-                        .Text($"{Theme.Bullet}   {Skills[i].Name}")
+                        .Text($"{Theme.Bullet}  {Skills[i].Name}")
                         .FontSize(Theme.SkillTextSize);
                 }
             });

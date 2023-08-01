@@ -35,19 +35,22 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                     .AlignRight()
                     .Text($"{Address.City}, {Address.State} {Address.Zip}")
                     .FontSize(Theme.ContactComponentTextSize)
-                    .FontFamily(Theme.Fonts.Main);
+                    .FontFamily(Theme.Fonts.Main)
+                                .Bold();
 
                 column.Item()
                     .AlignRight()
                     .Text(Email)
                     .FontSize(Theme.ContactComponentTextSize)
-                    .FontFamily(Theme.Fonts.Main);
+                    .FontFamily(Theme.Fonts.Main)
+                                .Bold();
 
                 column.Item()
                     .AlignRight()
                     .Text(Phone)
                     .FontSize(Theme.ContactComponentTextSize)
-                    .FontFamily(Theme.Fonts.Main);
+                    .FontFamily(Theme.Fonts.Main)
+                                .Bold();
             });
         }
     }
