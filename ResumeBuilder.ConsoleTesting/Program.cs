@@ -23,16 +23,17 @@ var colors = new ColorModel()
 };
 var fonts = new FontModel()
 {
-    Main = Fonts.Tahoma,
-    Header = Fonts.Tahoma,
-    Social = Fonts.Tahoma
+    Main = Fonts.Lato,
+    Header = Fonts.Lato,
+    Social = Fonts.Lato
 };
 var theme = new DocumentTheme(colors, fonts);
 
 // DEBUG
-for (int i = 0; i < theme.MaxSkillCount + 2; i++)
-{
-    info.Skills.Info.Add(new Skill("Skill " + i.ToString()));
-}
+//for (int i = 0; i < theme.MaxSkillCount + 2; i++)
+//{
+//    info.Skills.Info.Add(new Skill("Skill " + i.ToString()));
+//}
 var builder = new DocumentBuilder(info, theme);
 builder.BuildPreview();
+//builder.BuildPdf("C:\\Users\\elija\\OneDrive\\Desktop\\ResumeBuilder\\resume.pdf");

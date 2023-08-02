@@ -50,7 +50,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                         .Column(3)
                         .AlignRight()
                         .AlignMiddle()
-                        .PaddingRight(Theme.EducationSpacing)
+                        //.PaddingRight(Theme.EducationSpacing)
                         .Text($"{_startDate} - {_endDate}")
                         .FontSize(Theme.EducationTimeTextSize);
                     header.Cell()
@@ -69,7 +69,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                         .PaddingLeft(5f)
                         .PaddingRight(2f)
                         .PaddingBottom(Theme.EducationSpacing)
-                        .Text(">  " + point)
+                        .Text($"{Theme.Bullet}   {point}")
                         .FontSize(Theme.EducationTextSize)
                         .FontFamily(Theme.Fonts.Main);
                 }

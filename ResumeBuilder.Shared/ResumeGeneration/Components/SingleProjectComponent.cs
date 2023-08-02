@@ -29,7 +29,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                 {
                     header.Cell()
                         .ColumnSpan(3);
-                        //.Background(Theme.Colors.MediumContrast);
+                    //.Background(Theme.Colors.MediumContrast);
 
                     header.Cell()
                         .Column(1)
@@ -37,8 +37,19 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                         .AlignLeft()
                         .AlignMiddle()
                         .PaddingLeft(Theme.ProjectSpacing)
-                        .Text(Project.Name)
-                        .FontSize(Theme.ProjectNameTextSize);
+                        .Hyperlink(Project.Link)
+                        .Text(text =>
+                        {
+                            text.Span(Project.Name + " ")
+                                .FontSize(Theme.ProjectNameTextSize);
+                            
+                            if (!string.IsNullOrEmpty(Project.Link))
+                            {
+                                text.Span("(Github)")
+                                    .Underline();
+
+                            }
+                        });
 
                     header.Cell()
                         .Column(3)
@@ -63,7 +74,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration.Components
                         .PaddingLeft(5f)
                         .PaddingRight(2f)
                         .PaddingBottom(Theme.ProjectSpacing)
-                        .Text(">  " + point)
+                        .Text($"{Theme.Bullet}   {point}")
                         .FontSize(Theme.ProjectTextSize)
                         .FontFamily(Theme.Fonts.Main);
                 }

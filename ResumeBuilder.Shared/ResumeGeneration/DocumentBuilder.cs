@@ -36,6 +36,11 @@ namespace ResumeBuilder.Shared.ResumeGeneration
             return Build().GeneratePdf();
         }
 
+        public void BuildPdf(string filePath)
+        {
+            Build().GeneratePdf(filePath);
+        }
+
         public byte[] BuildXps()
         {
             return Build().GenerateXps();

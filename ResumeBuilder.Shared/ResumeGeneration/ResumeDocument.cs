@@ -47,15 +47,15 @@ namespace ResumeBuilder.Shared.ResumeGeneration
                         columns.RelativeColumn();
                     });
 
-                    TextStyle whiteText = new();
-                    whiteText = whiteText.FontColor(Theme.Colors.Main)
-                        .Bold();
+                    //TextStyle whiteText = new();
+                    //whiteText = whiteText.FontColor(Theme.Colors.Main)
+                    //    .Bold();
 
                     table.Cell()
                         .RowSpan(3)
                         .AlignTop()
                         //.Background(Theme.Colors.Main)
-                        .DefaultTextStyle(whiteText)
+                        //.DefaultTextStyle(whiteText)
                         .Element(ComposeHeader);
 
                     table.Cell()
@@ -92,8 +92,7 @@ namespace ResumeBuilder.Shared.ResumeGeneration
             var info = Info.User.Info;
             float headerWidth = PageSizes.Letter.Width - 20f;
 
-            var contact = new ContactComponent(Info.Address.Info, info.Email, info.Phone, Theme);
-            var socials = new SocialsComponent(Info.User.Info.Links, Theme);
+            bool displaySocials = info.Links.Count != 0;
 
             container.MaxHeight(PageSizes.Letter.Height * 3f / 10f)
                 //.Width(headerWidth * 0.75f)
@@ -116,42 +115,52 @@ namespace ResumeBuilder.Shared.ResumeGeneration
                             column.Item()
                                 .AlignCenter()
                                 .Text(info.Name)
-                                .FontSize(Theme.NameSize);
+                                .FontSize(Theme.NameSize)
+                                .FontColor(Theme.Colors.Main)
+                                .Bold();
 
                             column.Item()
                                 .AlignCenter()
                                 .Text(info.Title)
-                                .FontSize(Theme.TitleSize);
-
-                            column.Item()
-                                .MaxWidth(headerWidth * 0.5f)
-                                .AlignCenter()
-                                .MinimalBox()
-                                //.Background(Colors.Cyan.Darken3)
-                                .Column(about =>
-                                {
-                                    about.Item()
-                                        .MinimalBox()
-                                        .AlignCenter()
-                                        //.Background(Colors.LightBlue.Lighten3)
-                                        .Text(info.About)
-                                        .FontSize(Theme.AboutTextSize);
-
-                                });
+                                .FontSize(Theme.TitleSize)
+                                .Bold();
                         });
-
-                    table.Cell()
-                        .Column(2)
-                        .Component(contact);
 
                     table.Cell()
                         .ColumnSpan(2)
                         .Row(2)
+                        //.MaxWidth(headerWidth * 0.5f)
                         .AlignCenter()
-                        .AlignBottom()
-                        .Component(socials);
+                        .MinimalBox()
+                        .PaddingBottom(10f)
+                        //.Background(Colors.Cyan.Darken3)
+                        .Column(about =>
+                        {
+                            about.Item()
+                                .MinimalBox()
+                                .AlignCenter()
+                                //.Background(Colors.LightBlue.Lighten3)
+                                .Text(info.About)
+                                .FontSize(Theme.AboutTextSize)
+                                .Bold();
 
+                        });
 
+                    var contact = new ContactComponent(Info.Address.Info, info.Email, info.Phone, Theme);
+                    table.Cell()
+                        .Column(2)
+                        .Component(contact);
+
+                    if (displaySocials)
+                    {
+                        var socials = new SocialsComponent(Info.User.Info.Links, Theme);
+                        table.Cell()
+                            .ColumnSpan(2)
+                            .Row(3)
+                            .AlignCenter()
+                            .AlignBottom()
+                            .Component(socials);
+                    }
 
                     /*column.Item()
                     .AlignCenter()
@@ -363,7 +372,8 @@ namespace ResumeBuilder.Shared.ResumeGeneration
                 .Bold();
 
             return container.DefaultTextStyle(textStyle)
-                .PaddingVertical(12f);
+                .PaddingTop(8f)
+                .PaddingBottom(2f);
 
             //textStyle = textStyle
             //    .FontColor(Colors.White)
