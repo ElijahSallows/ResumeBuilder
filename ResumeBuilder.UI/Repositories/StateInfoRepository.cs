@@ -13,7 +13,7 @@ namespace ResumeBuilder.UI.Repositories
             }
             set
             {
-                //_localStorageService.SetItem("lastUsedModelId", value);
+                _localStorageService.SetItem("lastUsedModelId", value);
             }
         }
 
