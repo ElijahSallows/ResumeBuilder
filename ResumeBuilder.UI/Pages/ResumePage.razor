@@ -13,7 +13,7 @@
 
 @*Temporary message*@
 <aside class="top-info">
-    <h6>This website is under development. It is not recommended for public use.</h6>
+    <h6>This website is under development. Until a dependency issue is resolved, this cannot generate your resume. Thus, public use is not recommended.</h6>
 </aside>
 <main class="main-wrapper">
     @if (ShouldShowSaveModal)
@@ -32,7 +32,7 @@
 
             <div class="controls">
                 <button class="menu header-btn menu-btn oi oi-menu"></button>
-                <button class="save header-btn menu-btn oi oi-clipboard" @onclick="@OnSavePressed"></button>
+                <button class="save header-btn menu-btn oi oi-clipboard @(IsUnsaved ? "unsaved" : "saved")" @onclick="@OnSavePressed"></button>
 
                 <button class="undo header-btn state-controls menu-btn disabled oi oi-action-undo" disabled></button>
                 <button class="redo header-btn state-controls menu-btn disabled oi oi-action-redo" disabled></button>
@@ -227,7 +227,7 @@
 
     private void OnGeneratePressed(MouseEventArgs args)
     {
-        var resume = ModelService.GenerateResumePdf(Model);
+        //var resume = ModelService.GenerateResumePdf(Model);
     }
 
 
