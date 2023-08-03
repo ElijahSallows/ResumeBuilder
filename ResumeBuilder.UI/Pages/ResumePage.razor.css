@@ -34,80 +34,6 @@
     padding: 3% 0%;
 }
 
-.modal-wrapper {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: rgb(0, 0, 0, 0.75);
-    z-index: 5;
-    justify-content: center;
-}
-
-::deep .modal-click-through {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 6;
-}
-
-::deep .modal-frame {
-    margin: auto;
-    min-width: 50%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    padding: 1% 1%;
-    background-color: var(--bg-color);
-    z-index: 7;
-    border-radius: 20px;
-}
-
-::deep .modal-head {
-    width: 100%;
-    /*flex: 1 1 30%;*/
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-}
-
-::deep .modal-close {
-    border-radius: 20px;
-    width: 10%;
-}
-
-::deep .modal-controls {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
-
-::deep .modal-button {
-    border-radius: 20px;
-    font-size: 24px;
-    height: 10vh;
-    width: 10vw;
-}
-
-::deep .modal-cancel {
-    background-color: var(--bg-color-light);
-}
-
-    ::deep .modal-cancel:hover {
-        background-color: var(--bdr-color);
-    }
-
-::deep .modal-leave {
-    background-color: #430000;
-}
-
-    ::deep .modal-leave:hover {
-        background-color: #6a0000;
-    }
-
 .resume-wrapper {
     margin: auto;
     height: 100%;
@@ -145,6 +71,22 @@
     flex-direction: column;
 }
 
+::deep .label {
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+}
+
+::deep input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: clamp(10em, 100%, 66em);
+}
+
+::deep textarea {
+
+}
+
 ::deep .section-header {
     width: 100%;
     font-size: 28px;
@@ -162,8 +104,8 @@
     }
 
 ::deep .experience {
-    background-color: rgb(233, 233, 233, 0.18);
-    border: 1px solid #fff;
+    /*background-color: rgb(233, 233, 233, 0.18);
+    border: 1px solid #fff;*/
     min-width: 90%;
     flex-grow: 1;
 }
@@ -374,4 +316,79 @@
         z-index: -1;
         transition: 750ms ease-in-out;
         transition-property: transform;
+    }
+
+
+.modal-wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgb(0, 0, 0, 0.75);
+    z-index: 5;
+    justify-content: center;
+}
+
+::deep .modal-click-through {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 6;
+}
+
+::deep .modal-frame {
+    margin: auto;
+    min-width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 1% 1%;
+    background-color: var(--bg-color);
+    z-index: 7;
+    border-radius: 20px;
+}
+
+::deep .modal-head {
+    width: 100%;
+    /*flex: 1 1 30%;*/
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+::deep .modal-close {
+    border-radius: 20px;
+    width: 10%;
+}
+
+::deep .modal-controls {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+::deep .modal-button {
+    border-radius: 20px;
+    font-size: 24px;
+    height: 10vh;
+    width: 10vw;
+}
+
+::deep .modal-cancel {
+    background-color: var(--bg-color-light);
+}
+
+    ::deep .modal-cancel:hover {
+        background-color: var(--bdr-color);
+    }
+
+::deep .modal-leave {
+    background-color: #430000;
+}
+
+    ::deep .modal-leave:hover {
+        background-color: #6a0000;
     }
