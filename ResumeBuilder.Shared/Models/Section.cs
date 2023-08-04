@@ -9,6 +9,6 @@ namespace ResumeBuilder.Shared.Models
     public class Section<T> where T : class, new()
     {
         public T Info { get; set; } = new();
-        public bool IsActive { get; set; } = default;
+        public bool IsActive { get; set; } = true;
     }
 }
