@@ -31,7 +31,7 @@
             <label for="edu-start">
                 <span class="label">Start Date</span>
             </label>
-            <InputDate class="input" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
+            <InputDate class="input input-date" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
         </div>
 
         @if (!education.Current)
@@ -40,7 +40,7 @@
                 <label for="edu-end">
                     <span class="label">End Date</span>
                 </label>
-                <InputDate class="input" id="edu-end" @bind-Value="education.EndDate" TValue="DateTime" />
+                <InputDate class="input input-date" id="edu-end" @bind-Value="education.EndDate" TValue="DateTime" />
             </div>
         }
 
@@ -48,7 +48,7 @@
             <label for="edu-current">
                 <span class="label">Current?</span>
             </label>
-            <InputCheckbox class="input" id="edu-current" @bind-Value="education.Current" />
+            <InputCheckbox class="input input-check" id="edu-current" @bind-Value="education.Current" />
         </div>
 
         <InputTextList List="education.Points" />
