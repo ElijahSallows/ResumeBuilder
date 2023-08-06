@@ -15,14 +15,16 @@
 <aside class="top-info">
     <h6>This website is under development. Until a dependency issue is resolved, this cannot generate your resume. Thus, public use is not recommended.</h6>
 </aside>
+
 <main class="main-wrapper">
     @if (ShouldShowSaveModal)
     {
         <div class="modal-wrapper">
             <SaveConfirmModal OnCancel="@OnSaveModalCancelPressed"
-                OnLeave="@OnSaveModalLeavePressed"/>
+                              OnLeave="@OnSaveModalLeavePressed" />
         </div>
-    } 
+    }
+
     <aside class="left-menu side-menu">
         @*Top row*@
         <div class="menu-header">
@@ -60,20 +62,12 @@
             }
         </section>
 
-        @*Generate (and download) PDF*@ @**@
-        <button class="generate-button"  @onclick="@OnGeneratePressed">
+        @*Generate (and download) PDF*@
+        <button class="generate-button" @onclick="@OnGeneratePressed">
             Generate
             <div class="button-border"></div>
             <div class="button-mask"></div>
         </button>
-
-        @*<div class="button-wrapper">
-        <button @onclick="@OnDebugPressed" class="debug-button">
-        DEBUG
-        <div class="button-border"></div>
-        <div class="button-mask"></div>
-        </button>
-        </div>*@
     </aside>
 
     <div class="resume-wrapper">
@@ -230,7 +224,7 @@
         //var resume = ModelService.GenerateResumePdf(Model);
     }
 
-
+    // JS Interop to download the resume
     private Stream GetFileStream()
     {
         var randomBinaryData = new byte[50 * 1024];
@@ -252,44 +246,4 @@
 
         await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
     }
-
-    //private void OnTryDelete<T>(T obj)
-    //    where T : class
-    //{
-    //    if (ShouldOpenConfirm(obj))
-    //    {
-    //        //TODO
-    //        Delete(obj);
-    //    }
-    //}
-
-    //private bool ShouldOpenConfirm<T>(T obj)
-    //    where T : class
-    //{
-    //    return true;
-    //}
-
-    //private void Delete<T>(T obj)
-    //    where T : class
-    //{
-    //    switch (obj)
-    //    {
-    //        case Experience ex:
-    //            Model.Experiences.Info.Remove(ex);
-    //            break;
-    //        case Education ed:
-    //            Model.Education.Info.Remove(ed);
-    //            break;
-    //        case Skill sk:
-    //            Model.Skills.Info.Remove(sk);
-    //            break;
-    //        case Project pr:
-    //            Model.Projects.Info.Remove(pr);
-    //            break;
-
-    //        default:
-    //            break;
-    //    }
-    //    ModelService.SaveTemp(Model);
-    //}
 }
