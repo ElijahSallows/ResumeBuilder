@@ -203,6 +203,30 @@
     text-align: center;
 }
 
+.save[b-g74fobemhs]::after {
+    height: 5%;
+    min-height: 10px;
+    width: 5%;
+    min-width: 10px;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    background-color: #e22c2c;
+    content: "";
+    border-radius: 50%;
+    transition: opacity linear 0.5s;
+}
+
+.unsaved.save[b-g74fobemhs]::after {
+    opacity: 1;
+}
+
+.saved.save[b-g74fobemhs]::after {
+    opacity: 0;
+}
+
 .state-controls[b-g74fobemhs] {
     margin: 0;
 }
