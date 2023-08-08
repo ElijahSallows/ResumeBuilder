@@ -26,7 +26,7 @@ namespace ResumeBuilder.UI.Repositories
             {
                 return false;
             }
-            _localStorageService.RemoveItem(RESUME_PREFIX + key);
+            //_localStorageService.RemoveItem(RESUME_PREFIX + key);
          
             return true;
         }
@@ -61,7 +61,7 @@ namespace ResumeBuilder.UI.Repositories
         {
             try
             {
-                _localStorageService.SetItem(RESUME_PREFIX + key, model);
+                //_localStorageService.SetItem(RESUME_PREFIX + key, model);
                 return true;
             }
             catch 
