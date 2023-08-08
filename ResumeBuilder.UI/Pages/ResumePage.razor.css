@@ -305,9 +305,11 @@
 ::deep .section-selector-wrapper {
     width: 100%;
     flex-grow: 1;
-    display: grid;
-    gap: 0px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    display: flex;
+    flex-flow: row wrap;
+
+    /*gap: 0px;*/
+    /*grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));*/
     /*flex-flow: row wrap;
     justify-content: space-evenly;*/
 }
@@ -316,6 +318,7 @@
     /*min-width: 30%;*/
     /*flex-basis: 30%;
     flex-grow: 1;*/
+    flex: 1 0 100px;
     padding: 0px;
 }
 

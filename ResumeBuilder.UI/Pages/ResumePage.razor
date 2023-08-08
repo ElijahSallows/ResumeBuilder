@@ -44,8 +44,8 @@
 
         @*Resume section selectors*@
         <section class="section-selector-wrapper">
-            <SectionSelector StateService="@StateService"
-                             OnUpdate="@OnUpdate" />
+            <SectionSelector StateService="@StateService"   
+                             OnUpdate="@Refresh" />
         </section>
 
         @*Saved layout selectors*@
@@ -182,6 +182,11 @@
     private void OnUpdate()
     {
         ModelService.SaveTemp(Model);
+    }
+
+    private void Refresh()
+    {
+        StateHasChanged();
     }
 
     private void OnChangeModelPressed(int id)
