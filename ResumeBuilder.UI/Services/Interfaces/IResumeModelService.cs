@@ -1,4 +1,5 @@
-﻿using ResumeBuilder.Shared.Models;
+﻿using Blazored.LocalStorage;
+using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 
 namespace ResumeBuilder.UI.Services.Interfaces
@@ -18,7 +19,6 @@ namespace ResumeBuilder.UI.Services.Interfaces
         void Save(ResumeInfoModel model);
         void DeleteTemp();
         void Delete();
-        ResumeInfoModel DebugRegen();
         //string GetLayoutName(int id);
     }
 }

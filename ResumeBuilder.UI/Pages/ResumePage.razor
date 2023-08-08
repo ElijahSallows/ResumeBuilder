@@ -7,6 +7,7 @@
 @using System.IO;
 @layout FormLayout
 @inject IResumeModelService ModelService;
+@inject IActiveStateService StateService;
 @inject IJSRuntime JS;
 
 <PageTitle>Resume Builder</PageTitle>
@@ -43,7 +44,7 @@
 
         @*Resume section selectors*@
         <section class="section-selector-wrapper">
-            <SectionSelector Model="@Model"
+            <SectionSelector StateService="@StateService"
                              OnUpdate="@OnUpdate" />
         </section>
 
@@ -75,26 +76,30 @@
         {
             <EditForm class="resume" EditContext="@EditContext">
                 <DataAnnotationsValidator />
-                @if (Model.User.IsActive)
+
+                @if (StateService.IsUserInfoVisible)
                 {
                     <section class="user-wrapper section-wrapper">
                         <UserInfoView Info="@Model.User.Info" />
                     </section>
 
-                    <section class="socials-wrapper section-wrapper">
-                        <SocialList List="@Model.User.Info.Links" />
-                    </section>
                 }
 
-                @if (Model.Address.IsActive)
+                @if (StateService.IsAddressInfoVisible)
                 {
                     <section class="address-wrapper section-wrapper">
                         <AddressView Info="@Model.Address.Info" />
                     </section>
                 }
 
+                @if (StateService.IsSocialsInfoVisible)
+                {
+                    <section class="socials-wrapper section-wrapper">
+                        <SocialList List="@Model.User.Info.Links" />
+                    </section>
+                }
 
-                @if (Model.Skills.IsActive)
+                @if (StateService.IsSkillsInfoVisible)
                 {
                     <section class="skill-wrapper section-wrapper">
                         <SkillList List="Model.Skills.Info"
@@ -102,7 +107,7 @@
                     </section>
                 }
 
-                @if (Model.Experiences.IsActive)
+                @if (StateService.IsExperienceInfoVisible)
                 {
                     <section class="experiences-wrapper section-wrapper">
                         <ExperienceList List="Model.Experiences.Info"
@@ -111,7 +116,7 @@
                 }
 
 
-                @if (Model.Education.IsActive)
+                @if (StateService.IsEducationInfoVisible)
                 {
                     <section class="education-wrapper section-wrapper">
                         <EducationList List="Model.Education.Info"
@@ -120,7 +125,7 @@
                 }
 
 
-                @if (Model.Projects.IsActive)
+                @if (StateService.IsProjectInfoVisible)
                 {
                     <section class="project-wrapper section-wrapper">
                         <ProjectList List="Model.Projects.Info"
@@ -211,11 +216,6 @@
     private void ChangeModel(int id)
     {
         Model = ModelService.GetModel(id);
-    }
-
-    private void OnDebugPressed(MouseEventArgs args)
-    {
-        Model = ModelService.DebugRegen();
     }
 
     private void OnSavePressed(MouseEventArgs args)

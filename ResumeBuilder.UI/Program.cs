@@ -17,16 +17,23 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddSingleton(BuildResumeModelService());
+builder.Services.AddSingleton(BuildActiveStateService());
 
 var host = builder.Build();
 
 var localStorageService = host.Services.GetRequiredService<ISyncLocalStorageService>();
 var modelService = host.Services.GetRequiredService<IResumeModelService>();
+var activeStateService = host.Services.GetRequiredService<IActiveStateService>();
 
-modelService.Initialize(
-    GetResumeInfoRepository(localStorageService), 
-    GetStateInfoRepository(localStorageService),
-    GetGenerationService());
+var resumeInfoRepository = GetResumeInfoRepository(localStorageService);
+var stateInfoRepository = GetStateInfoRepository(localStorageService);
+var generationService = GetGenerationService();
+
+modelService.Initialize(resumeInfoRepository,
+    stateInfoRepository,
+    generationService);
+
+activeStateService.Initialize(stateInfoRepository);
 
 await host.RunAsync();
 
@@ -71,5 +78,10 @@ IResumeGenerationService GetGenerationService()
 IResumeModelService BuildResumeModelService()
 {
     return new ResumeModelService();
+}
+
+IActiveStateService BuildActiveStateService()
+{
+    return new ActiveStateService();
 }
 #endregion

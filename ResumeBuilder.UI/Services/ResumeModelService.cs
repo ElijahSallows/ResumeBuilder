@@ -1,4 +1,5 @@
-﻿using ResumeBuilder.Shared;
+﻿using Blazored.LocalStorage;
+using ResumeBuilder.Shared;
 using ResumeBuilder.Shared.Models;
 using ResumeBuilder.UI.Repositories.Interfaces;
 using ResumeBuilder.UI.Services.Interfaces;
@@ -29,11 +30,6 @@ namespace ResumeBuilder.UI.Services
             _infoRepository = infoRepository;
             _stateRepository = stateRepository;
             _generationService = generationService;
-        }
-
-        public ResumeInfoModel DebugRegen()
-        {
-            return MockResumeInfo.GetInfo();
         }
 
         public byte[] GenerateResumeImage(ResumeInfoModel model)

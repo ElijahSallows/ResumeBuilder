@@ -1,10 +1,10 @@
-﻿using Blazored.LocalStorage;
+﻿using ResumeBuilder.UI.Repositories.Interfaces;
 
-namespace ResumeBuilder.UI.Repositories.Interfaces
+namespace ResumeBuilder.UI.Services.Interfaces
 {
-    public interface IStateInfoRepository
+    public interface IActiveStateService
     {
-        int LastUsedModelId { get; set; }
+        void Initialize(IStateInfoRepository stateRepository);
         bool IsUserInfoVisible { get; set; }
         bool IsAddressInfoVisible { get; set; }
         bool IsSocialsInfoVisible { get; set; }
@@ -12,7 +12,5 @@ namespace ResumeBuilder.UI.Repositories.Interfaces
         bool IsExperienceInfoVisible { get; set; }
         bool IsEducationInfoVisible { get; set; }
         bool IsProjectInfoVisible { get; set; }
-        //void AddLocalStorageService(ISyncLocalStorageService localStorageService);
-
     }
 }

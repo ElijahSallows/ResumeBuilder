@@ -1,75 +1,87 @@
 ﻿@using ResumeBuilder.Shared.Models;
+@using ResumeBuilder.UI.Services.Interfaces;
 
-<button class="section-selector @(Model.User.IsActive ? "active" : "inactive")"
+<button class="section-selector @(StateService.IsUserInfoVisible ? "active" : "inactive")"
 @onclick="@OnUserPressed">
     Your Details
 </button>
 
-<button class="section-selector @(Model.Address.IsActive ? "active" : "inactive")"
+<button class="section-selector @(StateService.IsAddressInfoVisible ? "active" : "inactive")"
 @onclick="@OnAddressPressed">
     Address
 </button>
 
-<button class="section-selector @(Model.Skills.IsActive ? "active" : "inactive")"
+<button class="section-selector @(StateService.IsSocialsInfoVisible ? "active" : "inactive")"
+@onclick="@OnSocialsPressed">
+    Socials
+</button>
+
+<button class="section-selector @(StateService.IsSkillsInfoVisible ? "active" : "inactive")"
 @onclick="@OnSkillsPressed">
     Skills
 </button>
 
-<button class="section-selector @(Model.Experiences.IsActive ? "active" : "inactive")"
+<button class="section-selector @(StateService.IsExperienceInfoVisible ? "active" : "inactive")"
 @onclick="@OnExperiencesPressed">
     Experience
 </button>
 
-<button class="section-selector @(Model.Education.IsActive ? "active" : "inactive")"
+<button class="section-selector @(StateService.IsEducationInfoVisible ? "active" : "inactive")"
 @onclick="@OnEducationPressed">
     Education
 </button>
 
-<button class="section-selector @(Model.Projects.IsActive ? "active" : "inactive")"
+<button class="section-selector @(StateService.IsProjectInfoVisible ? "active" : "inactive")"
 @onclick="@OnProjectsPressed">
     Projects
 </button>
 
 @code {
     [Parameter]
-    public required ResumeInfoModel Model { get; set; }
+    public required IActiveStateService StateService { get; set; }
 
     [Parameter]
     public required EventCallback OnUpdate { get; set; }
 
     private async void OnUserPressed()
     {
-        Model.User.IsActive = !Model.User.IsActive;
+        StateService.IsUserInfoVisible = !StateService.IsUserInfoVisible;
         await OnUpdate.InvokeAsync();
     }
 
     private async void OnAddressPressed()
     {
-        Model.Address.IsActive = !Model.Address.IsActive;
+        StateService.IsAddressInfoVisible = !StateService.IsAddressInfoVisible;
         await OnUpdate.InvokeAsync();
     }
 
-    private async void OnExperiencesPressed()
+    private async void OnSocialsPressed()
     {
-        Model.Experiences.IsActive = !Model.Experiences.IsActive;
+        StateService.IsSocialsInfoVisible = !StateService.IsSocialsInfoVisible;
         await OnUpdate.InvokeAsync();
     }
 
     private async void OnSkillsPressed()
     {
-        Model.Skills.IsActive = !Model.Skills.IsActive;
+        StateService.IsSkillsInfoVisible = !StateService.IsSkillsInfoVisible;
+        await OnUpdate.InvokeAsync();
+    }
+
+    private async void OnExperiencesPressed()
+    {
+        StateService.IsExperienceInfoVisible = !StateService.IsExperienceInfoVisible;
         await OnUpdate.InvokeAsync();
     }
 
     private async void OnEducationPressed()
     {
-        Model.Education.IsActive = !Model.Education.IsActive;
+        StateService.IsEducationInfoVisible = !StateService.IsEducationInfoVisible;
         await OnUpdate.InvokeAsync();
     }
 
     private async void OnProjectsPressed()
     {
-        Model.Projects.IsActive = !Model.Projects.IsActive;
+        StateService.IsProjectInfoVisible = !StateService.IsProjectInfoVisible;
         await OnUpdate.InvokeAsync();
     }
 }
