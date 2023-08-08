@@ -4,12 +4,14 @@
     --bg-color: #222323;
     --bg-color-light: #383c3c;
     --bdr-color: #585c5c;
+    --gradient: linear-gradient(90deg, rgba(150,215,95,1) 0%, rgba(210,205,95,1) 35%, rgba(220,85,108,1) 53%, rgba(118,173,211,1) 100%);
 }
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
     color: white;
+    color-scheme: dark;
 }
 
 #loading {
@@ -41,7 +43,7 @@ html, body {
     width: var(--blazor-load-percentage, 0%);
     height: 50%;
     border-radius: 50px;
-    background-color: blue;
+    background: var(--gradient);
 }
 
 .loading-text::after {
