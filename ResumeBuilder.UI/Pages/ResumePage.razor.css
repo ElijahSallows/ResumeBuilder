@@ -34,80 +34,6 @@
     padding: 3% 0%;
 }
 
-.modal-wrapper {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: rgb(0, 0, 0, 0.75);
-    z-index: 5;
-    justify-content: center;
-}
-
-::deep .modal-click-through {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    z-index: 6;
-}
-
-::deep .modal-frame {
-    margin: auto;
-    min-width: 50%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    padding: 1% 1%;
-    background-color: var(--bg-color);
-    z-index: 7;
-    border-radius: 20px;
-}
-
-::deep .modal-head {
-    width: 100%;
-    /*flex: 1 1 30%;*/
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-}
-
-::deep .modal-close {
-    border-radius: 20px;
-    width: 10%;
-}
-
-::deep .modal-controls {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-}
-
-::deep .modal-button {
-    border-radius: 20px;
-    font-size: 24px;
-    height: 10vh;
-    width: 10vw;
-}
-
-::deep .modal-cancel {
-    background-color: var(--bg-color-light);
-}
-
-    ::deep .modal-cancel:hover {
-        background-color: var(--bdr-color);
-    }
-
-::deep .modal-leave {
-    background-color: #430000;
-}
-
-    ::deep .modal-leave:hover {
-        background-color: #6a0000;
-    }
-
 .resume-wrapper {
     margin: auto;
     height: 100%;
@@ -132,22 +58,150 @@
     padding: 1% 2%;
 }
 
-.section-wrapper + .section-wrapper::before {
-    width: 50%;
-    content: '';
-    display: block;
-    margin: 1% 25%;
-    border-bottom: 3px solid var(--bg-color-light);
-}
+    .section-wrapper + .section-wrapper::before {
+        width: 50%;
+        content: '';
+        display: block;
+        margin: 1% 25%;
+        border-bottom: 3px solid var(--bg-color-light);
+    }
 
 ::deep .input-wrapper {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+::deep .input-text {
+
+    width: 100%;
+
+}
+
+::deep .input {
+    border: 1px solid #767676;
+    border-radius: 10px;
+}
+
+::deep .full {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+::deep .full > .label {
+    width: 50%;
+}
+
+::deep .point-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+::deep .point {
+    flex: 1 1 auto;
+    margin-block: 0.1em;
+    margin-left: 0.5em;
+}
+
+::deep .dates-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+::deep .dates-wrapper > .input-wrapper {
+    width: auto;
+}
+
+::deep .input-date {
+    width: fit-content;
+}
+
+::deep .input-check {
+    width: fit-content;
+}
+
+::deep label {
+    font-weight: bold;
+    margin-bottom: 0.25em;
+}
+
+    ::deep label::after,
+    ::deep .gradient-underline::after {
+        content: "";
+        display: block;
+        width: 75%;
+        border-bottom: 1px solid;
+        border-image-slice: 1;
+        border-image-source: var(--gradient);
+    }
+
+::deep input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    /*width: clamp(10em, 100%, 66em);*/
+}
+
+::deep .user-wrapper {
+    max-height: 30em;
+}
+
+::deep .about-wrapper {
+    width: 100%;
+}
+
+/* Autogrowing textarea from https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/ */
+::deep .grow-wrapper {
+    /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+    display: grid;
+}
+
+    ::deep .grow-wrapper::after {
+        /* Note the weird space! Needed to preventy jumpy behavior */
+        content: attr(data-replicated-value) " ";
+        /* This is how textarea text behaves */
+        white-space: pre-wrap;
+        /* Hidden from view, clicks, and screen readers */
+        visibility: hidden;
+    }
+
+    ::deep .grow-wrapper > textarea {
+        /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+        resize: none;
+        /* Firefox shows scrollbar on growth, you can hide like this. */
+        overflow: hidden;
+    }
+
+    /* Identical styling required!! */
+    ::deep .grow-wrapper > textarea,
+    ::deep .grow-wrapper::after {
+        padding: 0.5rem;
+        font: inherit;
+        background-color: var(--bg-color);
+        color: white;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        /* Place on top of each other */
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+::deep h2.section-header {
+    font-size: 28px;
+}
+
+::deep h4.section-header {
+    font-size: 18px;
+    justify-content: center;
 }
 
 ::deep .section-header {
     width: 100%;
-    font-size: 28px;
     display: flex;
     justify-content: space-between;
 }
@@ -161,10 +215,10 @@
         background: initial;
     }
 
-::deep .experience {
-    background-color: rgb(233, 233, 233, 0.18);
-    border: 1px solid #fff;
-    min-width: 90%;
+::deep .list-wrapper {
+    /*background-color: rgb(233, 233, 233, 0.18);
+    border: 1px solid #fff;*/
+    width: 100%;
     flex-grow: 1;
 }
 
@@ -230,7 +284,8 @@
     margin: 0;
 }
 
-.disabled, .disabled:hover {
+::deep .disabled, 
+::deep .disabled:hover {
     color: var(--bg-color-light) !important;
     background-color: var(--bg-color);
 }
@@ -249,16 +304,21 @@
 
 ::deep .section-selector-wrapper {
     width: 100%;
+    flex-grow: 1;
     display: flex;
     flex-flow: row wrap;
-    flex-grow: 1;
-    justify-content: space-evenly;
+
+    /*gap: 0px;*/
+    /*grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));*/
+    /*flex-flow: row wrap;
+    justify-content: space-evenly;*/
 }
 
 ::deep .section-selector {
-    min-width: 30%;
-    flex-basis: 30%;
-    flex-grow: 1;
+    /*min-width: 30%;*/
+    /*flex-basis: 30%;
+    flex-grow: 1;*/
+    flex: 1 0 100px;
     padding: 0px;
 }
 
@@ -374,4 +434,79 @@
         z-index: -1;
         transition: 750ms ease-in-out;
         transition-property: transform;
+    }
+
+
+.modal-wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgb(0, 0, 0, 0.75);
+    z-index: 5;
+    justify-content: center;
+}
+
+::deep .modal-click-through {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 6;
+}
+
+::deep .modal-frame {
+    margin: auto;
+    min-width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 1% 1%;
+    background-color: var(--bg-color);
+    z-index: 7;
+    border-radius: 20px;
+}
+
+::deep .modal-head {
+    width: 100%;
+    /*flex: 1 1 30%;*/
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+::deep .modal-close {
+    border-radius: 20px;
+    width: 10%;
+}
+
+::deep .modal-controls {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+::deep .modal-button {
+    border-radius: 20px;
+    font-size: 24px;
+    height: 10vh;
+    width: 10vw;
+}
+
+::deep .modal-cancel {
+    background-color: var(--bg-color-light);
+}
+
+    ::deep .modal-cancel:hover {
+        background-color: var(--bdr-color);
+    }
+
+::deep .modal-leave {
+    background-color: #430000;
+}
+
+    ::deep .modal-leave:hover {
+        background-color: #6a0000;
     }

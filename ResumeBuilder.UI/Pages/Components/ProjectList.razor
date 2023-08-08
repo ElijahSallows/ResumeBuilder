@@ -8,7 +8,7 @@
 
 @foreach (var project in List)
 {
-    <div class="project">
+    <div class="project list-wrapper">
         <div class="project-delete-wrapper delete-wrapper">
             <button @onclick="() => Delete(project)" class="oi oi-trash"></button>
         </div>
@@ -16,17 +16,19 @@
             <label for="project-name">
                 <span class="label">Project Name</span>
             </label>
-            <InputText class="input" id="project-name" @bind-Value="project.Name" />
+            <InputText class="input" placeholder="Type here..." id="project-name" @bind-Value="project.Name" />
         </div>
 
         <div class="input-wrapper">
             <label for="project-date">
                 <span class="label">Project Date</span>
             </label>
-            <InputText class="input" id="project-date" @bind-Value="project.Date" />
+            <InputText class="input" placeholder="Type here..." id="project-date" @bind-Value="project.Date" />
         </div>
 
-        <InputTextList List="project.Points" />
+        <InputTextList List="project.Points"
+                       T=Project
+                       OnUpdated="@OnUpdated" />
     </div>
 }
 

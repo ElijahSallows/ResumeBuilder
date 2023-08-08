@@ -1,0 +1,21 @@
+﻿@using ResumeBuilder.Shared.Models;
+@inherits ResumeListView<SocialLink>;
+
+<h2 class="section-header">
+    <span>Socials</span>
+    <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
+</h2>
+
+@foreach (var social in List)
+{
+    <div class="input-wrapper list-wrapper">
+        <label for="social-url">
+            <span class="label">URL</span>
+        </label>
+        <InputText class="input input-text" placeholder="Type here..." id="social-url" @bind-Value="social.Url" />
+    </div>
+}
+
+@code {
+
+}

@@ -7,6 +7,7 @@
 @using System.IO;
 @layout FormLayout
 @inject IResumeModelService ModelService;
+@inject IActiveStateService StateService;
 @inject IJSRuntime JS;
 
 <PageTitle>Resume Builder</PageTitle>
@@ -15,14 +16,16 @@
 <aside class="top-info">
     <h6>This website is under development. Until a dependency issue is resolved, this cannot generate your resume. Thus, public use is not recommended.</h6>
 </aside>
+
 <main class="main-wrapper">
     @if (ShouldShowSaveModal)
     {
         <div class="modal-wrapper">
             <SaveConfirmModal OnCancel="@OnSaveModalCancelPressed"
-                OnLeave="@OnSaveModalLeavePressed"/>
+                              OnLeave="@OnSaveModalLeavePressed" />
         </div>
-    } 
+    }
+
     <aside class="left-menu side-menu">
         @*Top row*@
         <div class="menu-header">
@@ -34,15 +37,15 @@
                 <button class="menu header-btn menu-btn oi oi-menu"></button>
                 <button class="save header-btn menu-btn oi oi-clipboard @(IsUnsaved ? "unsaved" : "saved")" @onclick="@OnSavePressed"></button>
 
-                <button class="undo header-btn state-controls menu-btn disabled oi oi-action-undo" disabled></button>
-                <button class="redo header-btn state-controls menu-btn disabled oi oi-action-redo" disabled></button>
+                <button class="undo header-btn menu-btn state-controls oi oi-action-undo disabled" disabled></button>
+                <button class="redo header-btn menu-btn state-controls oi oi-action-redo disabled" disabled></button>
             </div>
         </div>
 
         @*Resume section selectors*@
         <section class="section-selector-wrapper">
-            <SectionSelector Model="@Model"
-                             OnUpdate="@OnUpdate" />
+            <SectionSelector StateService="@StateService"   
+                             OnUpdate="@Refresh" />
         </section>
 
         @*Saved layout selectors*@
@@ -60,20 +63,12 @@
             }
         </section>
 
-        @*Generate (and download) PDF*@ @**@
-        <button class="generate-button"  @onclick="@OnGeneratePressed">
+        @*Generate (and download) PDF*@
+        <button class="generate-button" @onclick="@OnGeneratePressed">
             Generate
             <div class="button-border"></div>
             <div class="button-mask"></div>
         </button>
-
-        @*<div class="button-wrapper">
-        <button @onclick="@OnDebugPressed" class="debug-button">
-        DEBUG
-        <div class="button-border"></div>
-        <div class="button-mask"></div>
-        </button>
-        </div>*@
     </aside>
 
     <div class="resume-wrapper">
@@ -81,21 +76,38 @@
         {
             <EditForm class="resume" EditContext="@EditContext">
                 <DataAnnotationsValidator />
-                @if (Model.User.IsActive)
+
+                @if (StateService.IsUserInfoVisible)
                 {
                     <section class="user-wrapper section-wrapper">
                         <UserInfoView Info="@Model.User.Info" />
                     </section>
+
                 }
 
-                @if (Model.Address.IsActive)
+                @if (StateService.IsAddressInfoVisible)
                 {
                     <section class="address-wrapper section-wrapper">
                         <AddressView Info="@Model.Address.Info" />
                     </section>
                 }
 
-                @if (Model.Experiences.IsActive)
+                @if (StateService.IsSocialsInfoVisible)
+                {
+                    <section class="socials-wrapper section-wrapper">
+                        <SocialList List="@Model.User.Info.Links" />
+                    </section>
+                }
+
+                @if (StateService.IsSkillsInfoVisible)
+                {
+                    <section class="skill-wrapper section-wrapper">
+                        <SkillList List="Model.Skills.Info"
+                                   OnUpdated="@OnUpdate" />
+                    </section>
+                }
+
+                @if (StateService.IsExperienceInfoVisible)
                 {
                     <section class="experiences-wrapper section-wrapper">
                         <ExperienceList List="Model.Experiences.Info"
@@ -104,16 +116,7 @@
                 }
 
 
-                @if (Model.Skills.IsActive)
-                {
-                    <section class="skill-wrapper section-wrapper">
-                        <SkillList List="Model.Skills.Info"
-                                   OnUpdated="@OnUpdate" />
-                    </section>
-                }
-
-
-                @if (Model.Education.IsActive)
+                @if (StateService.IsEducationInfoVisible)
                 {
                     <section class="education-wrapper section-wrapper">
                         <EducationList List="Model.Education.Info"
@@ -122,7 +125,7 @@
                 }
 
 
-                @if (Model.Projects.IsActive)
+                @if (StateService.IsProjectInfoVisible)
                 {
                     <section class="project-wrapper section-wrapper">
                         <ProjectList List="Model.Projects.Info"
@@ -181,6 +184,11 @@
         ModelService.SaveTemp(Model);
     }
 
+    private void Refresh()
+    {
+        StateHasChanged();
+    }
+
     private void OnChangeModelPressed(int id)
     {
         if (id == CurrentModelId)
@@ -215,11 +223,6 @@
         Model = ModelService.GetModel(id);
     }
 
-    private void OnDebugPressed(MouseEventArgs args)
-    {
-        Model = ModelService.DebugRegen();
-    }
-
     private void OnSavePressed(MouseEventArgs args)
     {
         ModelService.Save(Model);
@@ -230,7 +233,7 @@
         //var resume = ModelService.GenerateResumePdf(Model);
     }
 
-
+    // JS Interop to download the resume
     private Stream GetFileStream()
     {
         var randomBinaryData = new byte[50 * 1024];
@@ -252,44 +255,4 @@
 
         await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
     }
-
-    //private void OnTryDelete<T>(T obj)
-    //    where T : class
-    //{
-    //    if (ShouldOpenConfirm(obj))
-    //    {
-    //        //TODO
-    //        Delete(obj);
-    //    }
-    //}
-
-    //private bool ShouldOpenConfirm<T>(T obj)
-    //    where T : class
-    //{
-    //    return true;
-    //}
-
-    //private void Delete<T>(T obj)
-    //    where T : class
-    //{
-    //    switch (obj)
-    //    {
-    //        case Experience ex:
-    //            Model.Experiences.Info.Remove(ex);
-    //            break;
-    //        case Education ed:
-    //            Model.Education.Info.Remove(ed);
-    //            break;
-    //        case Skill sk:
-    //            Model.Skills.Info.Remove(sk);
-    //            break;
-    //        case Project pr:
-    //            Model.Projects.Info.Remove(pr);
-    //            break;
-
-    //        default:
-    //            break;
-    //    }
-    //    ModelService.SaveTemp(Model);
-    //}
 }

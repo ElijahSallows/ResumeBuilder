@@ -8,50 +8,55 @@
 
 @foreach (var experience in List)
 {
-    <div class="experience">
+    <div class="experience list-wrapper">
         <div class="experience-delete-wrapper delete-wrapper">
             <button @onclick="() => Delete(experience)" class="oi oi-trash"></button>
-        </div>
-
-        <div class="input-wrapper">
-            <label for="exp-name">
-                <span class="label">Company Name</span>
-            </label>
-            <InputText class="input" id="exp-name" @bind-Value="experience.CompanyName" />
         </div>
 
         <div class="input-wrapper">
             <label for="exp-title">
                 <span class="label">Title</span>
             </label>
-            <InputText class="input" id="exp-title" @bind-Value="experience.Title" />
+            <InputText class="input input-text" placeholder="Type here..." id="exp-title" @bind-Value="experience.Title" />
         </div>
 
         <div class="input-wrapper">
-            <label for="exp-start">
-                <span class="label">Start Date</span>
+            <label for="exp-name">
+                <span class="label">Company Name</span>
             </label>
-            <InputDate class="input" id="exp-start" @bind-Value="experience.StartDate" TValue="DateTime" />
+            <InputText class="input input-text" placeholder="Type here..." id="exp-name" @bind-Value="experience.CompanyName" />
         </div>
 
-        @if (!experience.Current)
-        {
+        <div class="dates-wrapper">
+            <div class="input-wrapper">
+                <label for="exp-start">
+                    <span class="label">Start Date</span>
+                </label>
+                <InputDate class="input input-date" id="exp-start" @bind-Value="experience.StartDate" TValue="DateTime" />
+            </div>
+
             <div class="input-wrapper">
                 <label for="exp-end">
                     <span class="label">End Date</span>
                 </label>
-                <InputDate class="input" id="exp-end" @bind-Value="experience.EndDate" TValue="DateTime" />
+                @* Bug at https://github.com/dotnet/razor/issues/7684 forces us to use string interpolation *@
+                <InputDate class=@($"input input-date {(experience.Current ? "disabled" : "")}")
+                           id="exp-end"
+                @bind-Value="experience.EndDate"
+                           TValue="DateTime"
+                           disabled="@experience.Current" />
             </div>
-        }
 
-        <div class="input-wrapper">
-            <label for="exp-current">
-                <span class="label">Current?</span>
-            </label>
-            <InputCheckbox class="input" id="exp-current" @bind-Value="experience.Current" />
+            <div class="input-wrapper">
+                <label for="exp-current">
+                    <span class="label">Current?</span>
+                </label>
+                <InputCheckbox class="input input-check" id="exp-current" @bind-Value="experience.Current" />
+            </div>
         </div>
-
-        <InputTextList List="experience.Points" />
+        <InputTextList List="experience.Points"
+                       T=Experience
+                       OnUpdated="@OnUpdated" />
     </div>
 }
 @code {
