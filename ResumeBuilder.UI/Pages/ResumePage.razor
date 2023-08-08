@@ -80,6 +80,10 @@
                     <section class="user-wrapper section-wrapper">
                         <UserInfoView Info="@Model.User.Info" />
                     </section>
+
+                    <section class="socials-wrapper section-wrapper">
+                        <SocialList List="@Model.User.Info.Links" />
+                    </section>
                 }
 
                 @if (Model.Address.IsActive)
@@ -89,20 +93,20 @@
                     </section>
                 }
 
-                @if (Model.Experiences.IsActive)
-                {
-                    <section class="experiences-wrapper section-wrapper">
-                        <ExperienceList List="Model.Experiences.Info"
-                                        OnUpdated="@OnUpdate" />
-                    </section>
-                }
-
 
                 @if (Model.Skills.IsActive)
                 {
                     <section class="skill-wrapper section-wrapper">
                         <SkillList List="Model.Skills.Info"
                                    OnUpdated="@OnUpdate" />
+                    </section>
+                }
+
+                @if (Model.Experiences.IsActive)
+                {
+                    <section class="experiences-wrapper section-wrapper">
+                        <ExperienceList List="Model.Experiences.Info"
+                                        OnUpdated="@OnUpdate" />
                     </section>
                 }
 

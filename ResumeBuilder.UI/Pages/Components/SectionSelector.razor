@@ -10,14 +10,14 @@
     Address
 </button>
 
-<button class="section-selector @(Model.Experiences.IsActive ? "active" : "inactive")"
-@onclick="@OnExperiencesPressed">
-    Experience
-</button>
-
 <button class="section-selector @(Model.Skills.IsActive ? "active" : "inactive")"
 @onclick="@OnSkillsPressed">
     Skills
+</button>
+
+<button class="section-selector @(Model.Experiences.IsActive ? "active" : "inactive")"
+@onclick="@OnExperiencesPressed">
+    Experience
 </button>
 
 <button class="section-selector @(Model.Education.IsActive ? "active" : "inactive")"

@@ -69,9 +69,14 @@
 ::deep .input-wrapper {
     display: flex;
     flex-direction: column;
-    min-width: 5em;
-    width: fit-content;
-    max-width: 100%;
+    flex-grow: 1;
+    width: 100%;
+}
+
+::deep .input-text {
+
+    width: 100%;
+
 }
 
 ::deep .input {
@@ -79,9 +84,46 @@
     border-radius: 10px;
 }
 
+::deep .full {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
 
+::deep .full > .label {
+    width: 50%;
+}
+
+::deep .point-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+::deep .point {
+    flex: 1 1 auto;
+    margin-block: 0.1em;
+    margin-left: 0.5em;
+}
+
+::deep .dates-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+::deep .dates-wrapper > .input-wrapper {
+    width: auto;
+}
 
 ::deep .input-date {
+    width: fit-content;
+}
+
+::deep .input-check {
+    width: fit-content;
 }
 
 ::deep label {
@@ -89,7 +131,8 @@
     margin-bottom: 0.25em;
 }
 
-    ::deep label::after {
+    ::deep label::after,
+    ::deep .gradient-underline::after {
         content: "";
         display: block;
         width: 75%;
@@ -148,9 +191,17 @@
         grid-area: 1 / 1 / 2 / 2;
     }
 
+::deep h2.section-header {
+    font-size: 28px;
+}
+
+::deep h4.section-header {
+    font-size: 18px;
+    justify-content: center;
+}
+
 ::deep .section-header {
     width: 100%;
-    font-size: 28px;
     display: flex;
     justify-content: space-between;
 }
@@ -164,7 +215,7 @@
         background: initial;
     }
 
-::deep .experience {
+::deep .list-wrapper {
     /*background-color: rgb(233, 233, 233, 0.18);
     border: 1px solid #fff;*/
     width: 100%;

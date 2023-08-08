@@ -1,12 +1,24 @@
-﻿@if (List != null)
+﻿@typeparam T
+
+@*<h4 class="section-header">
+    <span>Points</span>
+   
+</h4>*@
+<label class="full">
+    <span class="label">Points</span>
+    <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
+</label>
+
+@if (List != null)
 {
     @foreach (var element in List.Select((e, i) => new { Value = e, Index = i }))
     {
         // See https://stackoverflow.com/a/56426146/323447
         // Due to this bug, we have to bind both get and set to achieve the desired effect.
 
-        <div class="input-wrapper">
-            <InputText class="input input-text" placeholder="Type here..." @bind-Value:get="element.Value"
+        <div class="input-wrapper point-wrapper">
+            <span>•</span>
+            <InputText class="input input-text point" placeholder="Type here..." @bind-Value:get="element.Value"
                @bind-Value:set="(value) => { List[element.Index] = value; }" />
         </div>
     }
@@ -14,5 +26,14 @@
 
 @code {
     [Parameter]
-    public IList<string>? List { get; set; }
+    public required IList<string> List { get; set; }
+
+    [Parameter]
+    public required EventCallback<T> OnUpdated { get; set; }
+
+    private protected async Task OnAddClicked()
+    {
+        List?.Add(string.Empty);
+        await OnUpdated.InvokeAsync();
+    }
 }

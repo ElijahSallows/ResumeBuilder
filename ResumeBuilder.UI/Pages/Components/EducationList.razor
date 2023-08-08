@@ -8,7 +8,7 @@
 
 @foreach (var education in List)
 {
-    <div class="education">
+    <div class="education list-wrapper">
         <div class="education-delete-wrapper delete-wrapper">
             <button @onclick="() => Delete(education)" class="oi oi-trash"></button>
         </div>
@@ -27,31 +27,36 @@
             <InputText class="input input-text" placeholder="Type here..." id="edu-title" @bind-Value="education.Title" />
         </div>
 
-        <div class="input-wrapper">
-            <label for="edu-start">
-                <span class="label">Start Date</span>
-            </label>
-            <InputDate class="input input-date" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
-        </div>
+        <div class="dates-wrapper">
+            <div class="input-wrapper">
+                <label for="edu-start">
+                    <span class="label">Start Date</span>
+                </label>
+                <InputDate class="input input-date" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
+            </div>
 
-        @if (!education.Current)
-        {
             <div class="input-wrapper">
                 <label for="edu-end">
                     <span class="label">End Date</span>
                 </label>
-                <InputDate class="input input-date" id="edu-end" @bind-Value="education.EndDate" TValue="DateTime" />
+                @* Bug at https://github.com/dotnet/razor/issues/7684 forces us to use string interpolation *@
+                <InputDate class=@($"input input-date {(education.Current ? "disabled" : "")}")
+                           id="edu-end"
+                @bind-Value="education.EndDate"
+                           TValue="DateTime"
+                           disabled="@education.Current" />
             </div>
-        }
 
-        <div class="input-wrapper">
-            <label for="edu-current">
-                <span class="label">Current?</span>
-            </label>
-            <InputCheckbox class="input input-check" id="edu-current" @bind-Value="education.Current" />
+            <div class="input-wrapper">
+                <label for="edu-current">
+                    <span class="label">Current?</span>
+                </label>
+                <InputCheckbox class="input input-check" id="edu-current" @bind-Value="education.Current" />
+            </div>
         </div>
-
-        <InputTextList List="education.Points" />
+        <InputTextList List="education.Points"
+                       T=Education
+                       OnUpdated="@OnUpdated" />
     </div>
 }
 @code {
