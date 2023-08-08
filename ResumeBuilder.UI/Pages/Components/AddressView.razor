@@ -1,27 +1,28 @@
 ﻿@using ResumeBuilder.Shared.Models;
 @inherits ResumeSingleView<Address>
 
-<div class="input-wrapper">
-    <label for="address-city">
-        <span class="label">City</span>
-    </label>
-    <InputText class="input input-text" placeholder="Type here..." id="address-city" @bind-Value="Info.City" />
-</div>
+<div class="address">
+    <div class="input-wrapper address-input-wrapper">
+        <label for="address-city">
+            <span class="label">City</span>
+        </label>
+        <InputText class="input input-text" placeholder="Type here..." id="address-city" @bind-Value="Info.City" />
+    </div>
 
-<div class="input-wrapper">
-    <label for="address-state">
-        <span class="label">State</span>
-    </label>
-    <InputText class="input input-text" placeholder="Type here..." id="address-state" @bind-Value="Info.State" />
-</div>
+    <div class="input-wrapper address-input-wrapper">
+        <label for="address-state">
+            <span class="label">State</span>
+        </label>
+        <InputText class="input input-text" placeholder="Type here..." id="address-state" @bind-Value="Info.State" />
+    </div>
 
-<div class="input-wrapper">
-    <label for="address-zip">
-        <span class="label">Zip</span>
-    </label>
-    <InputText class="input input-text" placeholder="Type here..." id="address-zip" @bind-Value="Info.Zip" />
+    <div class="input-wrapper address-input-wrapper">
+        <label for="address-zip">
+            <span class="label">Zip</span>
+        </label>
+        <InputText class="input input-text" placeholder="Type here..." id="address-zip" @bind-Value="Info.Zip" />
+    </div>
 </div>
-
 
 @code {
 

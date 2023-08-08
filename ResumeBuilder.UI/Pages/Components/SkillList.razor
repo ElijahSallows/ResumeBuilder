@@ -9,11 +9,11 @@
 @foreach (var skill in List)
 {
     <div class="skill">
-        <div class="skill-delete-wrapper delete-wrapper">
-            <button @onclick="() => Delete(skill)" class="oi oi-trash"></button>
-        </div>
-        <div class="input-wrapper">
+        <div class="input-wrapper skill-input-wrapper">
             <InputText class="input input-text" placeholder="Type here..." @bind-Value="skill.Name" />
+        </div>
+        <div class="skill-delete-wrapper delete-wrapper">
+            <button @onclick="() => Delete(skill)" class="delete oi oi-trash"></button>
         </div>
     </div>
 }

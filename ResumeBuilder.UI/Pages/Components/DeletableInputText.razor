@@ -1,0 +1,10 @@
+﻿@typeparam T
+
+
+@code {
+    [Parameter]
+    public required EventCallback<T> Delete { get; set; }
+
+    [Parameter]
+    public required EventCallback<T> OnUpdate { get; set; }
+}
