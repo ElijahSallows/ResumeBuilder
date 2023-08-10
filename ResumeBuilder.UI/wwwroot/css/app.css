@@ -4,6 +4,7 @@
     --bg-color: #222323;
     --bg-color-light: #383c3c;
     --bdr-color: #585c5c;
+    --bdr-color-light: #767676;
     --gradient: linear-gradient(90deg, rgba(150,215,95,1) 0%, rgba(210,205,95,1) 35%, rgba(220,85,108,1) 53%, rgba(118,173,211,1) 100%);
     --grabber-container-size: 7em;
 }

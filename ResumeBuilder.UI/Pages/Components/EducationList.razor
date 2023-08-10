@@ -17,14 +17,14 @@
             <label for="edu-name">
                 <span class="label">School Name</span>
             </label>
-            <InputText class="input input-text" placeholder="Type here..." id="edu-name" @bind-Value="education.SchoolName" />
+            <InputText class="input bordered input-text" placeholder="Type here..." id="edu-name" @bind-Value="education.SchoolName" />
         </div>
 
         <div class="input-wrapper">
             <label for="edu-title">
                 <span class="label">Title</span>
             </label>
-            <InputText class="input input-text" placeholder="Type here..." id="edu-title" @bind-Value="education.Title" />
+            <InputText class="input bordered input-text" placeholder="Type here..." id="edu-title" @bind-Value="education.Title" />
         </div>
 
         <div class="dates-wrapper">
@@ -32,7 +32,7 @@
                 <label for="edu-start">
                     <span class="label">Start Date</span>
                 </label>
-                <InputDate class="input input-date" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
+                <InputDate class="input bordered input-date" id="edu-start" @bind-Value="education.StartDate" TValue="DateTime" />
             </div>
 
             <div class="input-wrapper">
@@ -40,7 +40,7 @@
                     <span class="label">End Date</span>
                 </label>
                 @* Bug at https://github.com/dotnet/razor/issues/7684 forces us to use string interpolation *@
-                <InputDate class=@($"input input-date {(education.Current ? "disabled" : "")}")
+                <InputDate class=@($"input bordered input-date {(education.Current ? "disabled" : "")}")
                            id="edu-end"
                 @bind-Value="education.EndDate"
                            TValue="DateTime"
@@ -51,7 +51,7 @@
                 <label for="edu-current">
                     <span class="label">Current?</span>
                 </label>
-                <InputCheckbox class="input input-check" id="edu-current" @bind-Value="education.Current" />
+                <InputCheckbox class="input bordered input-check" id="edu-current" @bind-Value="education.Current" />
             </div>
         </div>
         <InputTextList List="education.Points"

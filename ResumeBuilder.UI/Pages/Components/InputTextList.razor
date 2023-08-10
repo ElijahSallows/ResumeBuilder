@@ -18,7 +18,7 @@
 
         <div class="input-wrapper point-wrapper">
             <span>•</span>
-            <InputText class="input input-text point" placeholder="Type here..." @bind-Value:get="element.Value"
+            <InputText class="input bordered input-text point" placeholder="Type here..." @bind-Value:get="element.Value"
                @bind-Value:set="(value) => { List[element.Index] = value; }" />
         </div>
     }

@@ -9,12 +9,18 @@
 @foreach (var skill in List)
 {
     <div class="skill">
+        <DeletableInputText T="Skill"
+            @bind-Value="skill.Name"
+            OnDelete="() => Delete(skill)"
+            OnUpdate="OnUpdated"
+            />
+        @*
         <div class="input-wrapper skill-input-wrapper">
             <InputText class="input input-text" placeholder="Type here..." @bind-Value="skill.Name" />
         </div>
         <div class="skill-delete-wrapper delete-wrapper">
             <button @onclick="() => Delete(skill)" class="delete oi oi-trash"></button>
-        </div>
+        </div>*@
     </div>
 }
 

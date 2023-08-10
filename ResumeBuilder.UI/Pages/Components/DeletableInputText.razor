@@ -1,10 +1,50 @@
-﻿@typeparam T
-
+﻿@inherits InputText
+@typeparam T
+<div class="deletable-text-wrapper">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label for="@ID">
+            <span class="label">Title</span>
+        </label>
+    }
+    <div class="deletable-text bordered">
+        @*<div class="input-wrapper">*@
+            <InputText class="input input-text" placeholder="Type here..." @bind-Value="Value" />
+        @*</div>*@
+        <div class="delete-wrapper">
+            <button @onclick="() => Delete()" id="@ID" class="delete oi oi-trash"></button>
+        </div>
+    </div>
+</div>
 
 @code {
+    public DeletableInputText()
+    {
+        _id++;
+    }
+
     [Parameter]
-    public required EventCallback<T> Delete { get; set; }
+    public required EventCallback<T> OnDelete { get; set; }
 
     [Parameter]
     public required EventCallback<T> OnUpdate { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    private static int _id = 0;
+
+    private static string ID
+    {
+        get
+        {
+            return "deletable-text-" + _id.ToString();
+        }
+    }
+
+    private async void Delete()
+    {
+        await OnDelete.InvokeAsync();
+        await OnUpdate.InvokeAsync();
+    }
 }

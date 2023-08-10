@@ -9,28 +9,28 @@
     <label for="user-name">
         <span class="label">Name</span>
     </label>
-    <InputText class="input input-text" placeholder="Type here..." id="user-name" @bind-Value="Info.Name" />
+    <InputText class="input bordered input-text" placeholder="Type here..." id="user-name" @bind-Value="Info.Name" />
 </div>
 
 <div class="input-wrapper">
     <label for="user-title">
         <span class="label">Title</span>
     </label>
-    <InputText class="input input-text" placeholder="Type here..." id="user-title" @bind-Value="Info.Title" />
+    <InputText class="input bordered input-text" placeholder="Type here..." id="user-title" @bind-Value="Info.Title" />
 </div>
 
 <div class="input-wrapper">
     <label for="user-email">
         <span class="label">Email Address</span>
     </label>
-    <InputText class="input input-text" placeholder="Type here..." id="user-email" @bind-Value="Info.Email" />
+    <InputText class="input bordered input-text" placeholder="Type here..." id="user-email" @bind-Value="Info.Email" />
 </div>
 
 <div class="input-wrapper">
     <label for="user-phone">
         <span class="label">Phone Number</span>
     </label>
-    <InputText class="input input-text" placeholder="Type here..." id="user-phone" @bind-Value="Info.Phone" />
+    <InputText class="input bordered input-text" placeholder="Type here..." id="user-phone" @bind-Value="Info.Phone" />
 </div>
 
 <div class="input-wrapper about-wrapper">
@@ -39,7 +39,7 @@
     </label>
     <div class="grow-wrapper">
         @* Autogrowing textarea from https://css-tricks.com/the-cleanest-trick-for-autogrowing-textareas/ *@
-        <InputTextArea class="input input-textarea" 
+        <InputTextArea class="input bordered input-textarea" 
             placeholder="Type here..."
             id="user-about"
             onInput="this.parentNode.dataset.replicatedValue = this.value"

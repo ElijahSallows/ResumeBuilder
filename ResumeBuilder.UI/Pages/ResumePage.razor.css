@@ -83,26 +83,22 @@
     }
 
 
-::deep .skill {
+::deep .deletable-text {
     display: flex;
     flex-flow: row nowrap;
-    border: 1px solid #767676;
-    border-radius: 10px;
 }
 
-::deep .skill-input-wrapper {
+::deep .deletable-text {
     flex: 1 1 auto;
 }
 
-::deep .skill-input-wrapper > .input {
-    border: none;
-    border-radius: 0px;
-    border-right: 1px solid;
-}
+    ::deep .deletable-text > .input {
+        border-right: 1px solid var(--bdr-color-light);
+    }
 
 ::deep .delete-wrapper {
     width: var(--grabber-container-size);
-    height: 100% !important;
+    margin: 0;
     /*padding: 0px 5px;*/
 }
 
@@ -123,8 +119,8 @@
     width: 100%;
 }
 
-::deep .input {
-    border: 1px solid #767676;
+::deep .bordered {
+    border: 1px solid var(--bdr-color-light);
     border-radius: 10px;
 }
 
