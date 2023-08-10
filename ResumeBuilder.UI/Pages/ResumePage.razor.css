@@ -86,6 +86,7 @@
 ::deep .deletable-text {
     display: flex;
     flex-flow: row nowrap;
+    margin-block: .5em;
 }
 
 ::deep .deletable-text {
@@ -99,7 +100,10 @@
 ::deep .delete-wrapper {
     width: var(--grabber-container-size);
     margin: 0;
-    /*padding: 0px 5px;*/
+
+    overflow: hidden;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 ::deep .delete {
