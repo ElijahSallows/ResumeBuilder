@@ -3,7 +3,6 @@
 
 <h2 class="section-header">
     <span>Experiences</span>
-    <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
 </h2>
 
 @foreach (var experience in List)
@@ -59,6 +58,13 @@
                        OnUpdated="@OnUpdated" />
     </div>
 }
+<div class="add-wrapper">
+    <div class="add">
+
+        <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
+    </div>
+</div>
+
 @code {
 
 }

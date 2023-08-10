@@ -5,6 +5,7 @@
     --bg-color-light: #383c3c;
     --bdr-color: #585c5c;
     --bdr-color-light: #767676;
+    --card-color: #302c34;
     --gradient: linear-gradient(90deg, rgba(150,215,95,1) 0%, rgba(210,205,95,1) 35%, rgba(220,85,108,1) 53%, rgba(118,173,211,1) 100%);
     --grabber-container-size: 7em;
 }
@@ -85,7 +86,7 @@ html, body {
         content: var(--blazor-load-percentage-text, "Loading");
     }
 
-h1:focus {
+/*h1:focus {
     outline: none;
 }
 
@@ -101,9 +102,9 @@ a, .btn-link {
 
 .content {
     padding-top: 1.1rem;
-}
+}*/
 
-.valid.modified:not([type=checkbox]) {
+/*.valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
 
@@ -113,10 +114,11 @@ a, .btn-link {
 
 .validation-message {
     color: red;
-}
+}*/
 
 #blazor-error-ui {
     background: lightyellow;
+    color: black;
     bottom: 0;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     display: none;

@@ -1,5 +1,5 @@
 ﻿::deep button {
-    background-color: var(--bg-color);
+    background-color: transparent;/*var(--bg-color);*/
     color: white;
     border: none;
     transition: background-color .3s, color .3s;
@@ -81,7 +81,6 @@
     ::deep .address-input-wrapper + .address-input-wrapper {
         margin-left: 1em;
     }
-
 
 ::deep .deletable-text {
     display: flex;
@@ -192,9 +191,9 @@
     /*width: clamp(10em, 100%, 66em);*/
 }
 
-::deep .user-wrapper {
+/*::deep .user-wrapper {
     max-height: 30em;
-}
+}*/
 
 ::deep .about-wrapper {
     width: 100%;
@@ -264,6 +263,9 @@
     border: 1px solid #fff;*/
     width: 100%;
     flex-grow: 1;
+    border-radius: 20px;
+    background-color: var(--card-color);
+    padding: 1em;
 }
 
 .side-menu {
