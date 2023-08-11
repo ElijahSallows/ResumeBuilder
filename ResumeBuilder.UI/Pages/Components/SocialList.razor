@@ -8,12 +8,19 @@
 
 @foreach (var social in List)
 {
-    <div class="input-wrapper list-wrapper">
+    @* At some point, this can be improved. Since only the links are shown at present, this is sufficient.*@
+    <div class="social vertical-margins">
+        <DeletableInputText T="SocialLink"
+                            OnUpdate="@OnUpdated"
+                            OnDelete="() => Delete(social)"
+        @bind-Value="social.Url" />
+    </div>
+    @*<div class="input-wrapper list-wrapper">
         <label for="social-url">
             <span class="label">URL</span>
         </label>
         <InputText class="input bordered input-text" placeholder="Type here..." id="social-url" @bind-Value="social.Url" />
-    </div>
+    </div>*@
 }
 
 @code {

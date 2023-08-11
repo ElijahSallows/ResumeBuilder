@@ -8,7 +8,7 @@
 
 @foreach (var skill in List)
 {
-    <div class="skill">
+    <div class="skill vertical-margins">
         <DeletableInputText T="Skill"
             @bind-Value="skill.Name"
             OnDelete="() => Delete(skill)"

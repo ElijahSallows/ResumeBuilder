@@ -1,19 +1,11 @@
 ﻿@inherits InputText
 @typeparam T
-<div class="deletable-text-wrapper">
-    @if (!string.IsNullOrEmpty(Label))
-    {
-        <label for="@ID">
-            <span class="label">Title</span>
-        </label>
-    }
-    <div class="deletable-text bordered">
-        @*<div class="input-wrapper">*@
-            <InputText class="input input-text" placeholder="Type here..." @bind-Value="Value" />
-        @*</div>*@
-        <div class="delete-wrapper">
-            <button @onclick="() => Delete()" id="@ID" class="delete oi oi-trash"></button>
-        </div>
+<div class="deletable-text bordered">
+    @*<div class="input-wrapper">*@
+    <InputText class="input input-text" placeholder="Type here..." @bind-Value="Value" />
+    @*</div>*@
+    <div class="delete-wrapper">
+        <button @onclick="() => Delete()" id="@ID" class="delete oi oi-trash"></button>
     </div>
 </div>
 
@@ -29,8 +21,11 @@
     [Parameter]
     public required EventCallback<T> OnUpdate { get; set; }
 
-    [Parameter]
-    public string? Label { get; set; }
+    private async void Delete()
+    {
+        await OnDelete.InvokeAsync();
+        await OnUpdate.InvokeAsync();
+    }
 
     private static int _id = 0;
 
@@ -40,11 +35,5 @@
         {
             return "deletable-text-" + _id.ToString();
         }
-    }
-
-    private async void Delete()
-    {
-        await OnDelete.InvokeAsync();
-        await OnUpdate.InvokeAsync();
     }
 }

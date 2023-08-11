@@ -1,9 +1,5 @@
 ﻿@typeparam T
 
-@*<h4 class="section-header">
-    <span>Points</span>
-   
-</h4>*@
 <label class="full">
     <span class="label">Points</span>
     <button class="oi oi-plus" @onclick="@OnAddClicked"></button>
@@ -16,7 +12,7 @@
         // See https://stackoverflow.com/a/56426146/323447
         // Due to this bug, we have to bind both get and set to achieve the desired effect.
 
-        <div class="input-wrapper point-wrapper">
+        <div class="input-wrapper point-wrapper vertical-margins">
             <span>•</span>
             <InputText class="input bordered input-text point" placeholder="Type here..." @bind-Value:get="element.Value"
                @bind-Value:set="(value) => { List[element.Index] = value; }" />
@@ -30,6 +26,9 @@
 
     [Parameter]
     public required EventCallback<T> OnUpdated { get; set; }
+
+    [Parameter]
+    public bool Deletable { get; set; } = false;
 
     private protected async Task OnAddClicked()
     {
