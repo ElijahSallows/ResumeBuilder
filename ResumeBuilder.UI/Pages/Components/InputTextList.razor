@@ -14,8 +14,21 @@
 
         <div class="input-wrapper point-wrapper vertical-margins">
             <span>•</span>
-            <InputText class="input bordered input-text point" placeholder="Type here..." @bind-Value:get="element.Value"
-               @bind-Value:set="(value) => { List[element.Index] = value; }" />
+            @if (Deletable)
+            {
+                <DeletableInputText T="T"
+                @bind-Value:get="element.Value"
+                @bind-Value:set="(value) => { List[element.Index] = value; }"
+                OnDelete="() => List.Remove(element.Value)"
+                OnUpdate="OnUpdated" />
+            }
+            else
+            {
+                <InputText class="input bordered input-text point" 
+                placeholder="Type here..." 
+                @bind-Value:get="element.Value"
+                @bind-Value:set="(value) => { List[element.Index] = value; }" />
+            }
         </div>
     }
 }

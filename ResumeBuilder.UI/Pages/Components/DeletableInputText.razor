@@ -1,9 +1,7 @@
 ﻿@inherits InputText
 @typeparam T
 <div class="deletable-text bordered">
-    @*<div class="input-wrapper">*@
     <InputText class="input input-text" placeholder="Type here..." @bind-Value="Value" />
-    @*</div>*@
     <div class="delete-wrapper">
         <button @onclick="() => Delete()" id="@ID" class="delete oi oi-trash"></button>
     </div>
